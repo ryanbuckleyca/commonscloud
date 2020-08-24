@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_232326) do
+ActiveRecord::Schema.define(version: 2020_08_24_235316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "connections", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.string "status"
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_connections_on_post_id"
+    t.index ["user_id"], name: "index_connections_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "post_type"
+    t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.text "description"
+    t.string "location"
+    t.string "priority"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +58,8 @@ ActiveRecord::Schema.define(version: 2020_08_24_232326) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "connections", "posts"
+  add_foreign_key "connections", "users"
+  add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "users"
 end
