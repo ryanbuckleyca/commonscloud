@@ -22,28 +22,28 @@ ActiveRecord::Schema.define(version: 2020_08_24_235316) do
   end
 
   create_table "connections", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "responder_id", null: false
     t.bigint "post_id", null: false
     t.string "status"
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_connections_on_post_id"
-    t.index ["user_id"], name: "index_connections_on_user_id"
+    t.index ["responder_id"], name: "index_connections_on_responder_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "post_type"
     t.bigint "category_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "author_id", null: false
     t.string "title"
     t.text "description"
     t.string "location"
     t.string "priority"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["category_id"], name: "index_posts_on_category_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_235316) do
   end
 
   add_foreign_key "connections", "posts"
-  add_foreign_key "connections", "users"
+  add_foreign_key "connections", "users", column: "responder_id"
   add_foreign_key "posts", "categories"
-  add_foreign_key "posts", "users"
+  add_foreign_key "posts", "users", column: "author_id"
 end
