@@ -1,2 +1,21 @@
 <h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="row">
+<% @posts.each do |post| %>
+  <div class="card-group col-3 p-2">
+    <div class="card">
+      <div class="card-title p-3">
+        <%= link_to post.title, post_path(post) %> (posted by <%= post.author.name %>)
+      </div>
+      <div class="card-body">
+        Category: <%= post.category.name %><br>
+        Post type: <%= post.post_type %><br>
+        Description: <%= post.description %>
+      </div>
+      <div class="card-footer d-flex">
+        <span>@ <%= post.location %></span>
+        <span><%= post.priority %> priority</span>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
