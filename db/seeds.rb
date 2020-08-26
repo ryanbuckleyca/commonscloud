@@ -43,7 +43,7 @@ MTL_PHONES = ['(514) 376-8344', '(514) 279-7016', '(514) 482-1925', '(514) 366-7
 
 puts "generating comrades..."
 deb = User.create!(name: 'Deb Anjos',
-       email: Faker::Internet.unique.email,
+       email: 'deb@email.com',
        address: "1200 Rue Atateken, Montreal QC",
        password: 'password',
        phone: '(514) 438-2917')
@@ -53,12 +53,12 @@ ryan = User.create!(name: 'Ryan Buckley',
        password: 'password',
        phone: '(438) 403-6403')
 arthur = User.create!(name: 'Arthur Prats',
-       email: Faker::Internet.unique.email,
+       email: 'arthur@email.com',
        address: "4655 Rivard St, Montreal, QC",
        password: 'password',
        phone: '(438) 403-1532')
 nirali = User.create!(name: 'Nirali Patel',
-       email: Faker::Internet.unique.email,
+       email: 'nirali@email.com',
        address: "5333 Ave Casgrain, Montreal, QC",
        password: 'password',
        phone: '(438) 403-5221')
