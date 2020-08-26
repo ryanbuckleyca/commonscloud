@@ -2,11 +2,10 @@
 <%= link_to '<-- back to all posts', posts_path %>
 <ul>
   <li>Post type: <%= @post.post_type %></li>
-  <li>Title: <%= link_to @post.title, post_path(@post) %></li>
+  <li>Title: <%= @post.title %></li>
   <li>Category: <%= @post.category.name %></li>
   <li>Author: <%= @post.author.name %></li>
   <li>Description: <%= @post.description %></li>
   <li>Location: <%= @post.location %></li>
   <li>Priority: <%= @post.priority %></li>
 </ul>
-
