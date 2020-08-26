@@ -1,6 +1,13 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.geocoded.near('Montreal', 50)
+
+    @markers = @posts.map do |post|
+      {
+      lat: post.latitude,
+      lng: post.longitude
+      }
+    end
   end
 
   def new
@@ -22,6 +29,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @marker = { lat: @post.latitude, lng: @post.longitude }
+
   end
 
   private
