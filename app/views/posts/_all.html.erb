@@ -1,28 +1,8 @@
+<h2>all posts:</h2>
 <div class="row">
   <% @posts.each do |post| %>
-    <div class="card-group col-4 p-2">
-      <div class="card shadow">
-        <div class="card-title p-3 text-larger">
-          <h2><%= link_to post.title, post_path(post) %></h2>
-          <span class="badge badge-dark"><%= post.post_type %></span> from <%= post.author.name %> in
-          <span class="badge badge-info"><%= post.category.name %></span>
-
-        </div>
-        <div class="card-body">
-          <%= post.description %>
-        </div>
-        <div class="card-footer d-flex">
-          <%= case post.priority
-            when "High"
-              raw "<span class='text-danger'>#{post.priority} priority"
-            when "Medium"
-              raw "<span class='text-warning'>#{post.priority} priority"
-            when "Low"
-              raw "<span class='text-primary'>#{post.priority} priority"
-            end %>
-          <smaller>@ <%= post.location %></smaller>
-        </div>
-      </div>
+    <div class="card-group offset-1 col-10 offset-sm-0 col-sm-6 col-lg-4 col-xl-3 p-2">
+        <%= render "postcard", post: post %>
     </div>
   <% end %>
 </div>

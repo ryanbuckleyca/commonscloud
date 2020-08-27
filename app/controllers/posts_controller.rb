@@ -1,6 +1,15 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+
+    @posts = Post.geocoded.near('Montreal', 50)
+
+    @markers = @posts.map do |post|
+      {
+      lat: post.latitude,
+      lng: post.longitude
+      }
+    end
+
     if params[:query].present?
       @posts = @posts.where(post_type: params[:query])
     end
@@ -20,6 +29,7 @@ class PostsController < ApplicationController
     @category = Category.find(params[:post][:category_id])
     @post.category = @category
     @post.author = current_user
+
     if @post.save
       redirect_to post_path(@post)
     else
@@ -29,6 +39,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @connection = Connection.new
+    @marker = { lat: @post.latitude, lng: @post.longitude }
   end
 
   private
@@ -38,3 +50,4 @@ class PostsController < ApplicationController
       :title, :post_type, :description, :location, :priority)
   end
 end
+

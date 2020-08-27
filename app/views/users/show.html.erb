@@ -1,2 +1,19 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Dashboard</h1><br>
+      <h3>My Posts</h3>
+      <% @posts.each do |post| %>
+        <ul class="list-inline">
+          <li class="list-inline-item"><%= post.title%></li>
+          <li class="list-inline-item"><strong><%= post.post_type %></strong></li>
+          <li><em>placeholder for distance</em></li>
+          <li><%= post[:location] %></li>
+          <li><%= post.description %></li>
+        </ul>
+      <% end %>
+  </div>
+</div>
+
+
+
