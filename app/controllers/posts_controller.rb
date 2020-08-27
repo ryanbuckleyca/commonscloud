@@ -11,9 +11,11 @@ class PostsController < ApplicationController
     end
 
     if params[:query].present?
-      @posts = Post.where(post_type: params[:query])
-    else
-      @posts = Post.all
+      @posts = @posts.where(post_type: params[:query])
+    end
+
+    if params[:categories].present?
+      @posts = @posts.where(category_id: params[:categories])
     end
   end
 
