@@ -1,7 +1,7 @@
-Category.destroy_all
 Connection.destroy_all
-Post.destroy_all
 User.destroy_all
+Post.destroy_all
+Category.destroy_all
 
 puts "generating categories..."
 categories = ['tools', 'tech help', 'medicine', 'ppe', 'personal hygiene supplies',
