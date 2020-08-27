@@ -1,10 +1,14 @@
+require 'json'
+require 'open-uri'
+
+
 Connection.destroy_all
 User.destroy_all
 Post.destroy_all
 Category.destroy_all
 
 puts "generating categories..."
-categories = ['tools', 'tech help', 'medicine', 'ppe', 'personal hygiene supplies',
+categories = ['tools', 'tech help', 'medicine', 'ppe', 'hygiene supplies',
               'food', 'transportation', 'errands', 'deliveries', 'clothing',
               'financial support', 'school supplies', 'shelter', 'cleaning supplies',
               'household supplies', 'emotional support']
@@ -70,6 +74,7 @@ nirali_post = Post.create!(post_type: "Offer",
               author: nirali,
               category: Category.find_by_name('tools'),
               description: "Hey, I've got a bunch of hardware in case anyone needs it. Hammers, saws, levels, drills...you name it! Just lemme know what you need--happy to deliver too :)",
+              img_url: 'https://kitt.lewagon.com/placeholder/users/mynameisnirali',
               location: nirali.address)
 ryan_post = Post.create!(post_type: "Request",
             title: "Looking to borrow a ladder",
@@ -77,17 +82,21 @@ ryan_post = Post.create!(post_type: "Request",
             category: Category.find_by_name('tools'),
             description: "Seems pointless to buy something I'll only use once. Give me a shout if anyone has a 6ft ladder and can deliver. Thanks!!",
             location: ryan.address,
+            img_url: 'https://kitt.lewagon.com/placeholder/users/ryanbuckleyca',
             priority: "Medium")
 deb_post = Post.create!(post_type: "Offer",
             title: "Groceries to give away!",
             author: deb,
             category: Category.find_by_name('food'),
             description: "Hey everyone, I'm moving at the end of the month and I've got a bunch of awesome healthy food to give away. If you're within 20km I can deliver too!",
+            img_url: 'https://kitt.lewagon.com/placeholder/users/deb-anjos',
             location: deb.address)
 arthur_post = Post.create!(post_type: "Request",
             title: "Food bank is out, need some support!",
             author: arthur,
             category: Category.find_by_name('food'),
+            priority: 'High',
+            img_url: 'https://kitt.lewagon.com/placeholder/users/arthurprats',
             description: "This month's been rough since losing my job, and the food bank can't keep up with the recent supply. Some basic necessities would go a long way if anyone has some staples like rice, pasta, or canned good they could contribute?",
             location: arthur.address)
 
@@ -95,11 +104,21 @@ puts "comrade posts created!"
 
 puts "generating 20 random users with 1-3 posts each..."
 20.times do |i|
-  user = User.new(name: Faker::Name.unique.name,
-                  email: Faker::Internet.unique.email,
+  url = 'https://randomuser.me/api/'
+  user_serialized = open(url).read
+  rando = JSON.parse(user_serialized)
+
+  first_name = rando["results"][0]["name"]["first"]
+  last_name = rando["results"][0]["name"]["last"]
+  email = rando["results"][0]["email"]
+  avatar = rando["results"][0]["picture"]["thumbnail"]
+
+  user = User.new(name: "#{first_name} #{last_name}",
+                  email: email,
                   address: MTL_ADDRESSES[i],
                   password: 'password',
-                  phone: MTL_PHONES[i])
+                  phone: MTL_PHONES[i],
+                  img_url: avatar)
   user.save!
 
   type = rand(1) > 0.5 ? "Request" : "Offer"
@@ -109,7 +128,7 @@ puts "generating 20 random users with 1-3 posts each..."
                 title: Faker::Quote.famous_last_words,
                 description: Faker::Lorem.paragraph(sentence_count: 3, random_sentences_to_add: 2),
                 location: user.address,
-                priority: type == "Offer" ? %w[High Medium Low].sample : nil)
+                priority: type == "Request" ? %w[High Medium Low].sample : nil)
     post.author = user
     post.category = Category.all.sample
     post.save!
