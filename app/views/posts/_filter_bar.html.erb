@@ -1,0 +1,16 @@
+<select class="mdb-select md-form" multiple searchable="Filter by category..">
+  <% Category.all.each do |category| %>
+    <option name="category_id[]" value="<% category.id %>"><%= category.name %></option>
+  <% end %>
+</select>
+<button type="submit" class="btn-save btn btn-primary btn-sm">Filter</button>
+
+<select class="mdb-select md-form" multiple>
+  <option value="" disabled selected>Choose your country</option>
+  <option value="1">USA</option>
+  <option value="2">Germany</option>
+  <option value="3">France</option>
+  <option value="4">Poland</option>
+  <option value="5">Japan</option>
+</select>
+<button class="btn-save btn btn-primary btn-sm">Save</button>

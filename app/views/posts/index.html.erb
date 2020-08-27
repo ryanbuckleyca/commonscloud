@@ -2,8 +2,10 @@
   <h1>Posts#index</h1>
 
   <form method="get "action="/posts">
+    <%= hidden_field_tag :query, params[:query]  %>
     <button type="submit" name="query" value="Request">Browse Requests</button>
     <button type="submit" name="query" value="Offer">Browse Offers</button>
+    <%= render "filter_bar", post: @post %>
   </form>
 
   <%= render "all", post: @post %>

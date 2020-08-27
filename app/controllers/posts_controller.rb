@@ -1,9 +1,12 @@
 class PostsController < ApplicationController
   def index
+    @posts = Post.all
     if params[:query].present?
-      @posts = Post.where(post_type: params[:query])
-    else
-      @posts = Post.all
+      @posts = @posts.where(post_type: params[:query])
+    end
+
+    if params[:category_id].present?
+      @posts = @posts.where(category_id: params[:category_id])
     end
   end
 
