@@ -5,9 +5,9 @@
       <h3>My Posts</h3>
       <% @posts.each do |post| %>
         <ul class="list-inline">
-          <li class="list-inline-item"><%= post.category[:name]%></li>
-          <li class="list-inline-item"><%= post.post_type %></li>
-          <li><strong>placeholder for distance</strong></li>
+          <li class="list-inline-item"><%= post.title%></li>
+          <li class="list-inline-item"><strong><%= post.post_type %></strong></li>
+          <li><em>placeholder for distance</em></li>
           <li><%= post[:location] %></li>
           <li><%= post.description %></li>
         </ul>
