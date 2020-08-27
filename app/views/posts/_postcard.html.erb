@@ -1,0 +1,48 @@
+<div class="card post-card">
+  <div class="card-type">
+    <%= case post.priority
+      when "High" then raw '<span class="badge badge-pill badge-danger">requesting</span>'
+      when "Medium" then raw '<span class="badge badge-pill badge-warning">requesting</span>'
+      when "Low" then raw '<span class="badge badge-pill badge-info">requesting</span>'
+      else raw '<span class="badge badge-pill badge-primary">offering</span>'
+      end %>
+  </div>
+  <%= if post.post_type == "Request"
+    raw '<div class="card-head p-3 text-larger" style="flex-direction: row-reverse">
+      <div class="post-icon post-request">'
+    else
+    raw '<div class="card-head p-3 text-larger">
+      <div class="post-icon post-offer">'
+    end %>
+    <%= case post.priority
+      when "High" then raw '<div class="icon-img-text text-danger">'
+      when "Medium" then raw '<div class="icon-img-text text-warning">'
+      when "Low" then raw '<div class="icon-img-text text-info">'
+      else raw '<div class="icon-img-text text-primary">'
+      end %>
+        <%= raw post.icon %>
+        <div class="icon-text">
+          <% if post.post_type == "Request" %>
+            <p>?</p>
+            <p class="pl-4">?</p>
+            <p class="pl-4 pt-1">?</p>
+          <% else %>
+            <p style="position: relative; font-size: 50px; right: 5px; bottom: 5px; transform: rotate(-25deg);">!</p>
+          <% end %>
+        </div>
+      </div>
+      <span class="badge badge-pill badge-secondary m-auto">
+        <%= post.category.name %>
+      </span>
+    </div>
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ryanbuckleyca", class: "post-card avatar" %>
+  </div>
+  <div class="card-body pt-0">
+    <h3><%= post.title %></h3>
+    <%= post.description %>
+  </div>
+  <div class="card-footer text-center">
+    <a class="btn btn-outline-primary rounded btn-block mb-2">Make Connection</a>
+    <i class="fas fa-map-marker-alt"></i><small> <%= post.location %></small>
+  </div>
+</div>

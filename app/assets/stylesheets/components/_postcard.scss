@@ -1,0 +1,85 @@
+.post-card {
+  border-radius: 40px;
+  margin-bottom: 15px !important;
+  box-shadow: 0 3px 10px rgba(1, 1, 1, 0.025);
+  .avatar {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+  }
+}
+.post-icon {
+  z-index: 1;
+  padding: 0;
+  text-align: center;
+  width: 140px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  .icon-img-text {
+    position: static;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-text {
+    font-size: 24px;
+    font-weight: 800;
+  }
+  .icon-text p {
+    margin: -15px 0;
+    padding: 0;
+  }
+}
+
+.post-offer {
+  background: url(/assets/method-draw-image.svg) no-repeat;
+  background-size: contain;
+  margin: -25px -70px -25px -25px;
+  > .badge {
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+  }
+  > .icon-img-text > i {
+    font-size: 50px;
+    padding: 15px 0 0 0;
+    transform: rotate(-25deg);
+    position: relative;
+    right: 10px;
+  }
+}
+.post-request {
+  background: url(/assets/thought-cloud.svg) no-repeat;
+  background-size: contain;
+  margin: -25px -15px -30px -40px;
+  > .badge {
+    position: relative;
+    bottom: 15px;
+  }
+  > .icon-img-text > i {
+    font-size: 50px;
+    padding: 20px 0px 0 10px;
+    transform: rotate(-25deg);
+    position: relative;
+    left: 10px;
+  }
+}
+
+.card-type {
+  text-align: center;
+  margin-top: -10px;
+  font-size: 110%;
+}
+.card-type > .badge.badge-pill {
+  padding: 10px !important;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.card-footer {
+  border-radius: 0 0 40px 40px !important;
+}
