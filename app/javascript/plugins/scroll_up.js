@@ -1,0 +1,5 @@
+const scrollup = () => {
+
+}
+
+export {scrollup}

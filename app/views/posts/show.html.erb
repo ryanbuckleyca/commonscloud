@@ -4,12 +4,32 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <div id="map"
-         style="width: 100%; height: 400px;"
-         data-marker="<%= @marker.to_json %>"
-         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div class="book-container">
+        <div id="map"
+          style="width: 100%; height: 400px;"
+          data-marker="<%= @marker.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+        <div class="content">
+        </div>
+      </div>
+      <div class="informations-container">
+        <h2 class="title">Title</h2>
+        <p class="sub-title">Number of kilometers</p>
+        <div class="more-information">
+          <div class="box info">
+            <p>Description</p>
+          </div>
+          <div class="box date">
+            <svg class="description">
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi eveniet perferendis culpa. Expedita architecto nesciunt, rem distinctio</p>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
+
+
     <div class="col-sm-12 col-md-6">
       <ul>
         <li>Post type: <%= @post.post_type %></li>
