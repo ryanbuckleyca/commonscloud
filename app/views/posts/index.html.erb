@@ -1,3 +1,19 @@
+
+<div id="map"
+     style="width: 100%; height: 500px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+
+
 <div class="container mt-3">
+  <h1>Posts#index</h1>
+
+  <form method="get "action="/posts">
+    <button type="submit" name="query" value="Request">Browse Requests</button>
+    <button type="submit" name="query" value="Offer">Browse Offers</button>
+  </form>
+
   <%= render "all", post: @post %>
 </div>
+
