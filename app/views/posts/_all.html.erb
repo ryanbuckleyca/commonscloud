@@ -1,5 +1,5 @@
 <h2>all posts:</h2>
-  <div class="row">
+<div class="row">
   <% @posts.each do |post| %>
     <div class="card-group offset-1 col-10 offset-sm-0 col-sm-6 col-lg-4 col-xl-3 p-2">
         <%= render "postcard", post: post %>
