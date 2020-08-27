@@ -1,10 +1,13 @@
+require 'json'
+require 'open-uri'
+
 Connection.destroy_all
 User.destroy_all
 Post.destroy_all
 Category.destroy_all
 
 puts "generating categories..."
-categories = ['tools', 'tech help', 'medicine', 'ppe', 'personal hygiene supplies',
+categories = ['tools', 'tech help', 'medicine', 'ppe', 'hygiene supplies',
               'food', 'transportation', 'errands', 'deliveries', 'clothing',
               'financial support', 'school supplies', 'shelter', 'cleaning supplies',
               'household supplies', 'emotional support']
@@ -43,21 +46,25 @@ MTL_PHONES = ['(514) 376-8344', '(514) 279-7016', '(514) 482-1925', '(514) 366-7
 
 puts "generating comrades..."
 deb = User.create!(name: 'Deb Anjos',
+       img_url: 'https://kitt.lewagon.com/placeholder/users/deb-anjos',
        email: 'deb@email.com',
        address: "1200 Rue Atateken, Montreal QC",
        password: 'password',
        phone: '(514) 438-2917')
 ryan = User.create!(name: 'Ryan Buckley',
+       img_url: 'https://kitt.lewagon.com/placeholder/users/ryanbuckleyca',
        email: 'ryanbuckley@gmail.com',
        address: "4107 Rue St. Laurent, Montreal QC",
        password: 'password',
        phone: '(438) 403-6403')
 arthur = User.create!(name: 'Arthur Prats',
+       img_url: 'https://kitt.lewagon.com/placeholder/users/arthurprats',
        email: 'arthur@email.com',
        address: "4655 Rivard St, Montreal, QC",
        password: 'password',
        phone: '(438) 403-1532')
 nirali = User.create!(name: 'Nirali Patel',
+       img_url: 'https://kitt.lewagon.com/placeholder/users/mynameisnirali',
        email: 'nirali@email.com',
        address: "5333 Ave Casgrain, Montreal, QC",
        password: 'password',
@@ -88,6 +95,7 @@ arthur_post = Post.create!(post_type: "Request",
             title: "Food bank is out, need some support!",
             author: arthur,
             category: Category.find_by_name('food'),
+            priority: 'High',
             description: "This month's been rough since losing my job, and the food bank can't keep up with the recent supply. Some basic necessities would go a long way if anyone has some staples like rice, pasta, or canned good they could contribute?",
             location: arthur.address)
 
@@ -95,21 +103,31 @@ puts "comrade posts created!"
 
 puts "generating 20 random users with 1-3 posts each..."
 20.times do |i|
-  user = User.new(name: Faker::Name.unique.name,
-                  email: Faker::Internet.unique.email,
+  url = 'https://randomuser.me/api/'
+  user_serialized = open(url).read
+  rando = JSON.parse(user_serialized)
+
+  avatar = rando["results"][0]["picture"]["large"]
+  first_name = rando["results"][0]["name"]["first"]
+  last_name = rando["results"][0]["name"]["last"]
+  email = rando["results"][0]["email"]
+
+  user = User.new(name: "#{first_name} #{last_name}",
+                  email: email,
                   address: MTL_ADDRESSES[i],
                   password: 'password',
-                  phone: MTL_PHONES[i])
+                  phone: MTL_PHONES[i],
+                  img_url: avatar)
   user.save!
 
-  type = rand(1) > 0.5 ? "Request" : "Offer"
+  type = rand > 0.5 ? "Request" : "Offer"
 
   rand(3).times do
     post = Post.new(post_type: type,
                 title: Faker::Quote.famous_last_words,
                 description: Faker::Lorem.paragraph(sentence_count: 3, random_sentences_to_add: 2),
                 location: user.address,
-                priority: type == "Offer" ? %w[High Medium Low].sample : nil)
+                priority: type == "Request" ? %w[High Medium Low].sample : nil)
     post.author = user
     post.category = Category.all.sample
     post.save!

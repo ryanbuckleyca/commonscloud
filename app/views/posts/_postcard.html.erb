@@ -23,9 +23,9 @@
         <%= raw post.icon %>
         <div class="icon-text">
           <% if post.post_type == "Request" %>
-            <p>?</p>
-            <p class="pl-4">?</p>
-            <p class="pl-4 pt-1">?</p>
+            <p><%= ["Medium", "High"].include?(post.priority) ? "?" : " " %></p>
+            <p class="pl-3">?</p>
+            <p class="pl-4 pt-1"><%= post.priority == "High" ? "?" : " " %></p>
           <% else %>
             <p style="position: relative; font-size: 50px; right: 5px; bottom: 5px; transform: rotate(-25deg);">!</p>
           <% end %>
@@ -35,7 +35,7 @@
         <%= post.category.name %>
       </span>
     </div>
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ryanbuckleyca", class: "post-card avatar" %>
+    <%= image_tag post.author.img_url, class: "post-card avatar" %>
   </div>
   <div class="card-body pt-0">
     <h3><%= post.title %></h3>
