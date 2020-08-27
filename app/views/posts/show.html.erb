@@ -31,6 +31,7 @@
 
 
     <div class="col-sm-12 col-md-6">
+
       <ul>
         <li>Post type: <%= @post.post_type %></li>
         <li>Title: <%= @post.title %></li>
@@ -38,9 +39,20 @@
         <li>Author: <%= @post.author.name %></li>
         <li>Description: <%= @post.description %></li>
         <li>Location: <%= @post.location %></li>
-        <li>Priority: <%= @post.priority %></li>
+        <li>Priority: <%= @post.priority %></li> -->
       </ul>
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+
+      <p>To: <%= @post.author.name %> </p>
+      <%= simple_form_for ([ @post, @connection ]) do |f| %>
+        <%= f.input :message, placeholder: 'Help is on the way!' %>
+        <%= f.button :submit, 'send', class: 'btn btn-primary' %>
+      <% end %>
     </div>
   </div>
 </div>
+
+
 
