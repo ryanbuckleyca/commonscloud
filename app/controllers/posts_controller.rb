@@ -37,6 +37,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @connection = Connection.new
     @marker = { lat: @post.latitude, lng: @post.longitude }
   end
 
