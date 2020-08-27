@@ -1,16 +1,8 @@
-<select class="mdb-select md-form" multiple searchable="Filter by category..">
-  <% Category.all.each do |category| %>
-    <option name="category_id[]" value="<% category.id %>"><%= category.name %></option>
-  <% end %>
-</select>
-<button type="submit" class="btn-save btn btn-primary btn-sm">Filter</button>
-
-<select class="mdb-select md-form" multiple>
-  <option value="" disabled selected>Choose your country</option>
-  <option value="1">USA</option>
-  <option value="2">Germany</option>
-  <option value="3">France</option>
-  <option value="4">Poland</option>
-  <option value="5">Japan</option>
-</select>
-<button class="btn-save btn btn-primary btn-sm">Save</button>
+<%= form_tag "/posts", class: "" do |f| %>
+  <%= select_tag "categories", options_from_collection_for_select(Category.all, "id", "name"), multiple: true %>
+  <%# <% Category.all.each do |category| %>
+    <%# <%= label_tag category.name %> 
+    <%# <%= check_box_tag(category.name, category.id)  %> 
+  <%# <% end %> 
+  <%= submit_tag "Filter", class: "btn-save btn btn-primary btn-sm" %>
+<% end %>

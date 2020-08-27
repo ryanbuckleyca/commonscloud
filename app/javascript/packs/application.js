@@ -32,5 +32,5 @@ import {initmultiselect} from "../components/multiselect"
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  initmultiselect();
+  // initmultiselect();
 });

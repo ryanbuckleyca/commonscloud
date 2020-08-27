@@ -5,8 +5,8 @@ class PostsController < ApplicationController
       @posts = @posts.where(post_type: params[:query])
     end
 
-    if params[:category_id].present?
-      @posts = @posts.where(category_id: params[:category_id])
+    if params[:categories].present?
+      @posts = @posts.where(category_id: params[:categories])
     end
   end
 
