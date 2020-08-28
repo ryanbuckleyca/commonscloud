@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  def index
 
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
+  def index
     @posts = Post.geocoded.near('Montreal', 50)
 
     @markers = @posts.map do |post|
