@@ -1,0 +1,15 @@
+<svg width="501" height="418" xmlns="http://www.w3.org/2000/svg">
+ <metadata>Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="420" width="503" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path transform="rotate(-21.620929718017578 215.963363647461,209.70405578613276) " stroke="#000" id="svg_7" d="m215.96339,17.89666c111.85456,0 202.52939,85.87807 202.52939,191.8107c0,36.20025 -10.71966,70.01824 -29.16522,98.89503l29.16522,80.74279l-81.1994,-26.3266c-33.83673,24.06123 -75.76076,38.49289 -121.32999,38.49289c-111.85468,0 -202.52945,-85.87816 -202.52945,-191.80413c0,-105.93261 90.67476,-191.8107 202.52945,-191.8107l0,0.00002z" stroke-width="5" fill="#fff"/>
+  <path id="svg_8" d="m515.16667,615.66667" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <path id="svg_10" d="m259.16667,473.66667" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <path id="svg_11" d="m400.16667,460.66667" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+ </g>
+</svg>
