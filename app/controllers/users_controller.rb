@@ -5,8 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @posts = Post.where(author_id: current_user.id)
-    @post_connection = @posts.connection
-    @user_connections = Connection.where(responder_id: current_user.id)
+    @posts = Post.where(author_id: current_user.id).order('created_at DESC')
+    @user_connections = Connection.where(responder_id: current_user.id).order('created_at DESC')
   end
 end
