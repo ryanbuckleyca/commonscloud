@@ -1,7 +1,10 @@
 <h1>Posts#show</h1>
 <%= link_to '<-- back to all posts', posts_path %>
 
-<div class="container">
+<h1>Thanks for supporting the community</h1>
+<h2>Please message your neighboor to confirm that help is on the way</h2>
+
+<div class="booking-card">
   <div class="row">
     <div class="col-sm-12 col-md-6">
       <div class="book-container">
@@ -14,23 +17,19 @@
         </div>
       </div>
       <div class="informations-container">
-        <h2 class="title">Title</h2>
-        <p class="sub-title">Number of kilometers</p>
+        <h2 class="title">Post type: <%= @post.post_type %></h2>
+        <p class="sub-title">Location: <%= @post.location %></p>
         <div class="more-information">
           <div class="box info">
-            <p>Description</p>
-          </div>
-          <div class="box date">
-            <svg class="description">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi eveniet perferendis culpa. Expedita architecto nesciunt, rem distinctio</p>
-            </svg>
+            <p>Description: <%= @post.description %> </p>
           </div>
         </div>
       </div>
     </div>
+ </div>
+</div>
 
-
-    <div class="col-sm-12 col-md-6">
+<!--     <div class="col-sm-12 col-md-6">
 
       <ul>
         <li>Post type: <%= @post.post_type %></li>
@@ -39,9 +38,11 @@
         <li>Author: <%= @post.author.name %></li>
         <li>Description: <%= @post.description %></li>
         <li>Location: <%= @post.location %></li>
-        <li>Priority: <%= @post.priority %></li> -->
+        <li>Priority: <%= @post.priority %></li>
       </ul>
-    </div>
+    </div> --> -->
+
+
 
     <div class="col-sm-12 col-md-6">
 
