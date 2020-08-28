@@ -6,10 +6,12 @@
 
         <ul class="list-inline">
         <% @posts.each do |post| %>
-          <li class="list-inline-item"><%= post.title%></li>
-          <li class="list-inline-item"><strong><%= post.post_type %></strong></li>
-          <li><strong>Message:</strong> <%= post.connections[0].message %></li>
-          <li><strong>Responder:</strong>  <%= post.connections[0].responder[:name] %></li>
+          <% if post.connections.any? %>
+              <li class="list-inline-item"><%= post.title%></li>
+              <li class="list-inline-item"><strong><%= post.post_type %></strong></li>
+              <li><strong>Message:</strong> <%= post.connections[0].message %></li>
+              <li><strong>Responder:</strong>  <%= post.connections[0].responder[:name] %></li>
+          <% end %>
         <% end %>
         </ul><br>
 
@@ -22,7 +24,6 @@
          <li> <strong>Message:</strong> <%= connection.message %></li><br>
         <% end %>
        </ul><br>
-
 
       <h3>My Posts</h3>
         <ul class="list-inline">
