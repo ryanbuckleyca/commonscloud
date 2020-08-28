@@ -1,22 +1,5 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-6">
-      <h1>Create a New Post</h1>
-      <%= simple_form_for @post do |f|%>
-        <%= f.input :title %>
-        <%= f.input :post_type %>
-        <%= f.association :category %>
-        <%= f.input :description, as: :text %>
-        <%= f.input :location %>
-        <%= f.input :priority %>
-        <%= f.button :submit, "Add", class: "btn btn-primary"  %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
+<% if @post_type == "Request" %>
+  <%= render "new_request", post: @post %>
+<% else  %>
+  <%= render "new_offer", post: @post %>
+<% end %>
