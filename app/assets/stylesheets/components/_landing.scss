@@ -1,0 +1,26 @@
+.landing {
+  margin-bottom: -100px;
+  padding-bottom: 100px;
+  background: white;
+  max-height: calc(80vh - 110px);
+  font-size: calc(16px + 1vw);
+}
+.landing .help-img {
+  min-height: 300px;
+  background-image: url(help.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+#cloud {
+    width: 100vw;
+    height: 135px;
+    position: relative;
+    top: -100px;
+    margin-bottom: -75px;
+    border-radius: 50%;
+    -webkit-filter: url(#filter);
+    filter: url(#filter);
+    box-shadow: 0 135px 25px 0px #fff;
+}
