@@ -20,7 +20,7 @@
       when "Low" then raw '<div class="icon-img-text text-info">'
       else raw '<div class="icon-img-text text-primary">'
       end %>
-        <%= raw post.icon %>
+        <i class="<%= post.icon %>"></i>
         <div class="icon-text">
           <% if post.post_type == "Request" %>
             <p><%= ["Medium", "High"].include?(post.priority) ? "?" : " " %></p>

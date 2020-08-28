@@ -6,7 +6,8 @@ class PostsController < ApplicationController
     @markers = @posts.map do |post|
       {
       lat: post.latitude,
-      lng: post.longitude
+      lng: post.longitude,
+      icon: "#{post.icon} map-icon text-#{post.color}"
       }
     end
 
