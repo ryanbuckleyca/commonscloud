@@ -23,7 +23,7 @@ const initMapbox = () => {
 
       var el = document.createElement('i');
       el.className = marker.icon;
-      el.style.fontSize = '30px';
+      el.style.fontSize = '28px';
 
       new mapboxgl.Marker(el)
         .setLngLat([ marker.lng, marker.lat ])
