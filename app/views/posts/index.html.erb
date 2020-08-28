@@ -1,16 +1,19 @@
 
 <div id="map"
-     style="width: 100%; height: 500px;"
+     style="width: 100%; height: 500px; z-index: -1;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 
 
 <div class="container mt-3">
-  <form method="get "action="/posts">
+
+  <form method="get "action="/posts" id="map-filters">
     <%= hidden_field_tag :query, params[:query]  %>
-    <button type="submit" name="query" value="Request">Browse Requests</button>
-    <button type="submit" name="query" value="Offer">Browse Offers</button>
+    <div class="row">
+      <button type="submit" name="query" class="btn btn-lg btn-outline-dark btn-light p-3 w-50 mt-n5" value="Request">Browse Requests</button>
+      <button type="submit" name="query" class="btn btn-lg btn-outline-dark btn-light p-3 w-50 mt-n5" value="Offer">Browse Offers</button>
+    </div>
     <hr>
     <%= render "filter_bar", post: @post %>
   </form>
