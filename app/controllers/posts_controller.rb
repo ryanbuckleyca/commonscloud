@@ -21,6 +21,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post_type = params[:type]
     @post = Post.new
     @category = Category.new
   end
@@ -32,7 +33,7 @@ class PostsController < ApplicationController
     @post.author = current_user
 
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to user_path(current_user)
     else
       render :new
     end
