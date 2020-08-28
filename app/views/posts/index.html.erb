@@ -1,6 +1,6 @@
 
 <div id="map"
-     style="width: 100%; height: 500px; z-index: -1;"
+     style="width: 100%; height: calc(95vh - 110px); z-index: -1;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
