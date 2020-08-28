@@ -6,7 +6,7 @@ class ConnectionsController < ApplicationController
     @connection.post = @post
 
     if @connection.save
-      redirect_to post_path(@post), notice: 'Your message was sent.'
+      redirect_to user_path(current_user), notice: 'Your message was sent.'
     else
       flash.alert = 'Ops.. something went wrong. Please try again.'
     end
