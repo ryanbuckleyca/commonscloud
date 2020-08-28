@@ -24,7 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
-import {initmultiselect} from "../components/multiselect"
+// import {initmultiselect} from "../components/multiselect"
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
