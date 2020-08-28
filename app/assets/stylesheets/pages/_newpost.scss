@@ -1,54 +1,32 @@
 
-.booking-card{
-    position: relative;
-    width: 300px;
-    display: flex;
-    flex: 0 0 300px;
-    flex-direction: column;
-    margin: 20px;
-    margin-bottom: 30px;
-    overflow: hidden;
-    background-position: center center;
-    background-size: cover;
-    text-align: center;
-    color: #0a4870;
-    transition: .3s;
-    }
+body{
+  padding: 2rem 0rem;
+}
 
-    .book-container {
-      height: 200px;
+/* div {
+  transition: height .3s;
+}
 
-      .content {
-        position: relative;
-        opacity: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 100%;
-        transform: translateY(-200px);
-        transition: .3s;
+div:hover {
+  height: 300px;
+} */
 
-        .opac_hover {
-            background: white;
-            border: 0px solid white;
-            color: #0a4870;
-        }
-      }
-    }
+.card-body {
+// border: 1px solid red;
+  max-height: 88px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: max-height 0.5s;
+  h3 {
+    text-overflow: ellipsis;
+  }
+}
 
-    .informations-container{
-      flex: 1 0 auto;
-      padding: 20px;
-      background: #f0f0f02;
-      transform: translateY(206px);
-      transition: .3s;
+.card-body:hover {
+  max-height: 500px;
 
-      .title {
-        position: relative;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        font-weight: bold;
-        font-size: 1.2em;
-      }
-    }
+}
+
+.card {
+  max-height: 90%;
+}
