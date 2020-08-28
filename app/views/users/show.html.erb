@@ -2,9 +2,31 @@
   <div class="row">
     <div class="col-12">
       <h1>Dashboard</h1><br>
-      <h3>My Posts</h3>
-      <% @posts.each do |post| %>
+      <h3>My connections</h3>
+
         <ul class="list-inline">
+        <% @posts.each do |post| %>
+          <li class="list-inline-item"><%= post.title%></li>
+          <li class="list-inline-item"><strong><%= post.post_type %></strong></li>
+          <li><strong>Message:</strong> <%= post.connections[0].message %></li>
+          <li><strong>Responder:</strong>  <%= post.connections[0].responder[:name] %></li>
+        <% end %>
+        </ul><br>
+
+       <ul class="list-inline">
+        <% @user_connections.each do |connection| %>
+         <li class="list-inline-item"> <strong>Post title:</strong> <%= connection.post[:title] %></li>
+         <li class="list-inline-item"><strong><%= connection.post[:post_type] %></strong> </li>
+         <li> <strong>Author:</strong> <%= connection.post.author.name %></li>
+         <li> <strong>Email:</strong> <%= connection.post.author.email %></li>
+         <li> <strong>Message:</strong> <%= connection.message %></li><br>
+        <% end %>
+       </ul><br>
+
+
+      <h3>My Posts</h3>
+        <ul class="list-inline">
+        <% @posts.each do |post| %>
           <li class="list-inline-item"><%= post.title%></li>
           <li class="list-inline-item"><strong><%= post.post_type %></strong></li>
           <li><em>placeholder for distance</em></li>
@@ -12,8 +34,7 @@
           <li><%= post.description %></li>
         </ul>
       <% end %>
+    </div>
   </div>
-</div>
-
 
 
