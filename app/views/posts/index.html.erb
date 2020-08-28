@@ -12,8 +12,12 @@
   <form method="get "action="/posts" id="map-filters">
     <%= hidden_field_tag :query, params[:query]  %>
     <div class="row">
-      <button type="submit" name="query" class="btn btn-lg btn-outline-dark btn-light p-3 w-50 mt-n5" value="Request">Browse Requests</button>
-      <button type="submit" name="query" class="btn btn-lg btn-outline-dark btn-light p-3 w-50 mt-n5" value="Offer">Browse Offers</button>
+      <div class="col-6 p-1">
+        <button type="submit" name="query" class="btn btn-lg btn-outline-dark btn-light p-3 w-100 mt-n5" value="Request">Browse Requests</button>
+      </div>
+      <div class="col-6 p-1">
+        <button type="submit" name="query" class="btn btn-lg btn-outline-dark btn-light p-3 w-100 mt-n5" value="Offer">Browse Offers</button>
+      </div>
     </div>
     <hr>
     <%= render "filter_bar", post: @post %>
