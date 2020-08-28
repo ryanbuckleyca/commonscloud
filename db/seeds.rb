@@ -1,9 +1,13 @@
 require 'json'
 require 'open-uri'
 
+puts "destroying all connections"
 Connection.destroy_all
+puts "destroying all user"
 User.destroy_all
+puts "destroying all POSTS"
 Post.destroy_all
+puts "destroying all CATS"
 Category.destroy_all
 
 puts "generating categories..."
