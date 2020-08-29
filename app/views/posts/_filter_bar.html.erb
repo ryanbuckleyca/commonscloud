@@ -1,19 +1,16 @@
-<%= form_tag "/posts", class: "" do |f| %>
+<%= form_tag "/posts" do %>
   <div class="d-flex justify-content-between">
     <p>Filter by category:</p>
     <p> x clear</p>
   </div>
 
-<!--
   <% Category.all.each do |cat| %>
-  <button>
-    <%= check_box(cat.id, cat.name) %>
+  <button data-action="click->filter#refresh"
+    value="{id: <%= cat.id %>, name: <%= cat.name %>">
     <i class="<%= cat.icon %>"></i>
     <%= cat.name %>
   </button>
   <% end %>
---->
 
-  <%= select_tag "categories", options_from_collection_for_select(Category.all, "id", "name"), multiple: true %>
   <%= submit_tag "Filter", class: "btn-save btn btn-primary btn-sm" %>
 <% end %>

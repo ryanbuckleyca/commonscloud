@@ -1,24 +1,18 @@
 class PostsController < ApplicationController
-
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @posts = Post.geocoded.near('Montreal', 50)
+    @posts = @posts.where(post_type: params[:query]) if params[:query].present?
+    @posts = @posts.where(category_id: params[:categories]) if params[:categories].present?
 
     @markers = @posts.map do |post|
-      {
-      lat: post.latitude,
-      lng: post.longitude,
-      icon: "#{post.icon} map-icon text-#{post.color}"
-      }
+      { lat: post.latitude, lng: post.longitude, icon: "#{post.icon} map-icon text-#{post.color}" }
     end
 
-    if params[:query].present?
-      @posts = @posts.where(post_type: params[:query])
-    end
-
-    if params[:categories].present?
-      @posts = @posts.where(category_id: params[:categories])
+    respond_to do |format|
+      format.html
+      format.json { render json: { posts: @posts, markers: @markers } }
     end
   end
 
@@ -50,8 +44,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(
-      :title, :post_type, :description, :location, :priority)
+    params.require(:post).permit(:title, :post_type, :description, :location, :priority)
   end
 end
-
