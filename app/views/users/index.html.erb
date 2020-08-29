@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Users</h2><br>
+  <div class="row">
+    <% @users.each do |user| %>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-5">
+      <div class="d-flex justify-content-left">
+        <%= image_tag user.img_url, width: 50, height: 50 %>
+        <p class="pl-3"><%= Post.where(author_id: user).count %> posts<br /><%= Connection.where(responder_id: user).count %> connections</p>
+      </div>
+      <strong><%= user.name %></strong><br>
+      <%= user.email.truncate(20, separator: ' ') %><br>
+      <%= user.address %><br>
+      <%= user.phone %><br>
+    </div>
+    <% end %>
+  </div>
+</div>

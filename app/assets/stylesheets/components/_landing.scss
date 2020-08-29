@@ -2,25 +2,38 @@
   margin-bottom: -100px;
   padding-bottom: 100px;
   background: white;
-  max-height: calc(80vh - 110px);
+  max-height: calc(60vh - 110px);
   font-size: calc(16px + 1vw);
+  color: $black;
+}
+@media (max-width: 575px) {
+  .landing {
+    padding: 7vw 10vw;
+    max-height: calc(70vh - 110px);
+  }
+}
+.landing .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0px 7vw;
 }
 .landing .help-img {
   min-height: 300px;
-  background-image: url(help.png);
+  background-image: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598735075/helpBonXwK_vaytxg.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 #cloud {
-    width: 100vw;
-    height: 135px;
-    position: relative;
-    top: -100px;
-    margin-bottom: -75px;
-    border-radius: 50%;
-    -webkit-filter: url(#filter);
-    filter: url(#filter);
-    box-shadow: 0 135px 25px 0px #fff;
+  z-index: 2;
+  width: 100vw;
+  height: 135px;
+  position: relative;
+  top: -100px;
+  margin-bottom: -75px;
+  border-radius: 50%;
+  -webkit-filter: url(#filter);
+  filter: url(#filter);
+  box-shadow: 0 135px 25px 0px #fff;
 }

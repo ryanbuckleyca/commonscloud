@@ -16,7 +16,7 @@
 .post-card {
   border-radius: 40px;
   margin-bottom: 15px !important;
-  box-shadow: 0 3px 10px rgba(1, 1, 1, 0.025);
+  box-shadow: 0 3px 10px rgba(1, 1, 1, 0.04);
   .avatar {
     height: 100px;
     width: 100px;
@@ -46,10 +46,17 @@
     margin: -15px 0;
     padding: 0;
   }
+  .icon-text > .offer {
+    position: relative;
+    font-size: 50px;
+    right: 5px;
+    bottom: 5px;
+    transform: rotate(-25deg);
+  }
 }
 
 .post-offer {
-  background: url(/assets/method-draw-image.svg) no-repeat;
+  background: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598648063/method-draw-image_oee9hz.svg') no-repeat;
   background-size: contain;
   margin: -25px -70px -25px -25px;
   > .badge {
@@ -66,7 +73,7 @@
   }
 }
 .post-request {
-  background: url(/assets/thought-cloud.svg) no-repeat;
+  background: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598648063/thought-cloud_meojlb.svg') no-repeat;
   background-size: contain;
   margin: -25px -15px -30px -40px;
   > .badge {
@@ -94,7 +101,12 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  width: 250px;
+  margin: 0 auto;
+  padding: 10px;
 }
+.card-head.request { flex-direction: row-reverse; }
+
 .card-footer {
   border-radius: 0 0 40px 40px !important;
 }
