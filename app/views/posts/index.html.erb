@@ -1,22 +1,25 @@
 <%= render "landing", post: @post %>
 
-<div id="map"
-     style="width: 100%; height: calc(95vh - 110px); z-index: -1;"
+<div id="map" style="width: 100%; height: calc(95vh - 110px);"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 
 
-<div class="container mt-3">
+<div class="container mt-n4">
 
   <form method="get "action="/posts" id="map-filters">
     <%= hidden_field_tag :query, params[:query]  %>
     <div class="row">
-      <div class="col-6 p-1">
-        <button type="submit" name="query" class="btn btn-lg btn-outline-dark btn-light p-3 w-100 mt-n5" value="Request">Browse Requests</button>
+      <div class="col-6 px-1">
+        <button type="submit" name="query" class="browse-btn blue" value="Offer">
+        <span class="uln-blue">Browse Offers</span>
+        </button>
       </div>
-      <div class="col-6 p-1">
-        <button type="submit" name="query" class="btn btn-lg btn-outline-dark btn-light p-3 w-100 mt-n5" value="Offer">Browse Offers</button>
+      <div class="col-6 px-1">
+        <button type="submit" name="query" class="browse-btn yellow" value="Request">
+        <span class="uln-yellow">Browse Requests</span>
+        </button>
       </div>
     </div>
     <hr>

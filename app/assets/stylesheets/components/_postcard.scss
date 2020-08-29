@@ -46,6 +46,13 @@
     margin: -15px 0;
     padding: 0;
   }
+  .icon-text > .offer {
+    position: relative;
+    font-size: 50px;
+    right: 5px;
+    bottom: 5px;
+    transform: rotate(-25deg);
+  }
 }
 
 .post-offer {
@@ -94,7 +101,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  width: 250px;
+  margin: 0 auto;
+  padding: 10px;
 }
+.card-head.request { flex-direction: row-reverse; }
 .card-footer {
   border-radius: 0 0 40px 40px !important;
 }

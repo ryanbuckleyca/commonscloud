@@ -8,3 +8,64 @@
 * {
   font-family: 'Montserrat', 'Open Sans', sans-serif;
 }
+
+.mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right {
+  display: none;
+}
+.mapboxgl-ctrl-top-right {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 34px;
+  color: $black;
+  // text-align: center;
+}
+h2 {
+  font-size: 28px;
+  color: $black;
+  // text-align: center;
+}
+h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: $black;
+  // text-align: center;
+}
+
+.uln-yellow {
+  padding: 0 2px;
+  margin: 0 -2px;
+  background:
+    linear-gradient(
+    179deg,
+    rgba(255, 255, 255, 0) 60%,
+    $yellow 50%);
+}
+.uln-blue {
+  padding: 0 2px;
+  margin: 0 -2px;
+  background:
+    linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 69%,
+    $light-blue 50%);
+}
+
+.browse-btn {
+  padding: 1rem;
+  width: 100%;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  border: 1px solid $gray;
+  color: $black;
+  background: $white;
+}
+.browse-btn.yellow:hover {
+  background: $yellow;
+  transition: 0.1s;
+}
+.browse-btn.blue:hover {
+  background: $light-blue;
+  transition: 0.1s;
+}

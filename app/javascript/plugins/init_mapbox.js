@@ -17,6 +17,8 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/light-v10'
     });
 
+    map.addControl(new mapboxgl.NavigationControl());
+
     const markers = JSON.parse(mapElement.dataset.markers);
     console.log(mapElement)
     markers.forEach((marker) => {
