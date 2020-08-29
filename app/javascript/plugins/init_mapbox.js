@@ -20,7 +20,6 @@ const initMapbox = () => {
     map.addControl(new mapboxgl.NavigationControl());
 
     const markers = JSON.parse(mapElement.dataset.markers);
-    console.log(mapElement)
     markers.forEach((marker) => {
 
       var el = document.createElement('i');

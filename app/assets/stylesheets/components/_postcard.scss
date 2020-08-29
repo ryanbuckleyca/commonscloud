@@ -16,7 +16,7 @@
 .post-card {
   border-radius: 40px;
   margin-bottom: 15px !important;
-  box-shadow: 0 3px 10px rgba(1, 1, 1, 0.025);
+  box-shadow: 0 3px 10px rgba(1, 1, 1, 0.04);
   .avatar {
     height: 100px;
     width: 100px;
@@ -106,6 +106,7 @@
   padding: 10px;
 }
 .card-head.request { flex-direction: row-reverse; }
+
 .card-footer {
   border-radius: 0 0 40px 40px !important;
 }
