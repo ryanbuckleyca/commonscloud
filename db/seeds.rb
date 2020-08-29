@@ -83,8 +83,6 @@ randos = JSON.parse(user_serialized)
 
 randos["results"].each_with_index do |rando, i|
 
-  pp rando
-
   avatar = rando["picture"]["large"]
   first_name = rando["name"]["first"]
   last_name = rando["name"]["last"]
@@ -149,7 +147,6 @@ Post.create!(post_type: "Request",
     priority: 'High',
     description: "This month's been rough since losing my job, and the food bank can't keep up with the recent supply. Some basic necessities would go a long way if anyone has some staples like rice, pasta, or canned good they could contribute?",
     location: arthur.address)
-
 puts "comrade posts created!"
 
 puts "generating 10 random connections..."
