@@ -28,12 +28,12 @@
 #cloud {
   z-index: 2;
   width: 100vw;
-  height: 30px;
+  height: 0px;
   position: relative;
-  top: -40px;
+  top: 70px;
   margin-bottom: 0;
-  border-radius: 50%;
+  border-radius: 0;
   -webkit-filter: url(#filter);
   filter: url(#filter);
-  box-shadow: 0 135px 40px 85px #fff;
+  box-shadow: 0 0 60px 120px #fff;
 }
