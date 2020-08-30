@@ -10,9 +10,11 @@ class PostsController < ApplicationController
       { lat: post.latitude, lng: post.longitude, icon: "#{post.icon} map-icon text-#{post.color}" }
     end
 
+    stringified_posts = @posts.map { |post| render_to_string partial: "posts/all", formats: [:html], locals: { posts: @posts } }
+
     respond_to do |format|
       format.html
-      format.json { render json: { posts: @posts, markers: @markers } }
+      format.json { render json: { posts: stringified_posts, markers: @markers } }
     end
   end
 
