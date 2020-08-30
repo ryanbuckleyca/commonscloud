@@ -27,7 +27,8 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         this.mapTarget.dataset.markers = JSON.stringify(data.markers);
-        initMapbox();
+        // initMapbox();
+        window.refreshMarkers(window.mapbox, data.markers);
         // now how to do the same for the posts?
         // below doesn't work...how to render partial from JS?
         // this.postsTarget.innerHTML = "<%= render "all", posts: data %>""
