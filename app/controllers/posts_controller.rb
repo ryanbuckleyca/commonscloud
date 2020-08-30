@@ -3,8 +3,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.geocoded.near('Montreal', 50)
-    @posts = @posts.where(post_type: params[:query]) if params[:query].present?
-    @posts = @posts.where(category_id: params[:categories]) if params[:categories].present?
+    @posts = @posts.where(post_type: params[:type].split(',')) if params[:type].present?
+    @posts = @posts.where(category_id: params[:categories].split(',')) if params[:categories].present?
 
     @markers = @posts.map do |post|
       { lat: post.latitude, lng: post.longitude, icon: "#{post.icon} map-icon text-#{post.color}" }

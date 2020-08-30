@@ -2,35 +2,31 @@
 
 <div data-controller="filter">
 
-  <div id="map" style="width: 100%; height: calc(95vh - 110px);"
+  <div id="map" style="width: 100%; height: calc(80vh - 110px);"
        data-markers="<%= @markers.to_json %>"
        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
        data-target="filter.map">
   </div>
 
   <div class="container mt-n4">
-      <div class="row">
+      <div class="row mb-2">
         <div class="col-6 px-1">
-          <button name="query" class="browse-btn blue" value="Offer" data-action="click->filter#refresh">
-          <span class="uln-blue">Browse Offers</span>
-          </button>
+          <input type="checkbox" id="request" name="type" value="Request" <%= 'checked="checked"' unless params[:type].present? && !params[:type].include?("Request") %> data-action="change->filter#refresh">
+          <label for="request" class="browse-btn yellow">
+            <span>Browse Requests</span>
+          </label>
         </div>
         <div class="col-6 px-1">
-          <button name="query" class="browse-btn yellow" value="Request" data-action="click->filter#refresh">
-          <span class="uln-yellow">Browse Requests</span>
-          </button>
+          <input type="checkbox" id="offer" name="type" value="Offer" <%= 'checked="checked"' unless params[:type].present? && !params[:type].include?("Offer") %> data-action="change->filter#refresh">
+          <label for="offer" class="browse-btn blue">
+            <span>Browse Offers</span>
+          </label>
         </div>
       </div>
-      <hr>
       <%= render "filter_bar", post: @post %>
     </form>
-    <h2>all posts:</h2>
     <div class="row" data-target="filter.posts">
-      <% @posts.each do |post| %>
-        <div class="card-group offset-1 col-10 offset-sm-0 col-sm-6 col-lg-4 col-xl-3 p-2">
-            <%= render "postcard", post: post %>
-        </div>
-      <% end %>
+      <%= render "all", post: @post %>
     </div>
   </div>
 </div>
