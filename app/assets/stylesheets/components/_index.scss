@@ -65,7 +65,9 @@ input[type="checkbox"] {
   color: rgba(1, 1, 1, 0.2);
   background: $light-gray;
   text-align: center;
+  cursor: pointer;
 }
+
 @media (max-width: 575px) {
   .browse-btn {
     padding: 0.5rem;

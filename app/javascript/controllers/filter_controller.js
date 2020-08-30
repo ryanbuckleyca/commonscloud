@@ -19,6 +19,7 @@ export default class extends Controller {
   clearSelected() {
     let cats = document.querySelectorAll("input[name='categories'][type='checkbox']:checked");
     cats.forEach(cat => cat.checked = false)
+    window.location.replace(`/posts?${getSelected()}#filters`)
   }
 
   refresh(event) {
