@@ -33,7 +33,7 @@ h3 {
   // text-align: center;
 }
 
-.uln-yellow {
+.uln-yellow, #request:checked ~ .browse-btn.yellow > span {
   padding: 0 2px;
   margin: 0 -2px;
   background:
@@ -42,7 +42,7 @@ h3 {
     rgba(255, 255, 255, 0) 60%,
     $yellow 50%);
 }
-.uln-blue {
+.uln-blue, #offer:checked ~ .browse-btn.blue > span {
   padding: 0 2px;
   margin: 0 -2px;
   background:
@@ -52,20 +52,130 @@ h3 {
     $light-blue 50%);
 }
 
+input[type="checkbox"] {
+  display: none;
+}
+
 .browse-btn {
   padding: 1rem;
   width: 100%;
   font-size: 1.25rem;
   border-radius: 5px;
-  border: 1px solid $gray;
+  border: 1px solid rgba(1, 1, 1, 0.2);
+  color: rgba(1, 1, 1, 0.2);
+  background: $light-gray;
+  text-align: center;
+  cursor: pointer;
+}
+
+@media (max-width: 575px) {
+  .browse-btn {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 768px) {
+  .browse-btn {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+}
+
+.browse-btn.yellow:hover {
+  border: 1px solid $yellow;
+  color: $yellow;
+  background: $white;
+  transition: 0.5s;
+}
+#request:checked ~ .browse-btn.yellow {
+  border: 1px solid $black;
   color: $black;
   background: $white;
 }
-.browse-btn.yellow:hover {
-  background: $yellow;
-  transition: 0.1s;
-}
 .browse-btn.blue:hover {
-  background: $light-blue;
-  transition: 0.1s;
+  border: 1px solid $light-blue;
+  color: $light-blue;
+  background: $white;
+  transition: 0.5s;
 }
+#offer:checked ~ .browse-btn.blue {
+  border: 1px solid $black;
+  color: $black;
+  background: $white;
+}
+
+.categories {
+  font-size: 13px;
+  border-radius: 15px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0px 0px 2px rgba(1, 1, 1, 0.2);
+  margin: 0 1px 5px;
+  padding: 3px 9px;
+}
+.categories:hover {
+  box-shadow: 0px 0px 2px $green;
+  background-color: #fff;
+}
+input[name="categories"]:checked + .categories {
+  background: $green;
+  color: $white;
+}
+
+// avg
+.filter-control {
+  display: flex;
+  flex-direction: column;
+  > div { flex: none; }
+  input[type="button"] {
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+}
+// when small
+@media (max-width: 767px) {
+  .filter-control {
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    > div { display: flex }
+    input[type="button"] {
+      padding: 0 10px;
+      width: auto;
+      margin-left: 5px;
+    }
+  }
+}
+// when lg
+@media (min-width: 992px) {
+  .filter-control {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    justify-contents: stretch;
+    > div {display: flex}
+    input[type="button"] {
+      font-size: 14px;
+      padding: 0 10px;
+      width: auto;
+      margin-left: 5px;
+    }
+  }
+}
+// when lg
+@media (min-width: 1200px) {
+  .filter-control {
+    margin: 0 0 5px 0;
+    display: flex;
+    flex-direction: row;
+    justify-contents: stretch;
+    > div {flex: none}
+    input[type="button"] {
+      padding: 0 10px;
+      width: auto;
+      margin-left: 5px;
+    }
+  }
+}
+

@@ -14,8 +14,12 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/light-v10'
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [-73.61, 45.50],
+      zoom: 11.15
     });
+
+    map.scrollZoom.disable();
 
     map.addControl(new mapboxgl.NavigationControl());
 

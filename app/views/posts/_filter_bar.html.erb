@@ -1,19 +1,19 @@
-<%= form_tag "/posts", class: "" do |f| %>
-  <div class="d-flex justify-content-between">
-    <p>Filter by category:</p>
-    <p> x clear</p>
+<div class="row">
+  <div class="col-12 col-md-3 col-lg-2 filter-control">
+    <label id="filters">Filter by category:</label>
+    <div>
+      <input type="button" class="btn btn-sm btn-outline-primary" data-action="click->filter#posts" value="update"><br>
+      <input type="button" class="btn btn-sm btn-outline-danger" data-action="click->filter#clearSelected" value="x reset">
+    </div>
   </div>
-
-<!--
-  <% Category.all.each do |cat| %>
-  <button>
-    <%= check_box(cat.id, cat.name) %>
-    <i class="<%= cat.icon %>"></i>
-    <%= cat.name %>
-  </button>
-  <% end %>
---->
-
-  <%= select_tag "categories", options_from_collection_for_select(Category.all, "id", "name"), multiple: true %>
-  <%= submit_tag "Filter", class: "btn-save btn btn-primary btn-sm" %>
-<% end %>
+  <div class="flex-grow-1 col-12 col-md-9 col-lg-10">
+    <% Category.all.each do |cat| %>
+    <input type="checkbox" id="<%= cat.id %>" name="categories" value="<%= cat.id %>" data-action="change->filter#refresh" <%= 'checked="checked"' if params[:categories].present? && params[:categories].include?(cat.id.to_s) %>>
+    <label for="<%= cat.id %>" class="categories">
+      <i class="<%= cat.icon %>"></i>
+      <%= cat.name %>
+    </label>
+    <% end %>
+  </div>
+</div>
+<hr>
