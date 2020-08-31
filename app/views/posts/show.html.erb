@@ -23,7 +23,11 @@
     <div class='col-md-6 col-sm-12'>
       <div class="shadow-sm p-3 mb-5 bg-white rounded">
         <%= simple_form_for ([ @post, @connection ]) do |f| %>
-          <%= f.input :message, placeholder: 'Help is on the way!' %>
+          <% if @post.post_type == "Request" %>
+            <%= f.input :message, input_html: { value: 'Help is on the way!'} %>
+            <% else %>
+            <%= f.input :message, input_html: { value: 'Thanks for you generosity!'} %>
+          <% end %>
           <%= f.button :submit, 'Connect', class: 'btn btn-primary' %>
         <% end %>
       </div>
