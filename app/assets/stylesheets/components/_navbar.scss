@@ -10,9 +10,9 @@
   display: flex;
   align-items: center;
   img {
-    height: 100px;
+    height: 80px;
     position: relative;
-    margin: 0 10px -40px 5px;
+    margin: 0 10px -30px 5px;
   }
   h1 {
     font-family: 'Amatic SC', cursive;
@@ -23,12 +23,13 @@
   }
   p {
     font-family: 'Montserrat', 'Open Sans', sans-serif;
-    font-size: 66%;
+    font-size: 65%;
     opacity: 0.55;
     margin: -5px 0;
     padding: 0;
   }
 }
-.nav-item.dropdown {
-    margin-left: 5px;
+.nav-item {
+  margin-left: auto;
+  text-align: right;
 }
