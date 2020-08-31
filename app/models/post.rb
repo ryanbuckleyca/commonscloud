@@ -39,6 +39,15 @@ class Post < ApplicationRecord
     </div>"
   end
 
+  def header
+    "<div class='lg-card-head'>
+      <div class='lg-card-head graphic'>#{graphic}</div>
+      <div class='lg-card-head title #{post_type}'>
+        <h3>#{title}</h3>
+        <p>TODO UPDATE MODEL: distance between USER and POST <-- hardcoded in post.rb</p>
+    </div>"
+  end
+
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
 end

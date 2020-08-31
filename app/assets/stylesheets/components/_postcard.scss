@@ -110,3 +110,13 @@
 .card-footer {
   border-radius: 0 0 40px 40px !important;
 }
+
+.lg-card-head {
+  display: flex;
+  justify-content: stretch;
+  padding: 10px;
+}
+.lg-card-head.title {
+  flex-grow: 1;
+}
+.lg-card-head.request { flex-direction: row-reverse; }
