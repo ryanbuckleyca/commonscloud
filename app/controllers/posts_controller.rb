@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @posts = Post.geocoded.near('Montreal', 50)
+    @posts = Post.geocoded.order('created_at DESC')
     @posts = @posts.where(post_type: params[:type].split(',')) if params[:type].present?
     @posts = @posts.where(category_id: params[:categories].split(',')) if params[:categories].present?
 
