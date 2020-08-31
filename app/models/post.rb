@@ -45,6 +45,7 @@ class Post < ApplicationRecord
       <div class='lg-card-head title #{post_type}'>
         <h3>#{title}</h3>
         <p>TODO UPDATE MODEL: distance between USER and POST <-- hardcoded in post.rb</p>
+      </div>
     </div>"
   end
 
