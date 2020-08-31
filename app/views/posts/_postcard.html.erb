@@ -13,6 +13,7 @@
     <%= link_to "connect with #{post.author.name.split[0]}",
         post_path(post),
         class: "btn btn-outline-primary rounded btn-block mb-2" %>
-    <i class="fas fa-map-marker-alt"></i><small> <%= post.location %></small>
+    <i class="fas fa-map-marker-alt"></i>
+    <small><% post.location %></small>
   </div>
 </div>
