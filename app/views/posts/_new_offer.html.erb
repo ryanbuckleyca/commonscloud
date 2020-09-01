@@ -1,15 +1,9 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-6">
-      <h1>Create a New Offer</h1>
-      <%= simple_form_for @post do |f|%>
-        <%= f.input :post_type, as: :hidden, input_html: { value: 'Offer'} %>
-        <%= f.input :title %>
-        <%= f.association :category %>
-        <%= f.input :description, as: :text %>
-        <%= f.input :location, input_html: { value: current_user.address }, placeholder: current_user.address %>
-        <%= f.button :submit, "Add", class: "btn btn-primary"  %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<h1>Create a New Offer</h1>
+  <%= simple_form_for @post do |f|%>
+    <%= f.input :post_type, as: :hidden, input_html: { value: 'Offer'} %>
+    <%= f.input :title %>
+    <%= f.association :category, required: false %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :location, input_html: { value: current_user.address }, placeholder: current_user.address %>
+    <%= f.button :submit, "Add", class: "btn btn-primary"  %>
+  <% end %>
