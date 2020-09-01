@@ -23,9 +23,7 @@
                 <% @posts.each do |post| %>
                   <% if post.connections.any? %>
                       <div class="card mb-2">
-                        <div class="ml-4">
-                          <%= raw post.header(200) %>
-                        </div>
+                        <div class="ml-4"> <%= raw post.header(200) %></div>
                         <div class="ml-4 col-md-10 px-0">
                           <li><strong>From:</strong>  <%= post.connections[0].responder[:name] %></li>
                           <li class="mb-2"><strong>Message:</strong> <%= post.connections[0].message %></li>
@@ -38,19 +36,18 @@
           <!-- outgoing -->
           <div class="tab-pane <%= @tab == "outgoing" ? "active" : "" %> fade show mt-3" id="outgoing" role="tabpanel" aria-labelledby="outgoing-tab">
             <ul class="list-unstyled">
-              <% @user_connections.each do |connection| %>
-                <div class="card mb-2">
-                  <!-- <div class="ml-4">  </div> -->
-                  <div class="ml-4 col-md-10 px-0">
-                   <li> <strong>Post title:</strong> <%= connection.post[:title] %></li>
-                   <li><strong><%= connection.post[:post_type] %></strong> </li>
-                   <li> <strong>Author:</strong> <%= connection.post.author.name %></li>
-                   <li> <strong>Email:</strong> <%= connection.post.author.email %></li>
-                   <li> <strong>Message:</strong> <%= connection.message %></li><br>
-                  <% end %>
+                <% @user_connections.each do |connection| %>
+                  <div class="card mb-2">
+                    <div class="ml-4"><%= raw connection.post.header(200) %></div>
+                    <div class="ml-4 mb-2 col-md-10 px-0">
+                      <span class='badge badge-pill badge-<%= connection.post.color%> m-auto'><%= connection.post.post_type %></span>
+                      <li> <strong>Message:</strong> <%= connection.message %></li><br>
+                      <li> <strong>Author:</strong> <%= connection.post.author.name %></li>
+                      <li> <strong>Email:</strong> <%= connection.post.author.email %></li>
+                    </div>
                   </div>
-                </div>
-             </ul>
+                <% end %>
+            </ul>
           </div>
           <!-- my posts -->
           <div class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-3" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
