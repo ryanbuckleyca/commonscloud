@@ -1,18 +1,47 @@
-<div class="container">
+<div class="container mt-3">
   <div class="row">
     <div class="col-12">
-      <h2>Dashboard</h2><br>
+      <h2 class="mb-4">Dashboard</h2>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item <%= @tab == "incoming" ? "active" : "" %>">
+        <li class="tab nav-item <%= @tab == "incoming" ? "active" : "" %>">
           <a class="nav-link <%= @tab == "incoming" ? "active" : "" %>" id="incoming-tab" data-toggle="tab" href="#incoming" role="tab" aria-controls="incoming" aria-selected="true">Incoming</a>
         </li>
-        <li class="nav-item <%= @tab == "outgoing" ? "active" : "" %>">
+        <li class="tab nav-item <%= @tab == "outgoing" ? "active" : "" %>">
           <a class="nav-link <%= @tab == "outgoing" ? "active" : "" %>" id="outgoing-tab" data-toggle="tab" href="#outgoing" role="tab" aria-controls="outgoing" aria-selected="true">Outgoing</a>
         </li>
-        <li class="nav-item <%= @tab == "myposts" ? "active" : "" %>">
+        <li class="tab nav-item <%= @tab == "myposts" ? "active" : "" %>">
           <a class="nav-link <%= @tab == "myposts" ? "active" : "" %>" id="myposts-tab" data-toggle="tab" href="#myposts" role="tab" aria-controls="myposts" aria-selected="true">My Posts</a>
         </li>
       </ul>
+    </div>
+  </div>
+  <!-- incoming -->
+  <div class="row">
+    <div class="col-sm-12 col-md-4"></div>
+      <div class="col-sm-12 col-md-6"></div>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
 
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
