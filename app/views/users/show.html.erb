@@ -13,76 +13,65 @@
           <a class="nav-link <%= @tab == "myposts" ? "active" : "" %>" id="myposts-tab" data-toggle="tab" href="#myposts" role="tab" aria-controls="myposts" aria-selected="true">My Posts</a>
         </li>
       </ul>
+
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10">
+          <!-- incoming -->
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
+              <ul class="list-unstyled">
+                <% @posts.each do |post| %>
+                  <% if post.connections.any? %>
+                      <div class="card mb-2">
+                        <div class="ml-4">
+                          <%= raw post.header(200) %>
+                        </div>
+                        <div class="ml-4 col-md-10 px-0">
+                          <li><strong>From:</strong>  <%= post.connections[0].responder[:name] %></li>
+                          <li class="mb-2"><strong>Message:</strong> <%= post.connections[0].message %></li>
+                        </div>
+                      </div>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          <!-- outgoing -->
+          <div class="tab-pane <%= @tab == "outgoing" ? "active" : "" %> fade show mt-3" id="outgoing" role="tabpanel" aria-labelledby="outgoing-tab">
+            <ul class="list-unstyled">
+              <% @user_connections.each do |connection| %>
+                <div class="card mb-2">
+                  <!-- <div class="ml-4">  </div> -->
+                  <div class="ml-4 col-md-10 px-0">
+                   <li> <strong>Post title:</strong> <%= connection.post[:title] %></li>
+                   <li><strong><%= connection.post[:post_type] %></strong> </li>
+                   <li> <strong>Author:</strong> <%= connection.post.author.name %></li>
+                   <li> <strong>Email:</strong> <%= connection.post.author.email %></li>
+                   <li> <strong>Message:</strong> <%= connection.message %></li><br>
+                  <% end %>
+                  </div>
+                </div>
+             </ul>
+          </div>
+          <!-- my posts -->
+          <div class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-3" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
+            <ul class="list-unstyled">
+            <% @posts.each do |post| %>
+                <div class="card mb-2">
+                  <div class="ml-4"><%= raw post.header(200) %></div>
+                  <div class="ml-4 col-md-10 px-0">
+                    <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
+                    <li class="mb-2 mt-2"><%= post.description %></li>
+                    <li class="mb-2"><%= post[:location] %></li>
+                  </div>
+                </div>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- incoming -->
-  <div class="row">
-    <div class="col-sm-12 col-md-4"></div>
-      <div class="col-sm-12 col-md-6"></div>
-  </div>
-
-
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-
-
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
-          <h3>Incoming connections</h3>
-          <ul class="list-inline">
-            <% @posts.each do |post| %>
-              <% if post.connections.any? %>
-                  <li class="list-inline-item"><%= post.title%></li>
-                  <li class="list-inline-item"><strong><%= post.post_type %></strong></li>
-                  <li><strong>Message:</strong> <%= post.connections[0].message %></li>
-                  <li><strong>Responder:</strong>  <%= post.connections[0].responder[:name] %></li>
-              <% end %>
-            <% end %>
-          </ul>
-        </div>
-
-        <div class="tab-pane <%= @tab == "outgoing" ? "active" : "" %> fade show mt-3" id="outgoing" role="tabpanel" aria-labelledby="outgoing-tab">
-          <h3>Outgoing Connections</h3>
-          <ul class="list-inline">
-            <% @user_connections.each do |connection| %>
-             <li class="list-inline-item"> <strong>Post title:</strong> <%= connection.post[:title] %></li>
-             <li class="list-inline-item"><strong><%= connection.post[:post_type] %></strong> </li>
-             <li> <strong>Author:</strong> <%= connection.post.author.name %></li>
-             <li> <strong>Email:</strong> <%= connection.post.author.email %></li>
-             <li> <strong>Message:</strong> <%= connection.message %></li><br>
-            <% end %>
-           </ul>
-        </div>
-        <div class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-3" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
-          <h3>My Posts</h3>
-            <ul class="list-inline">
-            <% @posts.each do |post| %>
-              <li class="list-inline-item"><%= post.title%></li>
-              <li class="list-inline-item"><strong><%= post.post_type %></strong></li>
-              <li><em>placeholder for distance</em></li>
-              <li><%= post[:location] %></li>
-              <li><%= post.description %></li>
-            <% end %>
-            </ul>
-        </div>
-      </div>
-      </div>
 
 
