@@ -4,7 +4,7 @@
       <%= post.post_type.downcase %>ing
     </span>
   </div>
-  <%= raw post.graphic %>
+  <div style="width:225px; height: 100px; margin: 0 auto; font-size:16pt;"><%= raw post.graphic %></div>
   <div class="card-body pt-0">
     <h3><%= post.title %></h3>
     <%= post.description.truncate(120, separator: ' ', omission: '... (click connect to read more)') %>

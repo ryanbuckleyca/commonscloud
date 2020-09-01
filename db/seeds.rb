@@ -11,10 +11,10 @@ puts "destroying all CATS"
 Category.destroy_all
 
 puts "generating categories..."
-categories = ['tools', 'tech help', 'medicine', 'ppe', 'hygiene supplies',
+categories = ['tools', 'tech help', 'medicine', 'ppe', 'hygienics',
               'food', 'transportation', 'errands', 'deliveries', 'clothing',
-              'financial support', 'school supplies', 'shelter', 'cleaning supplies',
-              'household supplies', 'emotional support']
+              'finances', 'educational', 'shelter', 'cleaning',
+              'household', 'conversation']
 categories.each { |cat| Category.create!(name: cat) }
 puts "categories created!"
 
@@ -24,10 +24,10 @@ MTL_ADDRESSES = ['1701 rue Parthenais, Montréal, QC',
                 '1000 de La Gauchetiere Street West, Montréal, QC',
                 '2113 Rue Saint-Louis, Saint-Laurent, QC',
                 '900 Place Jean-Paul-Riopelle, Montréal, QC',
-                '1560 Laird Blvd, Mount Royal, QC',
+                '5134 St Laurent Blvd, Montreal, Quebec',
                 '468 Rue McGill, Montréal, QC',
                 '805 Rue Tassé, Saint-Laurent, QC',
-                '4285 Drolet St, Montreal, QC',
+                '403 Rue des Seigneurs, Montréal, QC',
                 '7503 Rue St Denis, Montreal QC',
                 '251 Av Percival Montreal Ouest QC',
                 '3708 Rue St Hubert, Montreal QC',
@@ -70,7 +70,7 @@ arthur = User.create!(name: 'Arthur Prats',
 nirali = User.create!(name: 'Nirali Patel',
        img_url: 'https://kitt.lewagon.com/placeholder/users/mynameisnirali',
        email: 'nirali@email.com',
-       address: "4655 Rivard St, Montreal, QC",
+       address: "468 McGill St, Montreal, Qc",
        password: 'password',
        phone: '(438) 403-5221')
 puts "comrades created!"
