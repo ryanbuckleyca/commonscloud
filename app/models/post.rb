@@ -29,7 +29,7 @@ class Post < ApplicationRecord
     "<div class='lg-card-head #{post_type.downcase}'>
       <div class='lg-card-head graphic'>#{graphic(width)}</div>
       <div class='lg-card-head title'>
-        <h3>#{title}</h3>
+        <strong>#{title}</strong>
         <p>TODO UPDATE MODEL: distance between USER and POST <-- hardcoded in post.rb</p>
       </div>
     </div>"
