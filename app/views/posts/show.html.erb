@@ -1,4 +1,4 @@
-<%= link_to '<-- back to all posts', posts_path %>
+<a class="btn btn-outline-secondary" href="<%= posts_path  %>" role="button">Back to All Posts</a>
 
 <div id="map"
    style="width: 100%; height: 33vh;"
@@ -17,8 +17,12 @@
     <div class='col-md-5 col-sm-12'>
       <div class="shadow-sm p-3 mb-5 bg-white rounded">
         <%= simple_form_for ([ @post, @connection ]) do |f| %>
-          <%= f.input :message, placeholder: 'Help is on the way!' %>
-          <%= f.button :submit, 'Connect', class: 'btn btn-primary' %>
+          <% if @post.post_type == "Request" %>
+            <%= f.input :message, input_html: { value: 'Help is on the way!'} %>
+            <% else %>
+            <%= f.input :message, input_html: { value: 'Thanks for you generosity!'} %>
+          <% end %>
+            <%= f.button :submit, 'Connect', class: 'btn btn-primary' %>
         <% end %>
       </div>
     </div>

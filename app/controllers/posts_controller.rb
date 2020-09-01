@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     @post.author = current_user
 
     if @post.save
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user, tab: "myposts")
     else
       render :new
     end

@@ -6,9 +6,9 @@ class ConnectionsController < ApplicationController
     @connection.post = @post
 
     if @connection.save
-      redirect_to user_path(current_user), notice:
+      redirect_to user_path(current_user, tab: "outgoing"), notice:
       "Your message was sent to #{@post.author.name}.
-      You can now contact him at #{@post.author.email}"
+      # You can now contact him at #{@post.author.email}"
     else
       flash.alert = 'Ops.. something went wrong. Please try again.'
     end
