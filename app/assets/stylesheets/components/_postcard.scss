@@ -5,7 +5,6 @@
   border-radius: 50%;
   padding: 13px;
 }
-
 .map-filters {
   button {
     width: 50%;
@@ -17,75 +16,6 @@
   border-radius: 40px;
   margin-bottom: 15px !important;
   box-shadow: 0 3px 10px rgba(1, 1, 1, 0.04);
-  > .avatar {
-    width: 50%;
-    border-radius: 50%;
-  }
-}
-.post-icon {
-  z-index: 1;
-  padding: 0;
-  text-align: center;
-  width: 140px;
-  height: 130px;
-  display: flex;
-  flex-direction: column;
-  .icon-img-text {
-    position: static;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .icon-text {
-    font-size: 24px;
-    font-weight: 800;
-  }
-  .icon-text p {
-    margin: -15px 0;
-    padding: 0;
-  }
-  .icon-text > .offer {
-    position: relative;
-    font-size: 50px;
-    right: 5px;
-    bottom: 5px;
-    transform: rotate(-25deg);
-  }
-}
-
-.post-offer {
-  background: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598648063/method-draw-image_oee9hz.svg') no-repeat;
-  background-size: contain;
-  margin: -25px -70px -25px -25px;
-  > .badge {
-    position: relative;
-    bottom: 10px;
-    right: 10px;
-  }
-  > .icon-img-text > i {
-    font-size: 50px;
-    padding: 10px 0 0 0;
-    transform: rotate(-25deg);
-    position: relative;
-    right: 10px;
-  }
-}
-.post-request {
-  background: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598648063/thought-cloud_meojlb.svg') no-repeat;
-  background-size: contain;
-  margin: -25px -15px -30px -40px;
-  > .badge {
-    position: relative;
-    bottom: 15px;
-  }
-  > .icon-img-text > i {
-    font-size: 50px;
-    padding: 25px 5px 0 10px;
-    transform: rotate(-25deg);
-    position: relative;
-    left: 10px;
-  }
 }
 
 .card-type {
@@ -97,13 +27,87 @@
   padding: 10px !important;
 }
 .card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 5%;
 }
-.card-head.request { flex-direction: row-reverse; }
+.card-head.request {
+  flex-direction: row-reverse;
+  justify-content: right;
+}
+.card-head.offer {
+  justify-content: left;
+}
+
+// 40% of the card
+.post-card.avatar {
+  width: 40%;
+  max-width: 100px;
+  border-radius: 50%;
+  margin: 0 !important;
+}
+// 60% of the card (general) | offer/reqs follow
+.post-icon {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: static;
+  height: 100%;
+  .icon-img-text {
+    font-size: 225%;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-25deg);
+  }
+  .badge {
+    bottom: -4%;
+    align-self: center;
+    position: relative;
+    white-space: normal;
+    font-size: 65%;
+  }
+}
+
+.post-offer {
+  background-image: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598648063/method-draw-image_oee9hz.svg');
+  margin: -20% -15% -15% 0%;
+  > .badge { right: 7%; }
+  > .icon-img-text {
+    right: 7%;
+    bottom: -8%;
+  }
+  > .icon-img-text > .icon-text {
+    margin-bottom: -10%;
+    font-weight: 800;
+  }
+}
+.post-request {
+  background-image: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598648063/thought-cloud_meojlb.svg');
+  margin: 0 0 0 -10%;
+  > .badge {}
+  > .icon-img-text {
+    transform: rotate(14deg);
+    position: relative;
+    left: 13%;
+    top: 16%;
+  }
+  > .icon-img-text > .icon-text {
+    font-weight: 700;
+    font-size: 80%;
+  }
+}
+
 
 .card-footer {
   border-radius: 0 0 40px 40px !important;
@@ -112,13 +116,13 @@
 .lg-card-head {
   display: flex;
   justify-content: stretch;
-  padding: 10px;
-}
-.lg-card-head.title {
-  flex-grow: 1;
 }
 .lg-card-head.request { flex-direction: row-reverse; }
-
-.lg-card-head.graphic {
-  width: 20%;
+.lg-card-head.title {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
+.lg-card-head.graphic {
+}
+

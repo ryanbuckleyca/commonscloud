@@ -4,34 +4,20 @@ class Post < ApplicationRecord
   has_many :connections, dependent: :destroy
 
   def color
-    case priority
-    when "High" then 'danger'
-    when "Medium" then 'warning'
-    when "Low" then 'info'
-    else 'primary'
-    end
+    post_type == 'Offer' ? 'primary' : 'info'
   end
 
   def icon
     category.icon
   end
 
-  def punctuation
-    if post_type == "Request"
-      "<p>#{['Medium', 'High'].include?(priority) ? '?' : ' '}</p>
-       <p class='pl-3'>?</p>
-       <p class='pl-4 pt-1'>#{priority == 'High' ? '?' : ' '}</p>"
-    elsif post_type == "Offer"
-      "<p class='offer'>!</p>"
-    end
-  end
-
-  def graphic
-    "<div class='card-head #{post_type.downcase}'>
+  def graphic(width = 225)
+    style = "width: #{width}px; height: #{width / 2}px; font-size: #{width / 16}pt"
+    "<div class='card-head #{post_type.downcase}' style='#{style}'>
       <div class='post-icon post-#{post_type.downcase}'>
         <div class='icon-img-text text-#{color}'>
           <i class='#{icon}'></i>
-          <div class='icon-text'>#{punctuation}</div>
+          <div class='icon-text'>#{post_type == 'Offer' ? '!' : '?'}</div>
         </div>
         <span class='badge badge-pill badge-secondary m-auto'>#{category.name}</span>
       </div>
@@ -39,10 +25,10 @@ class Post < ApplicationRecord
     </div>"
   end
 
-  def header
-    "<div class='lg-card-head'>
-      <div class='lg-card-head graphic'>#{graphic}</div>
-      <div class='lg-card-head title #{post_type}'>
+  def header(width = 125)
+    "<div class='lg-card-head #{post_type.downcase}'>
+      <div class='lg-card-head graphic'>#{graphic(width)}</div>
+      <div class='lg-card-head title'>
         <h3>#{title}</h3>
         <p>TODO UPDATE MODEL: distance between USER and POST <-- hardcoded in post.rb</p>
       </div>

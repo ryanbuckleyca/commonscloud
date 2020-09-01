@@ -9,32 +9,6 @@
 <div class="container">
   <div class="row mt-2">
     <div class="col-sm-12 col-md-6">
-      <div class="shadow-sm p-3 mb-5 bg-white rounded">
-        <ul class="list-unstyled">
-          <li class="list-inline-item"><h3><%= @post.title %></h3></li>
-          <li class="post"><%= raw @post.graphic %></li>
-          <li class="list-inline-item badge badge-pill badge-success"><%= @post.post_type %></li>
-          <li class="list-inline-item badge badge-pill badge-danger"><%= @post.priority %></li>
-      <!--     <li>Category: <%= @post.category.name %></li> -->
-          <li class="mt-4 mb-4"><%= @post.description %></li>
-          <li class="mt-1 mb-4"><strong>Location:</strong> <%= @post.location %></li>
-        </ul>
-      </div>
-    </div>
-    <div class='col-md-6 col-sm-12'>
-      <div class="shadow-sm p-3 mb-5 bg-white rounded">
-        <%= simple_form_for ([ @post, @connection ]) do |f| %>
-          <%= f.input :message, placeholder: 'Help is on the way!' %>
-          <%= f.button :submit, 'Connect', class: 'btn btn-primary' %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row mt-2">
-    <div class="col-sm-12 col-md-6">
       <div class="card shadow-sm p-3 mb-5 bg-white rounded">
        <%= raw @post.header %>
         <div class="card-body"> test guoh onkpj opjp</div>
