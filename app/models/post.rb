@@ -30,7 +30,7 @@ class Post < ApplicationRecord
       <div class='lg-card-head graphic'>#{graphic(width)}</div>
       <div class='lg-card-head title'>
         <strong>#{title}</strong>
-        <p>TODO UPDATE MODEL: distance between USER and POST <-- hardcoded in post.rb</p>
+        <span><i class='fas fa-map-marker-alt'></i>25km to #{author.name}</span>
       </div>
     </div>"
   end
