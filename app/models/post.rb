@@ -26,13 +26,23 @@ class Post < ApplicationRecord
   end
 
   def header(width = 125)
-    "<div class='lg-card-head #{post_type.downcase}'>
+    "<div class='lg-card-head'>
       <div class='lg-card-head graphic'>#{graphic(width)}</div>
       <div class='lg-card-head title'>
         <strong>#{title}</strong>
         <span><i class='fas fa-map-marker-alt'></i>25km to #{author.name}</span>
       </div>
     </div>"
+  end
+
+  def distance_to_user(user_location)
+    if [user_location, latitude, longitude].all?
+      "#{Geocoder::Calculations
+          .distance_between(user_location, [latitude, longitude])
+          .floor} km away!"
+    else
+      "near you"
+    end
   end
 
   geocoded_by :location
