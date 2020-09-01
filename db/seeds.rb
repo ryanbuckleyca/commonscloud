@@ -11,10 +11,10 @@ puts "destroying all CATS"
 Category.destroy_all
 
 puts "generating categories..."
-categories = ['tools', 'tech help', 'medicine', 'ppe', 'hygiene supplies',
+categories = ['tools', 'tech help', 'medicine', 'ppe', 'hygienics',
               'food', 'transportation', 'errands', 'deliveries', 'clothing',
-              'financial support', 'school supplies', 'shelter', 'cleaning supplies',
-              'household supplies', 'emotional support']
+              'finances', 'educational', 'shelter', 'cleaning',
+              'household', 'conversation']
 categories.each { |cat| Category.create!(name: cat) }
 puts "categories created!"
 

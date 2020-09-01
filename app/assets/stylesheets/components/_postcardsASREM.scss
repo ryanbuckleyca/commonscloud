@@ -1,0 +1,107 @@
+.post-card {
+  border-radius: 40px;
+  margin-bottom: 15px !important;
+  box-shadow: 0 3px 10px rgba(1, 1, 1, 0.04);
+  font-size: 12pt; //set for REM values
+}
+.post-card.avatar {
+  width: 7rem;
+  max-width: 100px;
+  border-radius: 50%;
+  margin: 0 !important;
+}
+.post-icon {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  .icon-img-text {
+    position: static;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-text {
+    font-size: 150%;
+    font-weight: 800;
+    position: static;
+  }
+  .icon-text p {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+  }
+  .icon-text > .offer {
+    position: relative;
+    font-size: 250%;
+    right: 0.5rem;
+    transform: rotate(-25deg);
+  }
+}
+
+.post-offer {
+  background: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598648063/method-draw-image_oee9hz.svg') no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: -3em;
+  position: static;
+  height: 100%;
+  width: 100%;
+  > .badge {
+    position: relative;
+    right: 0.6rem;
+  }
+  > .icon-img-text > i {
+    position: relative;
+    font-size: 300%;
+    right: 0.5rem;
+    bottom: -0.7rem;
+    transform: rotate(-25deg);
+  }
+}
+.post-request {
+  background: url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598648063/thought-cloud_meojlb.svg') no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: -1rem;
+  position: static;
+  height: 100%;
+  width: 100%;
+  > .badge {
+    position: relative;
+  }
+  > .icon-img-text > i {
+    font-size: 300%;
+    transform: rotate(-25deg);
+    position: relative;
+    top: 1.1rem;
+    left: 0.3rem;
+  }
+}
+
+.card-type {
+  text-align: center;
+  margin-top: -10px;
+  font-size: 110%;
+}
+.card-type > .badge.badge-pill {
+  padding: 10px !important;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 0.7rem;
+}
+.card-head.request { flex-direction: row-reverse; }
+
+.card-footer {
+  border-radius: 0 0 40px 40px !important;
+}
