@@ -33,3 +33,25 @@
   margin-left: auto;
   text-align: right;
 }
+
+// yellow - request
+.uln-yellow {
+  padding: 0 2px;
+  margin: 0 -2px;
+  background:
+    linear-gradient(
+    179deg,
+   rgba(255, 255, 255, 0) 60%,
+  $yellow 50%);
+}
+
+// blue - offer
+.uln-blue {
+  padding: 0 2px;
+  margin: 0 -2px;
+  background:
+    linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 69%,
+    $light-blue 50%);
+}
