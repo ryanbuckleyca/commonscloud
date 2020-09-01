@@ -1,7 +1,7 @@
 <div class="banner landing">
   <div class="container">
     <div class="row d-flex align-items-stretch">
-        <div class="col-12 col-sm-6 flex-grow-1 my-auto pb-5 text-center">
+        <div class="col-12 col-sm-6 flex-grow-1 my-auto pb-5 text-center" style="z-index:3;">
           connecting neighbours<br>
           in <span class="uln-yellow">need</span> to those
           who can offer <span class="uln-blue">support</span>.
@@ -10,12 +10,5 @@
     </div>
   </div>
 </div>
-<div id="cloud" style="opacity: 1"></div>
-<svg width="0" height="0">
-<filter id="filter">
-    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="20"></feTurbulence>
-    <feDisplacementMap in="SourceGraphic" scale="200"></feDisplacementMap>
-  </filter>
-</svg>
-
+<%= render "shared/cloud" %>
 

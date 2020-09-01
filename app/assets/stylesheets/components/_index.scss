@@ -62,7 +62,7 @@ input[type="checkbox"] {
   font-size: 1.25rem;
   border-radius: 5px;
   border: 1px solid rgba(1, 1, 1, 0.2);
-  color: rgba(1, 1, 1, 0.2);
+  color: $gray;
   background: $light-gray;
   text-align: center;
   cursor: pointer;
@@ -162,4 +162,18 @@ input[name="categories"]:checked + .categories {
       margin-left: 5px;
     }
   }
+}
+
+.new-post-bg {
+  width: 100vw;
+  height: calc(100vh - 110px);
+  margin: 0;
+  padding: 0;
+  background-image:
+    url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598998472/helpBonX_left_cfylaf.png'),
+    url('https://res.cloudinary.com/ryanbuckleyca/image/upload/v1598998598/helpBonX_right_qx3kcm.png');
+  background-size: 30vw, 30vw;
+  background-position: left bottom, right;
+  background-repeat: no-repeat, no-repeat;
+
 }

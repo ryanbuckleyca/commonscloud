@@ -1,9 +1,0 @@
-<h1>Create a New Request</h1>
-  <%= simple_form_for @post do |f|%>
-    <%= f.input :post_type, as: :hidden, input_html: { value: 'Request'} %>
-    <%= f.input :title %>
-    <%= f.association :category, required: false %>
-    <%= f.input :description, as: :text %>
-    <%= f.input :location, input_html: { value: current_user.address }, placeholder: current_user.address %>
-    <%= f.button :submit, "Add", class: "btn btn-primary"  %>
-  <% end %>

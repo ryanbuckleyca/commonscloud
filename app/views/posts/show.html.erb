@@ -2,8 +2,6 @@
    style="width: 100%; height: 33vh;"
    data-markers="<%= @markers.to_json %>"
    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-
-   <a class="btn btn-outline-secondary" href="<%= posts_path  %>" role="button">Back to All Posts</a>
 </div>
 
 <div class="container mt-n4">
@@ -27,9 +25,11 @@
             <% else %>
             <%= f.input :message, input_html: { value: 'Thanks for you generosity!'} %>
           <% end %>
-            <%= f.button :submit, 'Connect', class: 'btn btn-primary' %>
+            <%= f.button :submit, 'Connect', class: 'btn btn-success rounded btn-block mb-2' %>
         <% end %>
       </div>
+      <hr>
+      <a class="btn btn-outline-secondary btn-block" href="<%= posts_path  %>" role="button"> < back to all posts</a>
     </div>
   </div>
 </div>
