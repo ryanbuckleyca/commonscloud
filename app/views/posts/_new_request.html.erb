@@ -8,7 +8,6 @@
         <%= f.association :category %>
         <%= f.input :description, as: :text %>
         <%= f.input :location, input_html: { value: current_user.address }, placeholder: current_user.address %>
-        <%= f.input :priority, as: :radio_buttons, collection: ["High", "Medium", "Low"] %>
         <%= f.button :submit, "Add", class: "btn btn-primary"  %>
       <% end %>
     </div>
