@@ -15,7 +15,7 @@ const initMapbox = () => {
   const refreshMarkers = (map, markers) => {
     // clear markers from map
     if (map.markers.length > 0) map.markers.forEach(m => m.remove());
-    
+
     // build Marker Objects and attach to map
     if (markers.length > 0) {
       markers.forEach((marker) => {
@@ -30,8 +30,9 @@ const initMapbox = () => {
       // re-center the map and center it based on new filtered markers
       const bounds = new mapboxgl.LngLatBounds();
       markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-      map.fitBounds(bounds, { maxZoom: 11.15, duration: 0.5, animate: true, linear: true });
-      map.flyTo({center: [markers[0].lng, markers[0].lat], zoom: 10.5});
+      map.fitBounds(bounds, { duration: 0.5, animate: true, linear: true });
+      // map.flyTo({center: [markers[0].lng, markers[0].lat]});
+      // map.fitBounds(markers.getBounds());
     }
   };
 
@@ -41,7 +42,6 @@ const initMapbox = () => {
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v10',
       center: [-73.61, 45.50],
-      zoom: 11.15,
       scrollZoom: false,
       touchZoom: false,
       doubleClickZoom: false,

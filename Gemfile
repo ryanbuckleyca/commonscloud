@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 gem 'faker'
+gem 'geocoder'
 gem 'turbolinks_render'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -36,7 +37,6 @@ gem 'devise'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
-gem 'geocoder'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
