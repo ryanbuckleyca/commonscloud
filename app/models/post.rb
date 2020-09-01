@@ -30,7 +30,7 @@ class Post < ApplicationRecord
       <div class='lg-card-head graphic'>#{graphic(width)}</div>
       <div class='lg-card-head title'>
         <strong>#{title}</strong>
-        <span><i class='fas fa-map-marker-alt'></i>25km to #{author.name}</span>
+        <span><i class='fas fa-map-marker-alt'></i> 25km to #{author.name}</span>
       </div>
     </div>"
   end
