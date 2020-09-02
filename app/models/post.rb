@@ -12,13 +12,13 @@ class Post < ApplicationRecord
   end
 
   def graphic(width = 225, user = author)
-    new_post_type = user == author ? post_type.downcase : ["Request", "Offer"].delete(post_type).downcase
+    new_post_type = user == author ? [post_type] : ["Request", "Offer"].delete_if { |x| x == post_type }
     style = "width: #{width}px; height: #{width / 2}px; font-size: #{width / 16}pt"
-    "<div class='card-head #{new_post_type}' style='#{style}'>
-      <div class='post-icon post-#{new_post_type}'>
-        <div class='icon-img-text text-#{color}'>
+    "<div class='card-head #{new_post_type[0].downcase}' style='#{style}'>
+      <div class='post-icon post-#{new_post_type[0].downcase}'>
+        <div class='icon-img-text text-#{new_post_type[0] == 'Offer' ? 'primary' : 'info'}'>
           <i class='#{icon}'></i>
-          <div class='icon-text'>#{new_post_type == 'Offer' ? '!' : '?'}</div>
+          <div class='icon-text'>#{new_post_type[0] == 'Offer' ? '!' : '?'}</div>
         </div>
         <span class='badge badge-pill badge-secondary m-auto'>#{category.name}</span>
       </div>

@@ -4,10 +4,10 @@
       <h2 class="mb-4">Dashboard</h2>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="tab nav-item <%= @tab == "incoming" ? "active" : "" %>">
-          <a class="nav-link <%= @tab == "incoming" ? "active" : "" %>" id="incoming-tab" data-toggle="tab" href="#incoming" role="tab" aria-controls="incoming" aria-selected="true">Incoming</a>
+          <a class="nav-link <%= @tab == "incoming" ? "active" : "" %>" id="incoming-tab" data-toggle="tab" href="#incoming" role="tab" aria-controls="incoming" aria-selected="true">Inbox</a>
         </li>
         <li class="tab nav-item <%= @tab == "outgoing" ? "active" : "" %>">
-          <a class="nav-link <%= @tab == "outgoing" ? "active" : "" %>" id="outgoing-tab" data-toggle="tab" href="#outgoing" role="tab" aria-controls="outgoing" aria-selected="true">Outgoing</a>
+          <a class="nav-link <%= @tab == "outgoing" ? "active" : "" %>" id="outgoing-tab" data-toggle="tab" href="#outgoing" role="tab" aria-controls="outgoing" aria-selected="true">Sent</a>
         </li>
         <li class="tab nav-item <%= @tab == "myposts" ? "active" : "" %>">
           <a class="nav-link <%= @tab == "myposts" ? "active" : "" %>" id="myposts-tab" data-toggle="tab" href="#myposts" role="tab" aria-controls="myposts" aria-selected="true">My Posts</a>
@@ -22,8 +22,9 @@
               <ul class="list-unstyled">
                 <% @posts.each do |post| %>
                   <% if post.connections.any? %>
+                  <p style="text-align: right; margin: 0;">Deb replied to:</p>
                       <div class="card mb-2">
-                        <div class="ml-4"> <%= raw post.header(200) %></div>
+                        <div class="ml-4 flip-reverse"><%= raw post.header(200, post.connections[0].responder) %></div>
                         <div class="ml-4 col-md-10 px-0">
                           <li><strong>From:</strong>  <%= post.connections[0].responder[:name] %></li>
                           <li class="mb-2"><strong>Message:</strong> <%= post.connections[0].message %></li>
@@ -38,7 +39,7 @@
             <ul class="list-unstyled">
                 <% @user_connections.each do |connection| %>
                   <div class="card mb-2">
-                    <div class="ml-4"><%= raw connection.post.header(200) %></div>
+                    <div class="ml-4 flip-reverse"><%= raw connection.post.header(200) %></div>
                     <div class="ml-4 mb-2 col-md-10 px-0">
                       <span class='badge badge-pill badge-<%= connection.post.color%> m-auto'><%= connection.post.post_type %></span>
                       <li> <strong>Message:</strong> <%= connection.message %></li><br>
@@ -54,7 +55,7 @@
             <ul class="list-unstyled">
             <% @posts.each do |post| %>
                 <div class="card mb-2">
-                  <div class="ml-4"><%= raw post.header(200) %></div>
+                  <div class="ml-4 flip-reverse"><%= raw post.header(200) %></div>
                   <div class="ml-4 col-md-10 px-0">
                     <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
                     <li class="mb-2 mt-2"><%= post.description %></li>
