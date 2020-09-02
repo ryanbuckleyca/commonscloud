@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   resources :posts, only: [ :index, :new, :create, :show ] do
     resources :connections, only: [ :create, :update ]
   end
+
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end
