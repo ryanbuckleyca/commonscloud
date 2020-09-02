@@ -3,10 +3,6 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def update
-
-  end
-
   def show
     if params[:tab] == "outgoing" || params[:tab] == "myposts"
       @tab = params[:tab]

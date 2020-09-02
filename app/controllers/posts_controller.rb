@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :user_location
 
   def index
     @posts = Post.geocoded.order('created_at DESC')
@@ -40,12 +41,25 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @connection = Connection.new
-    @marker = { lat: @post.latitude, lng: @post.longitude }
+    @markers = [
+      { lat: @post.latitude, lng: @post.longitude, icon: "#{@post.icon} map-icon text-#{@post.color}" },
+      { lat: @user_location[0], lng: @user_location[1], icon: "fas fa-map-marker-alt map-icon text-#{@post.color == "primary" ? "info" : "primary"}" }
+    ]
   end
 
   private
 
   def post_params
     params.require(:post).permit(:title, :post_type, :description, :location, :priority)
+  end
+
+  def user_location
+    if request.key?('HTTP_HOST')
+      if request['HTTP_HOST'].nil? || request['HTTP_HOST'].include?("localhost")
+        @user_location = [45.525990, -73.595410]
+      end
+    else
+      @user_location = [request.location.longitude, request.location.latitude]
+    end
   end
 end

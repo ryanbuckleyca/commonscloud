@@ -5,15 +5,15 @@
     </span>
   </div>
   <div style="width:225px; height: 100px; margin: 0 auto; font-size:16pt;"><%= raw post.graphic %></div>
-  <div class="card-body pt-0">
+  <div class="card-body">
     <h3><%= post.title %></h3>
     <%= post.description.truncate(120, separator: ' ', omission: '... (click connect to read more)') %>
   </div>
   <div class="card-footer text-center">
     <%= link_to "connect with #{post.author.name.split[0]}",
         post_path(post),
-        class: "btn btn-outline-primary rounded btn-block mb-2" %>
+        class: "btn btn-success rounded btn-block mb-2" %>
     <i class="fas fa-map-marker-alt"></i>
-    <small><% post.location %></small>
+    <%= post.distance_to_user(@user_location) %>
   </div>
 </div>
