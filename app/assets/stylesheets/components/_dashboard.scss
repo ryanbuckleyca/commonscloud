@@ -4,4 +4,6 @@
   text-align: center;
 }
 
-.lg-card-head.offer { flex-direction: row-reverse; }
+.flip-reverse > .lg-card-head {
+  flex-direction: row-reverse;
+}

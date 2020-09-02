@@ -1,11 +1,19 @@
-<div class="container mt-3">
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-6 card py-3">
-      <% if @post_type == "Request" %>
-        <%= render "new_request", post: @post %>
-      <% else  %>
-        <%= render "new_offer", post: @post %>
-      <% end %>
+<div class="new-post-bg">
+  <%= render "shared/cloud" %>
+  <div class="container mt-4 new-post">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-6 card py-3 shadow rounded">
+        <h2>Create a New <%= @post_type %></h2>
+        <%= simple_form_for @post do |f|%>
+          <%= f.input :post_type, as: :hidden, input_html: { value: @post_type} %>
+          <%= f.input :title %>
+          <%= f.association :category, required: false %>
+          <%= f.input :description, as: :text %>
+          <%= f.input :location, input_html: { value: current_user.address }, placeholder: current_user.address %>
+          <%= f.button :submit, "Add", class: "btn btn-success rounded btn-block mb-2"  %>
+        <% end %>
+      </div>
     </div>
   </div>
+  <%= render "shared/cloud" %>
 </div>

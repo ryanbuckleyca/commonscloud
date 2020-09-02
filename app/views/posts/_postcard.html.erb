@@ -12,7 +12,7 @@
   <div class="card-footer text-center">
     <%= link_to "connect with #{post.author.name.split[0]}",
         post_path(post),
-        class: "btn btn-outline-primary rounded btn-block mb-2" %>
+        class: "btn btn-success rounded btn-block mb-2" %>
     <i class="fas fa-map-marker-alt"></i>
     <%= post.distance_to_user(@user_location) %>
   </div>
