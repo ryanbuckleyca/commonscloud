@@ -12,7 +12,6 @@ class PostsController < ApplicationController
     end
 
     stringified_posts = @posts.map { |post| render_to_string partial: "posts/all", formats: [:html], locals: { posts: @posts } }
-
     respond_to do |format|
       format.html
       format.json { render json: { posts: stringified_posts, markers: @markers } }

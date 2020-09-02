@@ -39,7 +39,6 @@ export default class extends Controller {
         // below doesn't work...how to render partial from JS?
         // this.postsTarget.innerHTML = "<%= render "all", posts: data %>""
         // for now, doing this below: \/
-
         this.refreshPosts(data.posts);
       });
   }
@@ -52,6 +51,6 @@ export default class extends Controller {
     // check posts controller#index:13 to understand what's happening here
     // the posts controller will pre-render the DIV cards and then send them back in a HTTP request
     // when your JS stimulus controller receives the `data` back, the bosy already contains the HTML it needs
-    document.getElementById('postsContainer').innerHTML = newPosts;
+    document.getElementById('postsContainer').innerHTML = newPosts[0];
   }
 }
