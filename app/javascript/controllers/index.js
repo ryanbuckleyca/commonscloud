@@ -21,23 +21,6 @@ window.addEventListener('scroll', () => {
 const request = document.querySelector('#request')
 const offer = document.querySelector('#offer')
 
-/*if (request){
-  request.addEventListener('click', (event) => {
-    if (!request.checked){
-      event.preventDefault()
-      offer.checked = event.target.checked
-    }
-  });
-};
-
-if (offer){
-  offer.addEventListener('click', (event) => {
-    if (!offer.checked){
-      event.preventDefault()
-      request.checked = event.target.checked
-    }
-  });
-};*/
 
 if (request){
   request.checked = false
