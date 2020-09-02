@@ -39,6 +39,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if Connection.find_by(post_id: @post.id).present?
+      @existing = true
+    else
+      @existing = false
+    end
     @connection = Connection.new
     @markers = [
       { lat: @post.latitude, lng: @post.longitude, icon: "#{@post.icon} map-icon text-#{@post.color}" },
