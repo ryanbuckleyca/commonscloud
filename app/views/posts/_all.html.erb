@@ -1,5 +1,7 @@
 <% @posts.each do |post| %>
-  <div class="card-group col-10 col-sm-6 col-lg-4 col-xl-3 p-2">
-      <%= render "postcard", post: post %>
-  </div>
+  <% if Connection.find_by(post_id: post.id).present? == false %>
+    <div class="card-group col-10 col-sm-6 col-lg-4 col-xl-3 p-2">
+        <%= render "postcard", post: post %>
+    </div>
+  <% end %>
 <% end %>
