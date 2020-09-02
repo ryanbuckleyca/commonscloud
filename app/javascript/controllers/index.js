@@ -17,3 +17,42 @@ window.addEventListener('scroll', () => {
   banner.style = `opacity: ${1 - (window.scrollY+1)/350}`;
   banner.style = `position:relative; top: -${window.scrollY/20}px;`;
 });
+
+const request = document.querySelector('#request')
+const offer = document.querySelector('#offer')
+
+/*if (request){
+  request.addEventListener('click', (event) => {
+    if (!request.checked){
+      event.preventDefault()
+      offer.checked = event.target.checked
+    }
+  });
+};
+
+if (offer){
+  offer.addEventListener('click', (event) => {
+    if (!offer.checked){
+      event.preventDefault()
+      request.checked = event.target.checked
+    }
+  });
+};*/
+
+if (request){
+  request.checked = false
+  request.addEventListener('change', (event) => {
+    offer.checked = !event.target.checked
+  });
+};
+
+if (offer){
+  offer.checked = false
+  offer.addEventListener('change', (event) => {
+    request.checked = !event.target.checked
+  });
+};
+
+
+
+
