@@ -16,10 +16,14 @@
   color: $gray;
 }
 
-#myposts > .lg-card-head > .graphic > .card-head > .avatar {
+#myposts > .lg-card-head > .title > span {
   display: none;
 }
 
-#myposts > .lg-card-head > .title > span {
-  display: none;
+.fa-edit {
+  color: $light-blue;
+}
+
+.fa-trash-alt {
+  color: $red;
 }
