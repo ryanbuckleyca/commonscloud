@@ -7,3 +7,23 @@
 .flip-reverse > .lg-card-head {
   flex-direction: row-reverse;
 }
+
+.nav-tabs .nav-link.active {
+  color: $green;
+}
+
+.nav-tabs .nav-link {
+  color: $gray;
+}
+
+#myposts > .lg-card-head > .title > span {
+  display: none;
+}
+
+.fa-edit {
+  color: $light-blue;
+}
+
+.fa-trash-alt {
+  color: $red;
+}

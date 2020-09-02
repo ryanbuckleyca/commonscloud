@@ -54,12 +54,18 @@
           <div class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-3" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
             <ul class="list-unstyled">
             <% @posts.each do |post| %>
-                <div class="card mb-2">
-                  <div class="ml-4 flip-reverse"><%= raw post.header(200) %></div>
-                  <div class="ml-4 col-md-10 px-0">
-                    <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
-                    <li class="mb-2 mt-2"><%= post.description %></li>
-                    <li class="mb-2"><%= post[:location] %></li>
+                <div class="card mb-2 col-12">
+                  <div class="ml-4 mt-2 flip-reverse" id="myposts"> <%= raw post.header(200) %></div>
+                  <div class="row">
+                    <div class="ml-5 col-sm-8 col-md-10 px-0">
+                      <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
+                      <li class="mb-2 mt-2"><%= post.description %></li>
+                      <li class="mb-2"><%= post[:location] %></li>
+                    </div>
+                    <div class="mb-3 mr-3 d-flex align-items-end">
+                      <i class=" mr-2 ml-5 fas fa-edit"></i>
+                      <i class="far fa-trash-alt"></i>
+                    </div>
                   </div>
                 </div>
               <% end %>
