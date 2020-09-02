@@ -15,3 +15,11 @@
 .nav-tabs .nav-link {
   color: $gray;
 }
+
+#myposts > .lg-card-head > .graphic > .card-head > .avatar {
+  display: none;
+}
+
+#myposts > .lg-card-head > .title > span {
+  display: none;
+}

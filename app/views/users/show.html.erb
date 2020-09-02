@@ -55,7 +55,7 @@
             <ul class="list-unstyled">
             <% @posts.each do |post| %>
                 <div class="card mb-2">
-                  <div class="ml-4 flip-reverse"><%= raw post.header(200) %></div>
+                  <div class="ml-4 flip-reverse" id="myposts"> <%= raw post.header(200) %></div>
                   <div class="ml-4 col-md-10 px-0">
                     <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
                     <li class="mb-2 mt-2"><%= post.description %></li>
