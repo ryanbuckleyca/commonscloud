@@ -47,14 +47,6 @@ const fetchWithToken = (url, options) => {
   return fetch(url, options);
 }
 
-// Chatroom open/close
-function openForm(chatroom) {
-  document.getElementById(`chat-${chatroom}`).style.display = "block";
-}
-function closeForm(chatroom) {
-  document.getElementById(`chat-${chatroom}`).style.display = "none";
-}
-
 // Send HTTP req to Chatroom
 const chat_forms = document.querySelectorAll('.simple_form.new_message')
 chat_forms.forEach((form) => {

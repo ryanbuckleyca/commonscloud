@@ -1,3 +1,13 @@
+<script>
+// Chatroom open/close
+function openForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "block";
+}
+function closeForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "none";
+}
+</script>
+
 <div class="row w-100 pt-4 mx-0 bg-white">
 <ul class="nav nav-tabs w-100" id="myTab" role="tablist" style="z-index: 3;">
   <li class="tab nav-item <%= @tab == "incoming" ? "active" : "" %>">
