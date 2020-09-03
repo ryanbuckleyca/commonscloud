@@ -37,7 +37,7 @@ if (offer){
   });
 };
 
-
+// For use in chat
 const fetchWithToken = (url, options) => {
   options.headers = {
     "X-CSRF-Token": csrfToken(),
@@ -69,10 +69,3 @@ chat_forms.forEach((form) => {
     });
   });
 });
-
-
-
-
-
-
-

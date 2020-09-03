@@ -1,31 +1,32 @@
 <script>
-  function openForm(chatroom) {
-    document.getElementById(`chat-${chatroom}`).style.display = "block";
-  }
-  function closeForm(chatroom) {
-    document.getElementById(`chat-${chatroom}`).style.display = "none";
-  }
+// Chatroom open/close
+function openForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "block";
+}
+function closeForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "none";
+}
 </script>
+
+<div class="row w-100 pt-4 mx-0 bg-white">
+<ul class="nav nav-tabs w-100" id="myTab" role="tablist" style="z-index: 3;">
+  <li class="tab nav-item <%= @tab == "incoming" ? "active" : "" %>">
+    <a class="nav-link <%= @tab == "incoming" ? "active" : "" %>" id="incoming-tab" data-toggle="tab" href="#incoming" role="tab" aria-controls="incoming" aria-selected="true">My Connections</a>
+  </li>
+  <li class="tab nav-item <%= @tab == "myposts" ? "active" : "" %>">
+    <a class="nav-link <%= @tab == "myposts" ? "active" : "" %>" id="myposts-tab" data-toggle="tab" href="#myposts" role="tab" aria-controls="myposts" aria-selected="true">My Posts</a>
+  </li>
+</ul>
+</div>
 
 <div class="container mt-3">
   <div class="row">
     <div class="col-12">
-      <h2 class="mb-4">Dashboard</h2>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="tab nav-item <%= @tab == "incoming" ? "active" : "" %>">
-          <a class="nav-link <%= @tab == "incoming" ? "active" : "" %>" id="incoming-tab" data-toggle="tab" href="#incoming" role="tab" aria-controls="incoming" aria-selected="true">My Connections</a>
-        </li>
-        <li class="tab nav-item <%= @tab == "myposts" ? "active" : "" %>">
-          <a class="nav-link <%= @tab == "myposts" ? "active" : "" %>" id="myposts-tab" data-toggle="tab" href="#myposts" role="tab" aria-controls="myposts" aria-selected="true">My Posts</a>
-        </li>
-      </ul>
-
       <div class="row justify-content-center">
         <div class="col-12">
           <div class="tab-content" id="myTabContent">
           <!-- incoming -->
             <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
-                  <% chatrooms = [] %>
                   <% @user_connections.each do |connection| %>
                   <div class="card mb-2">
                     <% if connection.post.author == current_user %>
@@ -40,27 +41,23 @@
                         <button class="btn btn-success float-right" id="openButton" onclick="openForm('<%= chatroom_name %>')">Chat</button>
                       </div>
                     <% else %>
-                    <span class='badge badge-pill badge-secondary mt-n1 mx-auto'>You responded to <%= connection.post.author.name %>'s <%= connection.post.post_type.downcase %>:</span>
+                    <span class='badge badge-pill badge-secondary shadow-sm mt-n1 mx-auto'>You responded to <%= connection.post.author.name %>'s <%= connection.post.post_type.downcase %>:</span>
                       <div class="ml-4 flip-reverse"><%= raw connection.post.header(150) %></div>
                       <div class="pl-4 pb-4 col-12">
                         <strong>You wrote:</strong> <%= connection.message %><br>
-                        <strong>Phone:</strong> <%= connection.post.author.phone %><br>
                         <strong>Address:</strong> <%= connection.post.author.address %><br>
+                        <strong>Phone:</strong> <%= connection.post.author.phone %><br>
                         <strong>Email:</strong> <%= connection.post.author.email %>
                         <% chatroom_name = [connection.responder.id, connection.post.author.id].sort.join('-') %>
                         <button class="btn btn-success float-right" id="openButton" onclick="openForm('<%= chatroom_name %>')">Chat</button>
                       </div>
                     <% end %>
-                      <%  #only load chatroom for user-pair once
-                          unless chatrooms.include?(chatroom_name)
-                          chatrooms << chatroom_name %>
                       <div class="chat-popup" id="chat-<%= chatroom_name %>">
                         <% chatroom_name = [connection.responder.id, connection.post.author.id].sort.join('-') %>
                         <% chatroom = Chatroom.find_by_name(chatroom_name) %>
                         <button id="closeButton" type="button" name="close" onclick="closeForm('<%= chatroom_name %>')" class="btn btn-danger">X</button>
                         <%= render "chat", chatroom: chatroom, message: @message %>
                       </div>
-                      <% end %>
                   </div>
                 <% end %>
             </div>
@@ -70,7 +67,7 @@
             <ul class="list-unstyled">
             <% @posts.each do |post| %>
                 <div class="card mb-2 col-12">
-                  <div class="ml-4 mt-2 flip-reverse" id="myposts"> <%= raw post.header(200) %></div>
+                  <div class="ml-4 mt-2 flip-reverse" id="myposts"> <%= raw post.header(150) %></div>
                   <div class="row">
                     <div class="ml-5 col-sm-8 col-md-10 px-0">
                       <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
