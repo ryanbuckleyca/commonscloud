@@ -3,6 +3,7 @@
 function openForm(chatroom) {
   document.getElementById(`chat-${chatroom}`).style.display = "block";
 }
+
 function closeForm(chatroom) {
   document.getElementById(`chat-${chatroom}`).style.display = "none";
 }
@@ -27,7 +28,7 @@ function closeForm(chatroom) {
           <div class="tab-content" id="myTabContent">
           <!-- incoming -->
             <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
-                  <% @user_connections.each do |connection| %>
+                  <% @user_connections.each do |connection| %>                  
                     <% chatroom_name = [connection.responder.id,
                         connection.post.author.id].sort.join('-')
                        chatroom = Chatroom.find_by_name(chatroom_name)
@@ -35,7 +36,6 @@ function closeForm(chatroom) {
                        unless chatrooms.include?(chatroom)
                        chatrooms << chatroom %>
                         <div class="chat-popup" id="chat-<%= chatroom_name %>">
-
                           <button id="closeButton" type="button" name="close" onclick="closeForm('<%= chatroom_name %>')" class="btn btn-danger">X</button>
                           <%= render "chat", chatroom: chatroom, message: @message %>
                         </div>
