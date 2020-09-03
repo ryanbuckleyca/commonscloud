@@ -201,33 +201,33 @@ Post.create!(post_type: "Request",
     location: arthur.address)
 puts "comrade posts created!"
 
-# puts "generating 10 random connections..."
-# messages = ["I can help!", "I got you!", "I've got what you need!",
-#            "I think I could be of service to you", "I'm here for you.",
-#            "No worries, I got this :)", "Let me offer you some support",
-#            "Let's find a time, I'd be happy to help.", "How's this weekend?"]
-# 10.times do
-#   # make some random connections!
-#   connection = Connection.new(message: messages.sample, status: "Pending")
-#   # find a random user who has offered before
-#   connection.responder = Post.where("post_type = 'Offer'").sample.author
-#   # find a random user looking for something
-#   connection.post = Post.where("post_type = 'Request'").sample
+puts "generating 10 random connections..."
+messages = ["I can help!", "I got you!", "I've got what you need!",
+           "I think I could be of service to you", "I'm here for you.",
+           "No worries, I got this :)", "Let me offer you some support",
+           "Let's find a time, I'd be happy to help.", "How's this weekend?"]
+10.times do
+  # make some random connections!
+  connection = Connection.new(message: messages.sample, status: "Pending")
+  # find a random user who has offered before
+  connection.responder = Post.where("post_type = 'Offer'").sample.author
+  # find a random user looking for something
+  connection.post = Post.where("post_type = 'Request'").sample
 
-#   connection.save!
+  connection.save!
 
-#   # this is a non-identical copy of the initialize_chat method in the connections_controller
-#   # we could probably call that method from here instead, but for now, this:
-#   room_name = [connection.post.author.id, connection.responder.id].sort.join('-')
-#   @chatroom = Chatroom.find_by_name(room_name) || Chatroom.new(name: room_name)
-#   @initial_msg = "<span class='chat-alert'>new connection via
-#                   <a href='posts/#{connection.post.id}'>#{connection.post.title}</a></span>"
-#   @initial_msg += connection.message
-#   @message = Message.create!(content: @initial_msg, user: connection.responder, chatroom: @chatroom)
-#   @responder_msg = "Thanks for the message, I'll be in touch soon."
-#   @message = Message.create!(content: @responder_msg, user: connection.post.author, chatroom: @chatroom)
+  # this is a non-identical copy of the initialize_chat method in the connections_controller
+  # we could probably call that method from here instead, but for now, this:
+  room_name = [connection.post.author.id, connection.responder.id].sort.join('-')
+  @chatroom = Chatroom.find_by_name(room_name) || Chatroom.new(name: room_name)
+  @initial_msg = "<span class='chat-alert'>new connection via
+                  <a href='posts/#{connection.post.id}'>#{connection.post.title}</a></span>"
+  @initial_msg += connection.message
+  @message = Message.create!(content: @initial_msg, user: connection.responder, chatroom: @chatroom)
+  @responder_msg = "Thanks for the message, I'll be in touch soon."
+  @message = Message.create!(content: @responder_msg, user: connection.post.author, chatroom: @chatroom)
 
-# end
+end
 
-# puts "generated 10 random connections!"
+puts "generated 10 random connections!"
 
