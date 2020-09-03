@@ -1,0 +1,17 @@
+<h3 class="p-4">Your conversation</h3>
+<div id="messages-<%= chatroom.id %>" class="messages p-4" data-chatroom-id="<%= chatroom.id %>">
+  <% chatroom.messages.each do |message| %>
+    <div class="message-container" id="message-<%= message.id %>">
+      <i class="author">
+        <span><%= message.user.name %></span>
+        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%= raw message.content %></p>
+    </div>
+  <% end %>
+  <%= simple_form_for [ current_user, message ], remote: true do |f| %>
+  <%= f.input :chatroom_id, :as => :hidden, :input_html => { :value => chatroom.id } %>
+  <%= f.input :content, label: false, placeholder: "Type your message here..." %>
+  <%= f.submit %>
+  <% end %>
+</div>
