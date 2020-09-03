@@ -17,7 +17,7 @@ class ConnectionsController < ApplicationController
   def initiate_chat
     room_name = [@connection.post.author.id, @connection.responder.id].sort.join('-')
     @chatroom = Chatroom.find_by_name(room_name) || Chatroom.new(name: room_name)
-    @initial_msg = "<span class='chat-alert'>#{@connection.responder.name} connected to you via
+    @initial_msg = "<span class='chat-alert'>new connection via
                     <a href='#{post_path(@post)}'>#{@post.title}</a></span>"
     @initial_msg += @connection.message
     @message = Message.create!(content: @initial_msg, user: @connection.responder, chatroom: @chatroom)
