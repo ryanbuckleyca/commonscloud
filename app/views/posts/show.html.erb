@@ -26,7 +26,7 @@
           <% if @post.post_type == "Request" %>
             <%= f.input :message, input_html: { value: 'Help is on the way!'} %>
             <% else %>
-            <%= f.input :message, input_html: { value: 'Thanks for you generosity!'} %>
+            <%= f.input :message, input_html: { value: 'Thanks for your generosity!'} %>
           <% end %>
             <%= f.button :submit, 'Connect', class: 'btn btn-success rounded btn-block mb-2' %>
         <% end %>
