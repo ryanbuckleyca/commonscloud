@@ -28,10 +28,8 @@ function closeForm(chatroom) {
           <!-- incoming -->
             <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
                   <% @user_connections.each do |connection| %>
-                    <% chatroom_name = [
-                        connection.responder.id,
+                    <% chatroom_name = [connection.responder.id,
                         connection.post.author.id].sort.join('-')
-                       ]
                        chatroom = Chatroom.find_by_name(chatroom_name)
                        chatrooms = []
                        unless chatrooms.include?(chatroom)
@@ -42,7 +40,7 @@ function closeForm(chatroom) {
                           <%= render "chat", chatroom: chatroom, message: @message %>
                         </div>
                     <% end %>
-                  <div class="card mb-2">
+                  <div class="col-12 col-lg-6 card mb-2">
                     <% if connection.post.author == current_user %>
                     <span class='badge badge-pill badge-secondary mt-n1 mx-auto'><%= connection.responder.name %> responded to your <%= connection.post.post_type.downcase %>:</span>
                       <div class="ml-4 flip-reverse"><%= raw connection.post.header(150, connection.responder) %></div>
@@ -74,7 +72,7 @@ function closeForm(chatroom) {
           <div class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-3" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
             <ul class="list-unstyled">
             <% @posts.each do |post| %>
-                <div class="card mb-2 col-12">
+                <div class="card mb-2 col-12 col-lg-6">
                   <div class="ml-4 mt-2 flip-reverse" id="myposts"> <%= raw post.header(150) %></div>
                   <div class="row">
                     <div class="ml-5 col-sm-8 col-md-10 px-0">
