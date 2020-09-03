@@ -9,13 +9,13 @@ const application = Application.start()
 const context = require.context("controllers", true, /_controller\.js$/)
 application.load(definitionsFromContext(context))
 
-let banner = document.querySelector('.help-img')
-let cloud = document.querySelector('#cloud')
-window.addEventListener('scroll', () => {
-  cloud.style = `opacity: ${1 - (window.scrollY+1)/350}`;
-  banner.style = `opacity: ${1 - (window.scrollY+1)/350}
-                  position:relative;
-                  top: -${window.scrollY/20}px;`;
+let banner = document.querySelector('.help-img');
+let cloud = document.querySelector('#cloud');
+window.addEventListener('scroll', (e) => {
+  console.log("scrolling");
+  cloud.style.opacity = 1 - (window.scrollY+1)/350;
+  banner.style.opacity = 1 - (window.scrollY+1)/350;
+  banner.style.top = `-${window.scrollY/20}px`;
 });
 
 const request = document.querySelector('#request')
