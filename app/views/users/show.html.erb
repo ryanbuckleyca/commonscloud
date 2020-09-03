@@ -28,8 +28,7 @@ function closeForm(chatroom) {
           <div class="tab-content" id="myTabContent">
           <!-- incoming -->
             <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
-                  <% @user_connections.each do |connection| %>
-                  <% raise %>
+                  <% @user_connections.each do |connection| %>                  
                     <% chatroom_name = [connection.responder.id,
                         connection.post.author.id].sort.join('-')
                        chatroom = Chatroom.find_by_name(chatroom_name)
