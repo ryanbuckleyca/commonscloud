@@ -107,9 +107,80 @@ randos["results"].each_with_index do |rando, i|
 
   (rand(2) + 1).times do
     cat = Category.all.sample
+
+    case cat.name
+    when "tools"
+      offer_description = ["I have an entire toolkit if anyone needs it!", "Let me know if anyone wants to borrow a ladder!"].sample
+    when "tech help"
+      offer_description = ["I just got done learning a lot from Le Wagon! Let me know if anyone needs a website built!", "I am a computer expert! I can fix anything on a computer or laptop!"].sample
+    when "medicine"
+      offer_description = ["Corona got your head hurting?  I have a lot of asprine!", "Vicks fixes anything!  I have lots of it! Let me know if you need some!"].sample
+    when "ppe"
+      offer_description = ["I have extra masks and gloves!", "I have a 3D printer and can make you a face shield!  Let me know if you need one!"].sample
+    when "hygienics"
+      offer_description = ["Need deodrant?  I have some!", "I have lot of extra person hygiene items.  Let me know if you need something!"].sample
+    when "food"
+      offer_description = ["I have extra flours, sugar, and eggs.", "I have milk, eggs, and bread to offer!"].sample
+    when "transportation"
+      offer_description = ["Offering a ride within a 20km radius.", "Let me know if you need a ride to work!"].sample
+    when "errands"
+      offer_description = ["Willing to ran any errand you have on my bike!", "I have a car and can run errands!"].sample
+    when "deliveries"
+      offer_description = "Can make delivers for you!"
+    when "clothing"
+      offer_description = ["Lots of old baby clothes!", "Lots of gently used women clothing.  Size medium"].sample
+    when "finances"
+      offer_description = ["I can help with your hydro bill.", "I have some extra cash and can help pay for groceries or gas."].sample
+    when "educational"
+      offer_description = ["I have old kids books.", "Extra school supplies to offer.  Notebooks, pencils, binders.  Let me know if you need anything."].sample
+    when "shelter"
+      offer_description = ["My house is your house.  Let me know if you are in need of a place to stay.", "I have an empty room for 3 nights. Let me know if you need it."].sample
+    when "cleaning"
+      offer_description = "Will clean your house!"
+    when "household"
+      offer_description = ["I have a couch I don't need! Free to whoever wants to come pick it up!", "Let me know if you need to borrow my mop!"].sample
+    when "conversation"
+      offer_description = "Not a real therapist, but I will listen to your problems. <3"
+    end
+
+    case cat.name
+    when "tools"
+      request_description = ["I really need to borrow a hammer.", "In need of a saw to build a dog house."].sample
+    when "tech help"
+      request_description = ["Broke my computer. Can someone help?", "I am old and don't know anything about the internet. Please help me with an online order."].sample
+    when "medicine"
+      request_description = ["Need some advil!", "I have a fever.  Does anyone have anything to help with that?"].sample
+    when "ppe"
+      request_description = ["I need a mask!", "Does anyone have extra hand sanitizer?"].sample
+    when "hygienics"
+      request_description = "Need some soap."
+    when "food"
+      request_description = ["I would like some bread.", "In search of some veggies and fruits."].sample
+    when "transportation"
+      request_description = ["I need a ride to work!", "I need a ride to school!"].sample
+    when "errands"
+      request_description = "Can someone please walk my dog."
+    when "deliveries"
+      request_description = "I need my groceries delivered to me!"
+    when "clothing"
+      request_description = ["Looking for clothes for my teenage daughter.", "Looking for mens medium clothes."].sample
+    when "finances"
+      request_description = ["I need some assistance with paying my phone bill.", "I need some help with paying for my textbook."].sample
+    when "educational"
+      request_description = ["I need a backpack." "I need some notebooks and pens."].sample
+    when "shelter"
+      request_description = "Looking for a place to crash for 2 nights."
+    when "cleaning"
+      request_description = "I need my house cleaned!"
+    when "household"
+      request_description = "Does anyone have some bedsheet for a queen size bed?" 
+    when "conversation"
+      request_description = "I just really need someone to talk to."
+    end
+   
     post = Post.new(post_type: type,
                 title: "#{type == "Offer" ? offer_title.sample : request_title.sample} #{cat.name}",
-                description: Faker::Lorem.paragraph(sentence_count: 3, random_sentences_to_add: 2),
+                description: type == "Offer" ? offer_description : request_description,
                 location: user.address,
                 priority: type == "Request" ? %w[High Medium Low].sample : nil)
     post.author = user
