@@ -78,6 +78,13 @@ function closeForm(chatroom) {
           <!-- my posts -->
           <div class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-3" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
             <ul class="list-unstyled">
+            <% if @posts.size.zero? %>
+                  <p class="col-12 card my-5 mx-0 p-5">
+                    You don't have any posts yet. <br>
+                    <a href="/posts/new?type=Offer" class="btn btn-success mt-3 w-50">offer support</a> |
+                    <a href="/posts/new?type=Request" class="btn btn-success mt-3 w-50">add a request</a>.
+                  </p>
+            <% end %>
             <% @posts.each do |post| %>
                 <div class="card mb-2 col-12">
                   <div class="ml-4 mt-2 flip-reverse" id="myposts"> <%= raw post.header(150) %></div>
