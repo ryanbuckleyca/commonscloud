@@ -6,6 +6,11 @@
   z-index: 9;
 }
 
+.chat-alert {
+  background: $yellow;
+  display: block;
+}
+
 /* The popup chat - hidden by default */
 .chat-popup {
   display: none;
