@@ -1,9 +1,16 @@
 .tab {
-  width: 33%;
+  width: 50%;
   margin: 0;
   text-align: center;
 }
 
 .flip-reverse > .lg-card-head {
   flex-direction: row-reverse;
+}
+
+#myposts > .flip-reverse > .avatar {
+  display: none;
+}
+#myposts > .flip-reverse > span {
+  display: none;
 }

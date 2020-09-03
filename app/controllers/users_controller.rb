@@ -4,14 +4,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:tab] == "outgoing" || params[:tab] == "myposts"
-      @tab = params[:tab]
+    if params[:tab] == "myposts"
+      @tab = "myposts"
     else
       @tab = "incoming"
     end
 
+    @message = Message.new
+
     @user = current_user
-    @posts = Post.where(author_id: current_user.id).order('created_at DESC')
-    @user_connections = Connection.where(responder_id: current_user.id).order('created_at DESC')
+    @posts = Post.where(author: @user).order('created_at DESC')
+    @user_connections = Connection.where(responder: @user)
+                                  .or(Connection.where(post: @posts))
+                                  .order('created_at DESC')
   end
 end
