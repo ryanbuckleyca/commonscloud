@@ -8,9 +8,22 @@
   flex-direction: row-reverse;
 }
 
-#myposts > .flip-reverse > .avatar {
+.nav-tabs .nav-link.active {
+  color: $green;
+}
+
+.nav-tabs .nav-link {
+  color: $gray;
+}
+
+#myposts > .lg-card-head > .title > span {
   display: none;
 }
-#myposts > .flip-reverse > span {
-  display: none;
+
+.fa-edit {
+  color: $light-blue;
+}
+
+.fa-trash-alt {
+  color: $red;
 }
