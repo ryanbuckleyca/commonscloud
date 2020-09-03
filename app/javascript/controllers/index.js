@@ -37,7 +37,7 @@ if (offer){
   });
 };
 
-
+// For use in chat
 const fetchWithToken = (url, options) => {
   options.headers = {
     "X-CSRF-Token": csrfToken(),
@@ -45,6 +45,14 @@ const fetchWithToken = (url, options) => {
   };
   options.credentials = "same-origin";
   return fetch(url, options);
+}
+
+// Chatroom open/close
+function openForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "block";
+}
+function closeForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "none";
 }
 
 // Send HTTP req to Chatroom
@@ -69,10 +77,3 @@ chat_forms.forEach((form) => {
     });
   });
 });
-
-
-
-
-
-
-
