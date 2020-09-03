@@ -1,1 +1,12 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# ✊ Commons Cloud:
+### connecting neighbours in need to those who can offer support
+
+Visite the website here: http://www.commonscloud.cc/
+
+Author: 
+* Ryan Buckley
+* Debora Anjos 
+* Niralie Patel
+* Arthur Prats
+
+MIT License
