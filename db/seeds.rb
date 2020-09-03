@@ -111,73 +111,54 @@ randos["results"].each_with_index do |rando, i|
     case cat.name
     when "tools"
       offer_description = ["I have an entire toolkit if anyone needs it!", "Let me know if anyone wants to borrow a ladder!"].sample
-    when "tech help"
-      offer_description = ["I just got done learning a lot from Le Wagon! Let me know if anyone needs a website built!", "I am a computer expert! I can fix anything on a computer or laptop!"].sample
-    when "medicine"
-      offer_description = ["Corona got your head hurting?  I have a lot of asprine!", "Vicks fixes anything!  I have lots of it! Let me know if you need some!"].sample
-    when "ppe"
-      offer_description = ["I have extra masks and gloves!", "I have a 3D printer and can make you a face shield!  Let me know if you need one!"].sample
-    when "hygienics"
-      offer_description = ["Need deodrant?  I have some!", "I have lot of extra person hygiene items.  Let me know if you need something!"].sample
-    when "food"
-      offer_description = ["I have extra flours, sugar, and eggs.", "I have milk, eggs, and bread to offer!"].sample
-    when "transportation"
-      offer_description = ["Offering a ride within a 20km radius.", "Let me know if you need a ride to work!"].sample
-    when "errands"
-      offer_description = ["Willing to ran any errand you have on my bike!", "I have a car and can run errands!"].sample
-    when "deliveries"
-      offer_description = "Can make delivers for you!"
-    when "clothing"
-      offer_description = ["Lots of old baby clothes!", "Lots of gently used women clothing.  Size medium"].sample
-    when "finances"
-      offer_description = ["I can help with your hydro bill.", "I have some extra cash and can help pay for groceries or gas."].sample
-    when "educational"
-      offer_description = ["I have old kids books.", "Extra school supplies to offer.  Notebooks, pencils, binders.  Let me know if you need anything."].sample
-    when "shelter"
-      offer_description = ["My house is your house.  Let me know if you are in need of a place to stay.", "I have an empty room for 3 nights. Let me know if you need it."].sample
-    when "cleaning"
-      offer_description = "Will clean your house!"
-    when "household"
-      offer_description = ["I have a couch I don't need! Free to whoever wants to come pick it up!", "Let me know if you need to borrow my mop!"].sample
-    when "conversation"
-      offer_description = "Not a real therapist, but I will listen to your problems. <3"
-    end
-
-    case cat.name
-    when "tools"
       request_description = ["I really need to borrow a hammer.", "In need of a saw to build a dog house."].sample
     when "tech help"
+      offer_description = ["I just got done learning a lot from Le Wagon! Let me know if anyone needs a website built!", "I am a computer expert! I can fix anything on a computer or laptop!"].sample
       request_description = ["Broke my computer. Can someone help?", "I am old and don't know anything about the internet. Please help me with an online order."].sample
     when "medicine"
+      offer_description = ["Corona got your head hurting?  I have a lot of asprine!", "Vicks fixes anything!  I have lots of it! Let me know if you need some!"].sample
       request_description = ["Need some advil!", "I have a fever.  Does anyone have anything to help with that?"].sample
     when "ppe"
+      offer_description = ["I have extra masks and gloves!", "I have a 3D printer and can make you a face shield!  Let me know if you need one!"].sample
       request_description = ["I need a mask!", "Does anyone have extra hand sanitizer?"].sample
     when "hygienics"
+      offer_description = ["Need deodrant?  I have some!", "I have lot of extra person hygiene items.  Let me know if you need something!"].sample
       request_description = "Need some soap."
     when "food"
+      offer_description = ["I have extra flours, sugar, and eggs.", "I have milk, eggs, and bread to offer!"].sample
       request_description = ["I would like some bread.", "In search of some veggies and fruits."].sample
     when "transportation"
+      offer_description = ["Offering a ride within a 20km radius.", "Let me know if you need a ride to work!"].sample
       request_description = ["I need a ride to work!", "I need a ride to school!"].sample
     when "errands"
+      offer_description = ["Willing to ran any errand you have on my bike!", "I have a car and can run errands!"].sample
       request_description = "Can someone please walk my dog."
     when "deliveries"
+      offer_description = "Can make delivers for you!"
       request_description = "I need my groceries delivered to me!"
     when "clothing"
+      offer_description = ["Lots of old baby clothes!", "Lots of gently used women clothing.  Size medium"].sample
       request_description = ["Looking for clothes for my teenage daughter.", "Looking for mens medium clothes."].sample
     when "finances"
+      offer_description = ["I can help with your hydro bill.", "I have some extra cash and can help pay for groceries or gas."].sample
       request_description = ["I need some assistance with paying my phone bill.", "I need some help with paying for my textbook."].sample
     when "educational"
+      offer_description = ["I have old kids books.", "Extra school supplies to offer.  Notebooks, pencils, binders.  Let me know if you need anything."].sample
       request_description = ["I need a backpack." "I need some notebooks and pens."].sample
     when "shelter"
+      offer_description = ["My house is your house.  Let me know if you are in need of a place to stay.", "I have an empty room for 3 nights. Let me know if you need it."].sample
       request_description = "Looking for a place to crash for 2 nights."
     when "cleaning"
+      offer_description = "Will clean your house!"
       request_description = "I need my house cleaned!"
     when "household"
-      request_description = "Does anyone have some bedsheet for a queen size bed?" 
+      offer_description = ["I have a couch I don't need! Free to whoever wants to come pick it up!", "Let me know if you need to borrow my mop!"].sample
+      request_description = "Does anyone have some bedsheet for a queen size bed?"
     when "conversation"
+      offer_description = "Not a real therapist, but I will listen to your problems. <3"
       request_description = "I just really need someone to talk to."
     end
-   
+
     post = Post.new(post_type: type,
                 title: "#{type == "Offer" ? offer_title.sample : request_title.sample} #{cat.name}",
                 description: type == "Offer" ? offer_description : request_description,
@@ -220,20 +201,33 @@ Post.create!(post_type: "Request",
     location: arthur.address)
 puts "comrade posts created!"
 
-puts "generating 10 random connections..."
-messages = ["I can help!", "I got you!", "I've got what you need!",
-           "I think I could be of service to you", "I'm here for you.",
-           "No worries, I got this :)", "Let me offer you some support",
-           "Let's find a time, I'd be happy to help.", "How's this weekend?"]
-10.times do
-  # make some random connections!
-  connection = Connection.new(message: messages.sample, status: "Pending")
-  # find a random user who has offered before
-  connection.responder = Post.where("post_type = 'Offer'").sample.author
-  # find a random user looking for something
-  connection.post = Post.where("post_type = 'Request'").sample
+# puts "generating 10 random connections..."
+# messages = ["I can help!", "I got you!", "I've got what you need!",
+#            "I think I could be of service to you", "I'm here for you.",
+#            "No worries, I got this :)", "Let me offer you some support",
+#            "Let's find a time, I'd be happy to help.", "How's this weekend?"]
+# 10.times do
+#   # make some random connections!
+#   connection = Connection.new(message: messages.sample, status: "Pending")
+#   # find a random user who has offered before
+#   connection.responder = Post.where("post_type = 'Offer'").sample.author
+#   # find a random user looking for something
+#   connection.post = Post.where("post_type = 'Request'").sample
 
-  connection.save!
-end
-puts "generated 10 random connections!"
+#   connection.save!
+
+#   # this is a non-identical copy of the initialize_chat method in the connections_controller
+#   # we could probably call that method from here instead, but for now, this:
+#   room_name = [connection.post.author.id, connection.responder.id].sort.join('-')
+#   @chatroom = Chatroom.find_by_name(room_name) || Chatroom.new(name: room_name)
+#   @initial_msg = "<span class='chat-alert'>new connection via
+#                   <a href='posts/#{connection.post.id}'>#{connection.post.title}</a></span>"
+#   @initial_msg += connection.message
+#   @message = Message.create!(content: @initial_msg, user: connection.responder, chatroom: @chatroom)
+#   @responder_msg = "Thanks for the message, I'll be in touch soon."
+#   @message = Message.create!(content: @responder_msg, user: connection.post.author, chatroom: @chatroom)
+
+# end
+
+# puts "generated 10 random connections!"
 
