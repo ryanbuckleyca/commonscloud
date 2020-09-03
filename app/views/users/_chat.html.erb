@@ -1,5 +1,5 @@
 <h3 class="p-4">Your conversation</h3>
-<div id="messages" class="p-4" data-chatroom-id="<%= chatroom.id %>">
+<div id="messages-<%= chatroom.id %>" class="messages p-4" data-chatroom-id="<%= chatroom.id %>">
   <% chatroom.messages.each do |message| %>
     <div class="message-container" id="message-<%= message.id %>">
       <i class="author">

@@ -25,6 +25,7 @@
           <div class="tab-content" id="myTabContent">
           <!-- incoming -->
             <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
+                  <% chatrooms = [] %>
                   <% @user_connections.each do |connection| %>
                   <div class="card mb-2">
                     <% if connection.post.author == current_user %>
@@ -43,19 +44,23 @@
                       <div class="ml-4 flip-reverse"><%= raw connection.post.header(150) %></div>
                       <div class="pl-4 pb-4 col-12">
                         <strong>You wrote:</strong> <%= connection.message %><br>
-                        <strong>Address:</strong> <%= connection.post.author.address %><br>
                         <strong>Phone:</strong> <%= connection.post.author.phone %><br>
+                        <strong>Address:</strong> <%= connection.post.author.address %><br>
                         <strong>Email:</strong> <%= connection.post.author.email %>
                         <% chatroom_name = [connection.responder.id, connection.post.author.id].sort.join('-') %>
                         <button class="btn btn-success float-right" id="openButton" onclick="openForm('<%= chatroom_name %>')">Chat</button>
                       </div>
                     <% end %>
+                      <%  #only load chatroom for user-pair once
+                          unless chatrooms.include?(chatroom_name)
+                          chatrooms << chatroom_name %>
                       <div class="chat-popup" id="chat-<%= chatroom_name %>">
                         <% chatroom_name = [connection.responder.id, connection.post.author.id].sort.join('-') %>
                         <% chatroom = Chatroom.find_by_name(chatroom_name) %>
                         <button id="closeButton" type="button" name="close" onclick="closeForm('<%= chatroom_name %>')" class="btn btn-danger">X</button>
                         <%= render "chat", chatroom: chatroom, message: @message %>
                       </div>
+                      <% end %>
                   </div>
                 <% end %>
             </div>

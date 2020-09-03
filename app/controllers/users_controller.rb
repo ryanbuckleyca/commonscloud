@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    gon.current_user_id = current_user.id
+
     if params[:tab] == "myposts"
       @tab = "myposts"
     else
