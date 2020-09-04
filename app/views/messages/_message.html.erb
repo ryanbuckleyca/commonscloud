@@ -4,7 +4,7 @@
       <span><%= message.user.name %></span>
       <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
     </i>
-    <img class="avatar mr-2" src="<%= message.user.img_url %>">
+    <img class="avatar ml-2" src="<%= message.user.img_url %>">
   </div>
   <p class="message-text"><%= raw message.content %></p>
 </div>
