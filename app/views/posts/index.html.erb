@@ -11,13 +11,13 @@
   <div class="container mt-n4 browse-btns">
       <div class="row mb-2">
         <div class="col-6 px-1">
-          <input type="checkbox" id="request" name="type" value="Request" checked = true data-action="change->filter#refresh">
+          <input type="checkbox" id="request" name="type" value="Request" data-target="filter.request" data-action="change->filter#chooseRequest">
           <label for="request" class="browse-btn yellow">
             <span>Browse Requests</span>
           </label>
         </div>
         <div class="col-6 px-1">
-          <input type="checkbox" id="offer" name="type" value="Offer" checked = true data-action="change->filter#refresh">
+          <input type="checkbox" id="offer" name="type" value="Offer" data-target="filter.offer" data-action="change->filter#chooseOffer">
           <label for="offer" class="browse-btn blue">
             <span>Browse Offers</span>
           </label>
