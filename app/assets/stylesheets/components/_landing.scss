@@ -1,6 +1,7 @@
 .landing {
   background: white;
-  max-height: calc(65vh - 110px);
+  height: calc(65vh - 110px);
+  max-height: 350px;
   font-size: calc(16px + 1vw);
   color: $black;
 }
