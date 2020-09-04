@@ -10,35 +10,63 @@ const context = require.context("controllers", true, /_controller\.js$/)
 application.load(definitionsFromContext(context))
 
 // Scrolling fade in landing page banner
-let banner = document.querySelector('.help-img');
-let cloud = document.querySelector('#cloud');
-let message = document.querySelector('.landing-msg');
-window.addEventListener('scroll', (e) => {
-  cloud.style.opacity = 1 - (window.scrollY+1)/450;
-  banner.style.opacity = 1 - (window.scrollY+1)/300;
-  banner.style.top = `-${window.scrollY/20}px`;
-  message.style.top = `${window.scrollY/4}px`;
-  message.style.opacity = 1 - (window.scrollY+1)/400;
-});
+export const secondCloud = () => {
+  let banner = document.querySelector('.help-img');
+  let cloud = document.querySelector('#cloud');
+  let message = document.querySelector('.landing-msg');
+  if (banner && cloud && message) {
+    window.addEventListener('scroll', (e) => {
+      cloud.style.opacity = 1 - (window.scrollY+1)/450;
+      banner.style.opacity = 1 - (window.scrollY+1)/300;
+      banner.style.top = `-${window.scrollY/20}px`;
+      message.style.top = `${window.scrollY/4}px`;
+      message.style.opacity = 1 - (window.scrollY+1)/400;
+  });
+  }
+};
 
 // BROWSE - REQUEST buttons
-const request = document.querySelector('#request')
-const offer = document.querySelector('#offer')
+export const requestButtons = () => {
+  let request = document.querySelector('#request')
+  let offer = document.querySelector('#offer')
+  let change_allowed = true
 
-if (request){
-  request.checked = true
-  request.addEventListener('change', (event) => {
-    offer.checked = !event.target.checked
-  });
+  if (request){
+   /*request.checked = false*/
+    request.addEventListener('click', (event) => {
+      if (change_allowed) {
+        change_allowed = false
+        if (!request.checked) {
+          offer.checked = false
+          request.checked = true
+        }
+        else{
+          request.checked = true
+          offer.checked = false
+        }
+        change_allowed = true
+      }
+    });
+  };
+
+  if (offer){
+    /*offer.checked = false*/
+    offer.addEventListener('change', (event) => {
+       if (change_allowed) {
+        change_allowed = false
+        if (!offer.checked) {
+          request.checked = false
+          offer.checked = true
+        }
+        else{
+         offer.checked = true
+        request.checked = false
+        }
+        change_allowed = true
+      }
+    });
+  };
 };
-
-if (offer){
-  offer.checked = true
-  offer.addEventListener('change', (event) => {
-    request.checked = !event.target.checked
-  });
-};
-
 // For use in chat
 const fetchWithToken = (url, options) => {
   options.headers = {
