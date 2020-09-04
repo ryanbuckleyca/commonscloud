@@ -1,7 +1,6 @@
 .landing {
-  margin-bottom: -50px;
   background: white;
-  max-height: calc(60vh - 110px);
+  max-height: calc(65vh - 110px);
   font-size: calc(16px + 1vw);
   color: $black;
 }
@@ -23,17 +22,15 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  position: relative;
 }
 
 #cloud {
-  z-index: 0;
+  background-image: url(https://res.cloudinary.com/ryanbuckleyca/image/upload/v1599175891/cloud_img_full_yp9nhb.png);
+  background-size: cover;
+  z-index: 1;
   width: 100vw;
-  height: 0px;
   position: relative;
-  top: 70px;
-  margin-bottom: 0;
-  border-radius: 0;
-  -webkit-filter: url(#filter);
-  filter: url(#filter);
-  box-shadow: 0 0 60px 120px #fff;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
 }

@@ -1,61 +1,60 @@
+<div class="row w-100 pt-4 mx-0 bg-white">
+<ul class="nav nav-tabs w-100" id="myTab" role="tablist" style="z-index: 3;">
+  <li class="tab nav-item <%= @tab == "incoming" ? "active" : "" %>">
+    <a class="nav-link <%= @tab == "incoming" ? "active" : "" %>" id="incoming-tab" data-toggle="tab" href="#incoming" role="tab" aria-controls="incoming" aria-selected="true">My Connections</a>
+  </li>
+  <li class="tab nav-item <%= @tab == "myposts" ? "active" : "" %>">
+    <a class="nav-link <%= @tab == "myposts" ? "active" : "" %>" id="myposts-tab" data-toggle="tab" href="#myposts" role="tab" aria-controls="myposts" aria-selected="true">My Posts</a>
+  </li>
+</ul>
+</div>
+
 <div class="container mt-3">
   <div class="row">
     <div class="col-12">
-      <h2 class="mb-4">Dashboard</h2>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="tab nav-item <%= @tab == "incoming" ? "active" : "" %>">
-          <a class="nav-link <%= @tab == "incoming" ? "active" : "" %>" id="incoming-tab" data-toggle="tab" href="#incoming" role="tab" aria-controls="incoming" aria-selected="true">Inbox</a>
-        </li>
-        <li class="tab nav-item <%= @tab == "outgoing" ? "active" : "" %>">
-          <a class="nav-link <%= @tab == "outgoing" ? "active" : "" %>" id="outgoing-tab" data-toggle="tab" href="#outgoing" role="tab" aria-controls="outgoing" aria-selected="true">Sent</a>
-        </li>
-        <li class="tab nav-item <%= @tab == "myposts" ? "active" : "" %>">
-          <a class="nav-link <%= @tab == "myposts" ? "active" : "" %>" id="myposts-tab" data-toggle="tab" href="#myposts" role="tab" aria-controls="myposts" aria-selected="true">My Posts</a>
-        </li>
-      </ul>
-
       <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-10">
-          <!-- incoming -->
+        <div class="col-12">
           <div class="tab-content" id="myTabContent">
+          <!-- incoming -->
             <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
-              <ul class="list-unstyled">
-                <% @posts.each do |post| %>
-                  <% if post.connections.any? %>
-                  <p style="text-align: right; margin: 0;">Deb replied to:</p>
-                      <div class="card mb-2">
-                        <div class="ml-4 flip-reverse"><%= raw post.header(200, post.connections[0].responder) %></div>
-                        <div class="ml-4 col-md-10 px-0">
-                          <li><strong>From:</strong>  <%= post.connections[0].responder[:name] %></li>
-                          <li class="mb-2"><strong>Message:</strong> <%= post.connections[0].message %></li>
-                        </div>
-                      </div>
+                  <% if @user_connections.size.zero? %>
+                  <p class="col-12 card my-5 mx-0 p-5">
+                    You don't have any connections yet. <br>
+                    See what your neighbours are saying:
+                    <a href="/" class="btn btn-success mt-3">click here to browse</a>.
+                  </p>
                   <% end %>
-                <% end %>
-              </ul>
-            </div>
-          <!-- outgoing -->
-          <div class="tab-pane <%= @tab == "outgoing" ? "active" : "" %> fade show mt-3" id="outgoing" role="tabpanel" aria-labelledby="outgoing-tab">
-            <ul class="list-unstyled">
-                <% @user_connections.each do |connection| %>
-                  <div class="card mb-2">
-                    <div class="ml-4 flip-reverse"><%= raw connection.post.header(200) %></div>
-                    <div class="ml-4 mb-2 col-md-10 px-0">
-                      <span class='badge badge-pill badge-<%= connection.post.color%> m-auto'><%= connection.post.post_type %></span>
-                      <li> <strong>Message:</strong> <%= connection.message %></li><br>
-                      <li> <strong>Author:</strong> <%= connection.post.author.name %></li>
-                      <li> <strong>Email:</strong> <%= connection.post.author.email %></li>
-                    </div>
+                  <% @user_connections.each do |connection| %>
+                    <% chatroom_name = [connection.responder.id,
+                        connection.post.author.id].sort.join('-')
+                       chatroom = Chatroom.find_by_name(chatroom_name)
+                       chatrooms = []
+                       unless chatrooms.include?(chatroom)
+                       chatrooms << chatroom %>
+                        <div class="chat-popup" id="chat-<%= chatroom_name %>">
+                          <button id="closeButton" type="button" name="close" onclick="closeForm('<%= chatroom_name %>')" class="btn btn-danger">X</button>
+                          <%= render "chat", chatroom: chatroom, message: @message %>
+                        </div>
+                        <% end %>
+                  <div class="col-12 card mb-2">
+                    <%= raw connection.connection_card(connection.post.author, current_user) %>
                   </div>
                 <% end %>
-            </ul>
-          </div>
+            </div>
+
           <!-- my posts -->
           <div class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-3" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
             <ul class="list-unstyled">
+            <% if @posts.size.zero? %>
+                  <p class="col-12 card my-5 mx-0 p-5">
+                    You don't have any posts yet. <br>
+                    <a href="/posts/new?type=Offer" class="btn btn-success mt-3 w-50">offer support</a> |
+                    <a href="/posts/new?type=Request" class="btn btn-success mt-3 w-50">add a request</a>.
+                  </p>
+            <% end %>
             <% @posts.each do |post| %>
                 <div class="card mb-2 col-12">
-                  <div class="ml-4 mt-2 flip-reverse" id="myposts"> <%= raw post.header(200) %></div>
+                  <div class="ml-4 mt-2 flip-reverse" id="myposts"> <%= raw post.header(150) %></div>
                   <div class="row">
                     <div class="ml-5 col-sm-8 col-md-10 px-0">
                       <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
@@ -69,7 +68,6 @@
                   </div>
                 </div>
               <% end %>
-            </ul>
           </div>
         </div>
       </div>
@@ -77,5 +75,13 @@
   </div>
 </div>
 
+<script>
+// Chatroom open/close
+function openForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "block";
+}
 
-
+function closeForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "none";
+}
+</script>
