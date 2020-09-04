@@ -8,3 +8,13 @@
       <%= render "chat", chatroom: chatroom, message: @message %>
     </div>
 <% end %>
+<script>
+// Chatroom open/close
+function openForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "block";
+}
+
+function closeForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "none";
+}
+</script>
