@@ -12,11 +12,13 @@ application.load(definitionsFromContext(context))
 // Scrolling fade in landing page banner
 let banner = document.querySelector('.help-img');
 let cloud = document.querySelector('#cloud');
+let message = document.querySelector('.landing-msg');
 window.addEventListener('scroll', (e) => {
-  console.log("scrolling");
-  cloud.style.opacity = 1 - (window.scrollY+1)/350;
-  banner.style.opacity = 1 - (window.scrollY+1)/350;
+  cloud.style.opacity = 1 - (window.scrollY+1)/450;
+  banner.style.opacity = 1 - (window.scrollY+1)/300;
   banner.style.top = `-${window.scrollY/20}px`;
+  message.style.top = `${window.scrollY/4}px`;
+  message.style.opacity = 1 - (window.scrollY+1)/400;
 });
 
 // BROWSE - REQUEST buttons
