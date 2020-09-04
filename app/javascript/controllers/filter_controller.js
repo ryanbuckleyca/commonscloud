@@ -61,6 +61,14 @@ export default class extends Controller {
     // check posts controller#index:13 to understand what's happening here
     // the posts controller will pre-render the DIV cards and then send them back in a HTTP request
     // when your JS stimulus controller receives the `data` back, the bosy already contains the HTML it needs
-    document.getElementById('postsContainer').innerHTML = newPosts[0];
+    const errorText = `<div class="card-group col-12 px-0 pb-5">
+                          No posts yet based on your filters. Try a broader criteria or come back later when there are more commnunity offers/requests.
+                        </div>`;
+
+    if (newPosts.length > 0) {
+      document.getElementById('postsContainer').innerHTML = newPosts[0];
+    } else {
+      document.getElementById('postsContainer').innerHTML = errorText;
+    }
   }
 }
