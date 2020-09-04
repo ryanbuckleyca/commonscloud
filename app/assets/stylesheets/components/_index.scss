@@ -53,7 +53,10 @@ h3 {
     $light-blue 50%);
 }
 
-input[type="checkbox"] {
+.filters > input {
+  display: none;
+}
+.browse-btns > input[type="checkbox"] {
   display: none;
 }
 

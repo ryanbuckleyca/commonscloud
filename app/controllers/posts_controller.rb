@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @category = Category.find(params[:post][:category_id])
+    @category = Category.find(params[:categories])
     @post.category = @category
     @post.author = current_user
 
