@@ -6,7 +6,7 @@
       <input type="button" class="btn btn-sm btn-outline-danger" data-action="click->filter#clearSelected" value="x clear">
     </div>
   </div>
-  <div class="flex-grow-1 col-12 col-md-9 col-lg-10">
+  <div class="flex-grow-1 col-12 col-md-9 col-lg-10 filters">
     <% Category.all.each do |cat| %>
     <input type="checkbox" id="<%= cat.id %>" name="categories" value="<%= cat.id %>" data-action="change->filter#refresh" <%= 'checked="checked"' if params[:categories].present? && params[:categories].include?(cat.id.to_s) %>>
     <label for="<%= cat.id %>" class="categories">

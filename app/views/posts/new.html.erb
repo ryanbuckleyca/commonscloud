@@ -6,7 +6,16 @@
         <%= simple_form_for @post do |f|%>
           <%= f.input :post_type, as: :hidden, input_html: { value: @post_type} %>
           <%= f.input :title %>
-          <%= f.association :category, required: false %>
+          <label class="string optional" for="categories">Category</label>
+          <div class="filters mb-2">
+            <% Category.all.order(:name).each do |cat| %>
+            <input type="radio" id="<%= cat.id %>" name="categories" value="<%= cat.id %>">
+            <label for="<%= cat.id %>" class="categories">
+              <i class="<%= cat.icon %>"></i>
+              <%= cat.name %>
+            </label>
+            <% end %>
+          </div>
           <%= f.input :description, as: :text %>
           <%= f.input :location, input_html: { value: current_user.address }, placeholder: current_user.address %>
           <%= f.button :submit, "Add", class: "btn btn-success rounded btn-block mb-2"  %>
@@ -14,5 +23,5 @@
       </div>
     </div>
   </div>
-  <div id="cloud" style="top: -150px; height: 200px;"></div>
+  <div id="cloud" style="bottom: -100px; height: 200px;"></div>
 </div>
