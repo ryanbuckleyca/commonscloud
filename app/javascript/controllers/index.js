@@ -23,14 +23,14 @@ const offer = document.querySelector('#offer')
 
 
 if (request){
-  request.checked = true
+  request.checked = false
   request.addEventListener('change', (event) => {
     offer.checked = !event.target.checked
   });
 };
 
 if (offer){
-  offer.checked = true
+  offer.checked = false
   offer.addEventListener('change', (event) => {
     request.checked = !event.target.checked
   });
