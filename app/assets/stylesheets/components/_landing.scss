@@ -25,6 +25,7 @@
   position: relative;
 }
 
+/* base css, each page adjusts the cloud with inline css accordingly */
 #cloud {
   background-image: url(https://res.cloudinary.com/ryanbuckleyca/image/upload/v1599175891/cloud_img_full_yp9nhb.png);
   background-size: cover;
@@ -33,4 +34,14 @@
   position: relative;
   -webkit-filter: blur(5px);
   filter: blur(5px);
+}
+.banner > #cloud {
+  margin-left: 0vw;
+  top: -150px;
+}
+@media (max-width: 575px) {
+  .banner > #cloud {
+    margin-left: -10vw;
+    top: -250px;
+  }
 }

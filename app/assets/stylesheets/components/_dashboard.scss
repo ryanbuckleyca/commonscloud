@@ -1,11 +1,11 @@
 .tab {
-  width: 50%;
+  width: 33%;
   margin: 0;
   text-align: center;
 }
 
-.flip-reverse > .lg-card-head {
-  flex-direction: row-reverse;
+.nav-tabs {
+  justify-content: center;
 }
 
 .nav-tabs .nav-link.active {
@@ -14,6 +14,10 @@
 
 .nav-tabs .nav-link {
   color: $gray;
+}
+
+.flip-reverse > .lg-card-head {
+  flex-direction: row-reverse;
 }
 
 #myposts > .lg-card-head > .title > span {
