@@ -14,7 +14,7 @@ const getSelected = () => {
 }
 
 export default class extends Controller {
-  static targets = [ "map", "posts" ];
+  static targets = [ "map", "posts", "request", "offer"];
 
   clearSelected() {
     let cats = document.querySelectorAll("input[name='categories'][type='checkbox']:checked");
@@ -25,6 +25,16 @@ export default class extends Controller {
   selectAll() {
     let cats = document.querySelectorAll("input[name='categories'][type='checkbox']");
     cats.forEach(cat => cat.checked = true)
+    this.refresh();
+  }
+
+  chooseOffer() {
+    this.requestTarget.checked = false;
+    this.refresh();
+  }
+
+  chooseRequest() {
+    this.offerTarget.checked = false;
     this.refresh();
   }
 

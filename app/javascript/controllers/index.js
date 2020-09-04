@@ -27,45 +27,41 @@ export const secondCloud = () => {
 
 // BROWSE - REQUEST buttons
 export const requestButtons = () => {
-  let request = document.querySelector('#request')
-  let offer = document.querySelector('#offer')
-  let change_allowed = true
+  // let request = document.querySelector('#request')
+  // let offer = document.querySelector('#offer')
+  // let change_allowed = true
 
-  if (request){
-   /*request.checked = false*/
-    request.addEventListener('click', (event) => {
-      if (change_allowed) {
-        change_allowed = false
-        if (!request.checked) {
-          offer.checked = false
-          request.checked = true
-        }
-        else{
-          request.checked = true
-          offer.checked = false
-        }
-        change_allowed = true
-      }
-    });
-  };
+  // if (request){
+  //  /*request.checked = false*/
+  //   request.addEventListener('change', (event) => {
+  //     if (change_allowed) {
+  //       change_allowed = false
+  //       if (request.checked) {
+  //         offer.checked = false
+  //       }
+  //       else {
+  //         offer.checked = true
+  //       }
+  //       change_allowed = true
+  //     }
+  //   });
+  // };
 
-  if (offer){
-    /*offer.checked = false*/
-    offer.addEventListener('change', (event) => {
-       if (change_allowed) {
-        change_allowed = false
-        if (!offer.checked) {
-          request.checked = false
-          offer.checked = true
-        }
-        else{
-         offer.checked = true
-        request.checked = false
-        }
-        change_allowed = true
-      }
-    });
-  };
+  // if (offer){
+  //   /*offer.checked = false*/
+  //   offer.addEventListener('change', (event) => {
+  //      if (change_allowed) {
+  //       change_allowed = false
+  //       if (offer.checked) {
+  //         request.checked = false
+  //       }
+  //       else{
+  //         request.checked = true
+  //       }
+  //       change_allowed = true
+  //     }
+  //   });
+  // };
 };
 // For use in chat
 const fetchWithToken = (url, options) => {
