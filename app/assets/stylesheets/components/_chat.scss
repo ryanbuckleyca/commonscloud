@@ -31,7 +31,7 @@
 @media (max-width: 767px) {
   #chat-window {
     z-index: 5;
-    padding: 10px 30px;
+    padding: 10px;
     height: 35vh;
     overflow: none;
     position: sticky;
@@ -52,7 +52,7 @@
     display: none;
     margin-top: 20px;
     width: 100%;
-    height: 90vh;
+    height: 96vh;
     background: #fff;
     overflow: scroll;
   }
