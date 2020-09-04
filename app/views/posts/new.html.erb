@@ -2,7 +2,7 @@
   <div class="container mt-5 new-post">
     <div class="row justify-content-center">
       <div class="col-8 col-md-6 card py-3 shadow rounded" style="z-index: 3;">
-        <h2>Create a New <%= @post_type %></h2>
+        <h2 class="text-center"><span class="uln-<%= @post_type == 'Offer' ? 'blue' : 'yellow' %>">Create a New <%= @post_type %></span></h2>
         <%= simple_form_for @post do |f|%>
           <%= f.input :post_type, as: :hidden, input_html: { value: @post_type} %>
           <%= f.input :title %>
@@ -14,5 +14,5 @@
       </div>
     </div>
   </div>
-  <%= render "shared/cloud" %>
+  <div id="cloud" style="top: -150px; height: 200px;"></div>
 </div>
