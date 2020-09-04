@@ -2,6 +2,8 @@ class Connection < ApplicationRecord
   belongs_to :responder, class_name: 'User'
   belongs_to :post
 
+  has_many :messages, dependent: :destroy
+
   def connection_card(author, current_user)
     x = author == current_user
     "<span class='badge badge-pill badge-secondary shadow-sm mt-n1 mx-auto'>

@@ -75,7 +75,7 @@
       chatrooms << chatroom %>
       <div class="chat-popup" id="chat-<%= chatroom_name %>">
         <button id="closeButton" type="button" name="close" onclick="closeForm('<%= chatroom_name %>')" class="btn btn-danger">X</button>
-        <%= render "chat", chatroom: chatroom, message: @message %>
+        <%= render "chat", chatroom: chatroom, message: @message, connection: connection %>
       </div>
     <% end %>
   <% end %>

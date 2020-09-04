@@ -35,6 +35,9 @@
             class: "#{nav_class} #{'uln-blue' if current_page?('/posts/new?type=Offer')} mx-2" %>
       </li>
         <li class="nav-item dropdown">
+          <% if current_user.unread_notifications > 0 %>
+            <span class="notification-container"><%= current_user.unread_notifications %></span>
+          <% end %>
           <%= image_tag current_user.img_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Dashboard", user_path(current_user), class: "dropdown-item" %>

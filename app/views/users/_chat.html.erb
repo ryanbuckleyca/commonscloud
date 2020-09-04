@@ -4,8 +4,10 @@
   <div id="messages-<%= chatroom.id %>" class="messages p-4" data-chatroom-id="<%= chatroom.id %>">
     <% chatroom.messages.each do |message| %>
       <%= render 'messages/message', message: message %>
+      <%= message.notifications[0].update unread: false if message.user != current_user %>
     <% end %>
     <%= simple_form_for [ current_user, message ], remote: true do |f| %>
+    <%= f.hidden_field :connection_id, value: connection.id  %>
     <%= f.input :chatroom_id, :as => :hidden, :input_html => { :value => chatroom.id } %>
     <%= f.input :content, label: false, placeholder: "Type your message here..." %>
     <% end %>
