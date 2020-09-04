@@ -1,4 +1,6 @@
 <% if chatroom.present? %>
+
+  <%# users = chatroom.messages.distinct.pluck(:user_id) %>
   <h3 class="p-4">Your conversation</h3>
   <div id="messages-<%= chatroom.id %>" class="messages p-4" data-chatroom-id="<%= chatroom.id %>">
     <% chatroom.messages.each do |message| %>
