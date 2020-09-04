@@ -77,7 +77,7 @@
   flex-direction: column;
 }
 .message-text {
-  border-right: 1px dotted #363538;
+  border-right: 1px dotted $primary;
   margin-right: 20px;
   padding-right: 30px;
   color: $black;

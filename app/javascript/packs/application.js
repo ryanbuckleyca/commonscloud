@@ -25,15 +25,19 @@ require("channels")
 import "bootstrap";
 import "controllers";
 
+
 // Internal imports, e.g:
 import { initChatroomCable } from '../channels/chatroom_channel';
 import { initMapbox } from '../plugins/init_mapbox';
-
+import { requestButtons } from "../controllers/index.js"
+import { secondCloud } from "../controllers/index.js"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initMapbox();
   initChatroomCable();
+  requestButtons();
+  secondCloud();
 });
 
