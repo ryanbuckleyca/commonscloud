@@ -1,14 +1,3 @@
-<script>
-// Chatroom open/close
-function openForm(chatroom) {
-  document.getElementById(`chat-${chatroom}`).style.display = "block";
-}
-
-function closeForm(chatroom) {
-  document.getElementById(`chat-${chatroom}`).style.display = "none";
-}
-</script>
-
 <div class="row w-100 pt-4 mx-0 bg-white">
 <ul class="nav nav-tabs w-100" id="myTab" role="tablist" style="z-index: 3;">
   <li class="tab nav-item <%= @tab == "incoming" ? "active" : "" %>">
@@ -48,29 +37,7 @@ function closeForm(chatroom) {
                         </div>
                         <% end %>
                   <div class="col-12 card mb-2">
-                    <% if connection.post.author == current_user %>
-                    <span class='badge badge-pill badge-secondary mt-n1 mx-auto'><%= connection.responder.name %> responded to your <%= connection.post.post_type.downcase %>:</span>
-                      <div class="ml-4 flip-reverse"><%= raw connection.post.header(150, connection.responder) %></div>
-                      <div class="pl-4 pb-4 col-12">
-                        <strong><%= connection.responder.name.split(' ')[0] %> wrote:</strong> <%= connection.message %><br>
-                        <strong>Address:</strong> <%= connection.responder.address %><br>
-                        <strong>Phone:</strong> <%= connection.responder.phone %><br>
-                        <strong>Email:</strong> <%= connection.responder.email %>
-                        <% chatroom_name = [connection.responder.id, connection.post.author.id].sort.join('-') %>
-                        <button class="btn btn-success float-right" id="openButton" onclick="openForm('<%= chatroom_name %>')">Chat</button>
-                      </div>
-                    <% else %>
-                    <span class='badge badge-pill badge-secondary shadow-sm mt-n1 mx-auto'>You responded to <%= connection.post.author.name %>'s <%= connection.post.post_type.downcase %>:</span>
-                      <div class="ml-4 flip-reverse"><%= raw connection.post.header(150) %></div>
-                      <div class="pl-4 pb-4 col-12">
-                        <strong>You wrote:</strong> <%= connection.message %><br>
-                        <strong>Address:</strong> <%= connection.post.author.address %><br>
-                        <strong>Phone:</strong> <%= connection.post.author.phone %><br>
-                        <strong>Email:</strong> <%= connection.post.author.email %>
-                        <% chatroom_name = [connection.responder.id, connection.post.author.id].sort.join('-') %>
-                        <button class="btn btn-success float-right" id="openButton" onclick="openForm('<%= chatroom_name %>')">Chat</button>
-                      </div>
-                    <% end %>
+                    <%= raw connection.connection_card(connection.post.author, current_user) %>
                   </div>
                 <% end %>
             </div>
@@ -108,5 +75,13 @@ function closeForm(chatroom) {
   </div>
 </div>
 
+<script>
+// Chatroom open/close
+function openForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "block";
+}
 
-
+function closeForm(chatroom) {
+  document.getElementById(`chat-${chatroom}`).style.display = "none";
+}
+</script>

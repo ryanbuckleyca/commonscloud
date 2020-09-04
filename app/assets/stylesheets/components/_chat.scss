@@ -32,6 +32,13 @@
   background-color: white;
 }
 
+.message-text {
+  border-left: 1px dotted #363538;
+  margin-left: 20px;
+  padding-left: 30px;
+  color: $black;
+}
+
 /* Full-width textarea */
 .form-container textarea {
   width: 100%;

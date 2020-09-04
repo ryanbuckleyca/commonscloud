@@ -9,6 +9,7 @@ const application = Application.start()
 const context = require.context("controllers", true, /_controller\.js$/)
 application.load(definitionsFromContext(context))
 
+// Scrolling fade in landing page banner
 let banner = document.querySelector('.help-img');
 let cloud = document.querySelector('#cloud');
 window.addEventListener('scroll', (e) => {
@@ -18,9 +19,9 @@ window.addEventListener('scroll', (e) => {
   banner.style.top = `-${window.scrollY/20}px`;
 });
 
+// BROWSE - REQUEST buttons
 const request = document.querySelector('#request')
 const offer = document.querySelector('#offer')
-
 
 if (request){
   request.checked = false
