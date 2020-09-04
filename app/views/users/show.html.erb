@@ -9,79 +9,107 @@
 </ul>
 </div>
 
-<div class="container mt-3">
-  <div class="row">
-    <div class="col-12">
-      <div class="row justify-content-center">
-        <div class="col-12">
-          <div class="tab-content" id="myTabContent">
-          <!-- incoming -->
-            <div class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" id="incoming" role="tabpanel" aria-labelledby="incoming-tab" id="incoming">
-                  <% if @user_connections.size.zero? %>
-                  <p class="col-12 card my-5 mx-0 p-5">
-                    You don't have any connections yet. <br>
-                    See what your neighbours are saying:
-                    <a href="/" class="btn btn-success mt-3">click here to browse</a>.
-                  </p>
-                  <% end %>
-                  <% @user_connections.each do |connection| %>
-                    <% chatroom_name = [connection.responder.id,
-                        connection.post.author.id].sort.join('-')
-                       chatroom = Chatroom.find_by_name(chatroom_name)
-                       chatrooms = []
-                       unless chatrooms.include?(chatroom)
-                       chatrooms << chatroom %>
-                        <div class="chat-popup" id="chat-<%= chatroom_name %>">
-                          <button id="closeButton" type="button" name="close" onclick="closeForm('<%= chatroom_name %>')" class="btn btn-danger">X</button>
-                          <%= render "chat", chatroom: chatroom, message: @message %>
-                        </div>
-                        <% end %>
-                  <div class="col-12 card mb-2">
-                    <%= raw connection.connection_card(connection.post.author, current_user) %>
-                  </div>
-                <% end %>
-            </div>
+<div class="tab-content" id="myTabContent">
+  <div id="incoming" class="tab-pane <%= @tab == "incoming" ? "active" : "" %> fade show mt-3" role="tabpanel" aria-labelledby="incoming-tab">
+    <div class="row px-5 pt-3 justify-content-center flex-row-reverse">
+      <% if @user_connections.size.zero? %>
+        <p class="col-12 card my-5 mx-0 p-5">
+          You don't have any connections yet. <br>
+          See what your neighbours are saying:
+          <a href="/" class="btn btn-success mt-3">click here to browse</a>.
+        </p>
+      <% end %>
 
-          <!-- my posts -->
-          <div class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-3" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
-            <ul class="list-unstyled">
-            <% if @posts.size.zero? %>
-                  <p class="col-12 card my-5 mx-0 p-5">
-                    You don't have any posts yet. <br>
-                    <a href="/posts/new?type=Offer" class="btn btn-success mt-3 w-50">offer support</a> |
-                    <a href="/posts/new?type=Request" class="btn btn-success mt-3 w-50">add a request</a>.
-                  </p>
-            <% end %>
-            <% @posts.each do |post| %>
-                <div class="card mb-2 col-12">
-                  <div class="ml-4 mt-2 flip-reverse" id="myposts"> <%= raw post.header(150) %></div>
-                  <div class="row">
-                    <div class="ml-5 col-sm-8 col-md-10 px-0">
-                      <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
-                      <li class="mb-2 mt-2"><%= post.description %></li>
-                      <li class="mb-2"><%= post[:location] %></li>
-                    </div>
-                    <div class="mb-3 mr-3 d-flex align-items-end">
-                      <i class=" mr-2 ml-5 fas fa-edit"></i>
-                      <i class="far fa-trash-alt"></i>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-          </div>
-        </div>
+      <div class="col-sm-12 col-md-5 mb-4" id="chat-window">
+        <!-- #chatroom-placeholder is necessary for js -->
+        <p id="chatroom-placeholder">Click on one of your connections to open your conversation with that user</p>
+      </div>
+
+
+      <div class="col-sm-12 col-md-7 mb-4 pl-2 pr-3" id="connection-cards" style="display: grid; grid-template-columns: 1fr; grid-gap: 2vh;">
+        <% @user_connections.each do |connection| %>
+          <div class="card"><%= raw connection.connection_card(connection.post.author, current_user) %></div>
+        <% end %>
       </div>
     </div>
   </div>
+
+  <div id="myposts" class="tab-pane <%= @tab == "myposts" ? "active" : "" %> fade show mt-4" role="tabpanel" aria-labelledby="myposts-tab">
+    <div class="row px-5 pt-3 justify-content-center flex-row-reverse">
+      <% if @posts.size.zero? %>
+        <p class="col-12 card my-5 mx-0 p-5">
+          You don't have any posts yet. <br>
+          <a href="/posts/new?type=Offer" class="btn btn-success mt-3 w-50">offer support</a> |
+          <a href="/posts/new?type=Request" class="btn btn-success mt-3 w-50">add a request</a>.
+        </p>
+      <% end %>
+      <% @posts.each do |post| %>
+        <div class="col-12 card pl-4 pr-0 mb-2">
+          <div class="mt-2 flip-reverse" id="myposts"> <%= raw post.header(150) %></div>
+          <div class="row">
+            <div class="col-10 pb-3">
+              <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
+              <div class="mb-2 mt-2"><%= post.description %></div>
+              <div class="mb-2"><%= post[:location] %></div>
+            </div>
+            <div class="col-2 mb-4 pr-5 d-flex text-right align-items-end justify-content-end">
+              <i class="fas fa-edit pl-1"></i>
+              <i class="far fa-trash-alt pl-1"></i>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<!-- generate unique chatrooms for connections and store for retrieval -->
+<div id="chatroom-lounge">
+  <% @user_connections.each do |connection| %>
+    <% chatroom_name = [connection.responder.id,
+    connection.post.author.id].sort.join('-')
+    chatroom = Chatroom.find_by_name(chatroom_name)
+    chatrooms = []
+    unless chatrooms.include?(chatroom)
+      chatrooms << chatroom %>
+      <div class="chat-popup" id="chat-<%= chatroom_name %>">
+        <button id="closeButton" type="button" name="close" onclick="closeForm('<%= chatroom_name %>')" class="btn btn-danger">X</button>
+        <%= render "chat", chatroom: chatroom, message: @message %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
 <script>
-// Chatroom open/close
-function openForm(chatroom) {
-  document.getElementById(`chat-${chatroom}`).style.display = "block";
-}
+  function openForm(chatroom) {
+    const chatContainer = document.getElementById('chat-window')
+    const chatLounge = document.getElementById('chatroom-lounge');
+    const chatRoom = document.getElementById(`chat-${chatroom}`);
+    const currentChat = chatContainer.children[0]
 
-function closeForm(chatroom) {
-  document.getElementById(`chat-${chatroom}`).style.display = "none";
-}
+    //move any current chatContainer chatroom to the lounge
+    if (currentChat.id != "chatroom-placeholder") {
+      currentChat.style.display = "none";
+      chatLounge.appendChild(currentChat);
+    }
+
+    chatLounge.removeChild(chatRoom)
+    chatRoom.style.display = "block";
+    chatContainer.innerHTML = ""
+    chatContainer.appendChild(chatRoom)
+    document.getElementById('conversation').scrollIntoView();
+  }
+  function closeForm(chatroom) {
+    const chatContainer = document.getElementById('chat-window')
+    const chatLounge = document.getElementById('chatroom-lounge')
+    const chatRoom = document.getElementById(`chat-${chatroom}`);
+
+    chatRoom.style.display = "none";
+    chatLounge.appendChild(chatRoom)
+    placeholder = document.createElement('p')
+    placeholder.setAttribute('id', 'chatroom-placeholder')
+    placeholder.innerHTML = 'Click on one of your connections to open your conversation with that user'
+    chatContainer.appendChild(placeholder)
+  }
 </script>
