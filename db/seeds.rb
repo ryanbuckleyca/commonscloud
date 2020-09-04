@@ -52,7 +52,7 @@ puts "generating comrades..."
 deb = User.create!(name: 'Deb Anjos',
        img_url: 'https://kitt.lewagon.com/placeholder/users/deb-anjos',
        email: 'deb@email.com',
-       address: "5333 Ave Casgrain, Montreal, QC",
+       address: "1988 Boulevard Saint-Joseph East, Montreal, QC",
        password: 'password',
        phone: '(514) 438-2917')
 ryan = User.create!(name: 'Ryan Buckley',

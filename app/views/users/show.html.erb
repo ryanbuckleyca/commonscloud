@@ -25,8 +25,7 @@
         <p id="chatroom-placeholder">Click on one of your connections to open your conversation with that user</p>
       </div>
 
-
-      <div class="col-sm-12 col-md-7 mb-4 pl-2 pr-3" id="connection-cards" style="display: grid; grid-template-columns: 1fr; grid-gap: 2vh;">
+      <div class="col-sm-12 col-md-7 mb-4 pl-2 pr-3" id="connection-cards" style="display: grid; grid-template-columns: 1fr; grid-gap: 3vh;">
         <% @user_connections.each do |connection| %>
           <div class="card"><%= raw connection.connection_card(connection.post.author, current_user) %></div>
         <% end %>
