@@ -1,0 +1,34 @@
+/* base css, each page adjusts the cloud with inline css accordingly */
+#landing-cloud {
+  background-image: url(https://res.cloudinary.com/ryanbuckleyca/image/upload/v1599175891/cloud_img_full_yp9nhb.png);
+  background-size: cover;
+  z-index: 1;
+  width: 100vw;
+  position: relative;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  height: 335px; background-position: center bottom;
+  margin-left: 0vw;
+  top: -150px;
+}
+@media (max-width: 575px) {
+  #landing-cloud {
+    margin-left: -10vw;
+    top: -250px;
+  }
+}
+
+.cloud-bottom {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  opacity: 0.95;
+  background-image: url(https://res.cloudinary.com/ryanbuckleyca/image/upload/v1599175891/cloud_img_full_yp9nhb.png);
+  background-size: cover;
+  background-position: center 400px;
+  background-repeat: repeat-x;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}
