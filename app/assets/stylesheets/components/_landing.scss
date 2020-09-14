@@ -5,11 +5,8 @@
   font-size: calc(16px + 1vw);
   color: $black;
 }
-@media (max-width: 575px) {
-  .landing {
-    padding: 7vw 10vw;
-    max-height: calc(70vh - 110px);
-  }
+.landing-msg {
+  padding-bottom: 5em;
 }
 .landing .container {
   max-width: 900px;
@@ -24,4 +21,16 @@
   background-size: contain;
   background-position: center;
   position: relative;
+}
+@media (max-width: 575px) {
+  .landing {
+    padding: 7vw 10vw;
+    max-height: calc(70vh - 110px);
+  }
+  .landing-msg {
+    padding-bottom: 0;
+  }
+  .landing .help-img {
+  min-height: 240px;
+  }
 }
