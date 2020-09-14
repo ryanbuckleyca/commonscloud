@@ -3,7 +3,9 @@ class PostsController < ApplicationController
   before_action :user_location
 
   def index
-    @posts = Post.geocoded.order('created_at DESC')
+    location = current_user ? [current_user.latitude, current_user.longitude] : user_location
+    @posts = Post.near(location, 50)
+    @posts = @posts.geocoded.order('created_at DESC')
     @posts = @posts.where(post_type: params[:type].split(',')) if params[:type].present?
     @posts = @posts.where(category_id: params[:categories].split(',')) if params[:categories].present?
 
@@ -63,7 +65,7 @@ class PostsController < ApplicationController
         @user_location = [45.525990, -73.595410]
       end
     else
-      @user_location = [request.location.longitude, request.location.latitude]
+      @user_location = [request.location.latitude, request.location.longitude]
     end
   end
 end
