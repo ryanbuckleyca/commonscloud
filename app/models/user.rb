@@ -9,4 +9,13 @@ class User < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  before_save :set_img_url
+
+  private
+
+  def set_img_url
+    default_avatar = "https://res.cloudinary.com/ryanbuckleyca/image/upload/v1600109993/user_bgu0at.jpg"
+    self.img_url = default_avatar if self.img_url.blank?
+  end
 end
