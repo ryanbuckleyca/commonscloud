@@ -12,9 +12,9 @@ Category.destroy_all
 
 puts "generating categories..."
 categories = ['tools', 'tech help', 'medicine', 'ppe', 'hygienics',
-              'food', 'transportation', 'errands', 'deliveries', 'clothing',
+              'food', 'transportation', 'errands', 'deliveries',
               'finances', 'educational', 'shelter', 'cleaning',
-              'household', 'conversation']
+              'household', 'conversation', 'clothing']
 categories.each { |cat| Category.create!(name: cat) }
 puts "categories created!"
 
@@ -75,6 +75,13 @@ nirali = User.create!(name: 'Nirali Patel',
        phone: '(438) 403-5221')
 puts "comrades created!"
 
+moisson_montreal = User.create!(name: "Moisson Montreal",
+                img_url: 'https://pbs.twimg.com/profile_images/882694678109446144/mUGjt4jn_bigger.jpg',
+                email: 'don@moissonmontreal.org',
+                phone: '(514) 344-4494',
+                password: 'password',
+                address: '6880 Chemin de la Côte-de-Liesse, Montreal, QC')
+
 # CREATE RANDO USERS WITH 1-3 POSTS EACH
 puts "generating 20 random users with 1-3 posts each..."
 url = 'https://randomuser.me/api/?results=20'
@@ -106,7 +113,8 @@ randos["results"].each_with_index do |rando, i|
                  "Providing", "I want to supply", "Lending a hand with", "I can offer"]
 
   (rand(2) + 1).times do
-    cat = Category.all.sample
+    cat = Category.where.not(name: 'clothing').sample
+    # cat = Category.all.sample # disable for Demo
 
     case cat.name
     when "tools"
@@ -136,6 +144,7 @@ randos["results"].each_with_index do |rando, i|
     when "deliveries"
       offer_description = "Can make delivers for you!"
       request_description = "I need my groceries delivered to me!"
+    # disable random clothing for the demo. we'll hard-code our own
     when "clothing"
       offer_description = ["Lots of old baby clothes!", "Lots of gently used women clothing.  Size medium"].sample
       request_description = ["Looking for clothes for my teenage daughter.", "Looking for mens medium clothes."].sample
@@ -170,6 +179,26 @@ randos["results"].each_with_index do |rando, i|
   end
 end
 puts "generated 20 random users with 1-3 posts each"
+
+# CREATE CLOTHING POSTS FOR DEMO
+Post.create!(post_type: "Offer",
+    author: User.find(6),
+    title: "Kids clothing to give away",
+    category: Category.find_by_name('clothing'),
+    description: "Hey everyone, my little toddler has outgrown their little garments. Baby clothes cost so much, so i figured I would see if anyone needs some here?",
+    location: User.find(6).address)
+Post.create!(post_type: "Offer",
+    author: User.find(7),
+    title: "Old tuxedo to get rid of",
+    category: Category.find_by_name('clothing'),
+    description: "Bought this for some formal event and I haven't been wearing it since.",
+    location: User.find(7).address)
+Post.create!(post_type: "Offer",
+    author: User.find(8),
+    title: "Summer gown to offer",
+    category: Category.find_by_name('clothing'),
+    description: "Size 4 dress to give away. Doesn't fit anymore but it's beautiful and should go to a good home.",
+    location: User.find(8).address)
 
 # CREATE POSTS FOR COMRADES
 puts "generating comrade posts..."
