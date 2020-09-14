@@ -7,7 +7,8 @@
   position: relative;
   -webkit-filter: blur(5px);
   filter: blur(5px);
-  height: 335px; background-position: center bottom;
+  height: 335px;
+  background-position: center bottom;
   margin-left: 0vw;
   top: -150px;
 }
@@ -19,7 +20,7 @@
 }
 
 .cloud-bottom {
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 100vw;
   bottom: 0;
@@ -28,6 +29,7 @@
   background-image: url(https://res.cloudinary.com/ryanbuckleyca/image/upload/v1599175891/cloud_img_full_yp9nhb.png);
   background-size: cover;
   background-position: center 400px;
+  background-attachment: fixed;
   background-repeat: repeat-x;
   -webkit-filter: blur(5px);
   filter: blur(5px);
