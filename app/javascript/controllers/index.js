@@ -12,7 +12,7 @@ application.load(definitionsFromContext(context))
 // Scrolling fade in landing page banner
 export const secondCloud = () => {
   let banner = document.querySelector('.help-img');
-  let cloud = document.querySelector('#cloud');
+  let cloud = document.querySelector('#landing-cloud');
   let message = document.querySelector('.landing-msg');
   if (banner && cloud && message) {
     window.addEventListener('scroll', (e) => {
