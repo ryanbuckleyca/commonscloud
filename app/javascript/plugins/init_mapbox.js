@@ -30,9 +30,7 @@ const initMapbox = () => {
       // re-center the map and center it based on new filtered markers
       const bounds = new mapboxgl.LngLatBounds();
       markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-      map.fitBounds(bounds, { duration: 0.5, animate: true, linear: true });
-      // map.flyTo({center: [markers[0].lng, markers[0].lat]});
-      // map.fitBounds(markers.getBounds());
+      map.fitBounds(bounds, {duration: 1, animate: true, linear: true, padding: 100, maxZoom: 11.15 });
     }
   };
 
@@ -69,7 +67,6 @@ const initMapbox = () => {
     });
 
     fitMapToMarkers(map, markers);
-
     map.addControl(new mapboxgl.NavigationControl());
 
     // Disable tap handler, if present.
