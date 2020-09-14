@@ -1,3 +1,8 @@
+.landing .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0px 7vw;
+}
 .landing {
   background: white;
   height: calc(65vh - 110px);
@@ -6,12 +11,7 @@
   color: $black;
 }
 .landing-msg {
-  padding-bottom: 5em;
-}
-.landing .container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0px 7vw;
+  padding-bottom: 1em;
 }
 .landing .help-img {
   z-index: 3;
