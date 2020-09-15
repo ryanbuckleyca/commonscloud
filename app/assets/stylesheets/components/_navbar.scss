@@ -33,7 +33,16 @@
   margin-left: auto;
   text-align: right;
 }
-
+@media (max-width: 575px) {
+  .navbar {
+    span {
+      font-size: 4.5vw;
+    }
+    img {
+      height: 18vw;
+    }
+  }
+}
 // yellow - request
 .uln-yellow {
   padding: 0 2px;
