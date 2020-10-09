@@ -27,6 +27,8 @@ class Post < ApplicationRecord
   end
 
   def header(width = 125, user = author)
+    puts "user is #{user.name}"
+    puts "location (not user.location) is #{latitude} #{longitude}"
     "<div class='lg-card-head'>
       <div class='lg-card-head graphic'>#{graphic(width, user)}</div>
       <div class='lg-card-head title'>
@@ -39,6 +41,11 @@ class Post < ApplicationRecord
   end
 
   def distance_to_user(user_location)
+    puts "user_location: #{user_location}"
+    puts "latitude: #{latitude}"
+    puts "longitude: #{longitude}"
+    puts "distance between: #{Geocoder::Calculations
+          .distance_between(user_location, [latitude, longitude])}"
     if [user_location, latitude, longitude].all?
       "#{Geocoder::Calculations
           .distance_between(user_location, [latitude, longitude])
