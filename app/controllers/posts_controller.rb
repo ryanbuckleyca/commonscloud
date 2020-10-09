@@ -3,16 +3,14 @@ class PostsController < ApplicationController
   before_action :current_user_location
 
   def index
-    location = current_user ? [current_user.latitude, current_user.longitude] : current_user_location
-    @posts = Post.near(location, 50)
+    @current_user_location = current_user_location
+    @posts = Post.near(@current_user_location, 50)
     @posts = @posts.geocoded.order('created_at DESC')
     @posts = @posts.where(post_type: params[:type].split(',')) if params[:type].present?
     @posts = @posts.where(category_id: params[:categories].split(',')) if params[:categories].present?
-
     @markers = @posts.map do |post|
       { lat: post.latitude, lng: post.longitude, icon: "#{post.icon} map-icon text-#{post.color}" }
     end
-
     stringified_posts = @posts.map { |post| render_to_string partial: "posts/all", formats: [:html], locals: { posts: @posts } }
     respond_to do |format|
       format.html
@@ -56,6 +54,9 @@ class PostsController < ApplicationController
   end
 
   def current_user_location
+    return [current_user.latitude, current_user.longitude] if current_user
+
+    # if user is not logged in, get browser geoloc, otherwise default to La Gare
     if request.key?('HTTP_HOST')
       if request['HTTP_HOST'].nil? || request['HTTP_HOST'].include?("localhost")
         @current_user_location = [45.525990, -73.595410]

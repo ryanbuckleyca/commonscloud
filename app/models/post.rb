@@ -27,28 +27,23 @@ class Post < ApplicationRecord
   end
 
   def header(width = 125, user = author)
-    puts "user is #{user.name}"
-    puts "location (not user.location) is #{latitude} #{longitude}"
+    puts "author of post is #{user.name}"
+    puts "location (not user.location) is #{current_user_latitude} #{longitude}"
     "<div class='lg-card-head'>
       <div class='lg-card-head graphic'>#{graphic(width, user)}</div>
       <div class='lg-card-head title'>
         <strong>#{title}</strong>
         <span><i class='fas fa-map-marker-alt'></i>
-        #{distance_to_user([user.latitude, user.longitude])} to #{user.name}
+        #{distance_to_current_user([user.latitude, user.longitude])} to #{user.name}
         </span>
       </div>
     </div>"
   end
 
-  def distance_to_user(user_location)
-    puts "user_location: #{user_location}"
-    puts "latitude: #{latitude}"
-    puts "longitude: #{longitude}"
-    puts "distance between: #{Geocoder::Calculations
-          .distance_between(user_location, [latitude, longitude])}"
-    if [user_location, latitude, longitude].all?
+  def distance_to_current_user(current_user_location)
+    if [current_user_location, latitude, longitude].all?
       "#{Geocoder::Calculations
-          .distance_between(user_location, [latitude, longitude])
+          .distance_between(current_user_location, [latitude, longitude])
           .floor} km away"
     else
       "near you"
