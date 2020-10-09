@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl';
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
+  // called on line 70
   const fitMapToMarkers = (map, markers) => {
     const bounds = new mapboxgl.LngLatBounds();
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
@@ -15,7 +16,6 @@ const initMapbox = () => {
   const refreshMarkers = (map, markers) => {
     // clear markers from map
     if (map.markers.length > 0) map.markers.forEach(m => m.remove());
-
     // build Marker Objects and attach to map
     if (markers.length > 0) {
       markers.forEach((marker) => {
@@ -41,11 +41,8 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/light-v10',
       center: [-73.61, 45.50],
       scrollZoom: false,
-      touchZoom: false,
-      doubleClickZoom: false,
       scrollWheelZoom: false,
       keyboard: true,
-      tap: false
     });
 
     // provide array to store Marker Objects on Map Object on line 63.
@@ -69,13 +66,15 @@ const initMapbox = () => {
     fitMapToMarkers(map, markers);
     map.addControl(new mapboxgl.NavigationControl());
 
-    // Disable tap handler, if present.
-    if (map.tap) map.tap = false;
-
     // make fitMapToMarkers() available on homepage for filterController.js
     window.refreshMarkers = refreshMarkers;
     // make the map JS object available on homepage for filterController.js
     window.mapbox = map;
+    // Disable tap handler, if present.
+    map.scrollZoom.disable();
+    map.doubleClickZoom.enable();
+    map.dragPan.disable();
+    map.touchZoomRotate.enable();
   }
 };
 
