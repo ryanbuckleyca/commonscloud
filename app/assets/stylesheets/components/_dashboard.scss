@@ -2,6 +2,12 @@
   width: 33%;
   margin: 0;
   text-align: center;
+  @media (max-width:575px) {
+    width: 40%;
+  }
+  @media (max-width:420px) {
+    width: 50%;
+  }
 }
 
 .nav-tabs {
