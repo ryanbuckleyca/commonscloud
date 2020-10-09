@@ -38,6 +38,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @current_user_location = current_user_location
     @post = Post.find(params[:id])
     @existing = Connection.find_by(post_id: @post.id).present?
     @connection = Connection.new
