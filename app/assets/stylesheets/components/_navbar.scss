@@ -2,6 +2,11 @@
   z-index: 10;
   justify-content: space-between;
   background: white;
+  @media (max-width: 575px) {
+    span {
+      font-size: 4.5vw;
+    }
+  }
 }
 .navbar-collapse {
   flex-grow: 0;
@@ -14,6 +19,11 @@
     position: relative;
     margin: 0 10px -30px 5px;
   }
+  @media (max-width: 575px) {
+    img { height: 18vw; }
+    font-size: 80%;
+  }
+
   h1 {
     font-family: 'Amatic SC', cursive;
     font-weight: 600;
@@ -33,16 +43,7 @@
   margin-left: auto;
   text-align: right;
 }
-@media (max-width: 575px) {
-  .navbar {
-    span {
-      font-size: 4.5vw;
-    }
-    img {
-      height: 18vw;
-    }
-  }
-}
+
 // yellow - request
 .uln-yellow {
   padding: 0 2px;

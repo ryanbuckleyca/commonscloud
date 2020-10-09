@@ -22,7 +22,7 @@
 
       <div class="col-sm-12 col-md-5 mb-4" id="chat-window">
         <!-- #chatroom-placeholder is necessary for js -->
-        <p id="chatroom-placeholder">Click on one of your connections to open your conversation with that user</p>
+        <p id="chatroom-placeholder">Click on a connection to open your conversation</p>
       </div>
 
       <div class="col-sm-12 col-md-7 mb-4 pl-2 pr-3" id="connection-cards" style="display: grid; grid-template-columns: 1fr; grid-gap: 3vh;">
@@ -44,14 +44,14 @@
       <% end %>
       <% @posts.each do |post| %>
         <div class="col-12 card pl-4 pr-0 mb-2">
-          <div class="mt-2 flip-reverse" id="myposts"> <%= raw post.header(150) %></div>
-          <div class="row">
-            <div class="col-10 pb-3">
-              <span class='badge badge-pill badge-<%= post.color%> m-auto'><%= post.post_type %></span>
+          <div class="mt-2 flip-reverse" id="myposts"> <%= raw post.header(150, post.author, current_user) %></div>
+          <div class="d-flex">
+            <div class="flex-grow-1 pb-3">
+              <span class='badge badge-pill badge-<%= post.color %> m-auto'><%= post.post_type %></span>
               <div class="mb-2 mt-2"><%= post.description %></div>
               <div class="mb-2"><%= post[:location] %></div>
             </div>
-            <div class="col-2 mb-4 pr-5 d-flex text-right align-items-end justify-content-end">
+            <div class="mb-4 pr-4 d-flex text-right align-items-end justify-content-end">
               <i class="fas fa-edit pl-1"></i>
               <i class="far fa-trash-alt pl-1"></i>
             </div>
