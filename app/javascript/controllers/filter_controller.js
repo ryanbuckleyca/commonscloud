@@ -43,12 +43,7 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         this.mapTarget.dataset.markers = JSON.stringify(data.markers);
-        // initMapbox();
         window.refreshMarkers(window.mapbox, data.markers); // function is defined in initMapbox.js:15
-        // now how to do the same for the posts?
-        // below doesn't work...how to render partial from JS?
-        // this.postsTarget.innerHTML = "<%= render "all", posts: data %>""
-        // for now, doing this below: \/
         this.refreshPosts(data.posts);
       });
   }
@@ -61,9 +56,10 @@ export default class extends Controller {
     // check posts controller#index:13 to understand what's happening here
     // the posts controller will pre-render the DIV cards and then send them back in a HTTP request
     // when your JS stimulus controller receives the `data` back, the bosy already contains the HTML it needs
-    const errorText = `<div class="card-group col-12 px-0 pb-5">
-                          No posts yet based on your filters. Try a broader criteria or come back later when there are more commnunity offers/requests.
-                        </div>`;
+    const errorText =
+      `<div class="card-group col-12 px-0 pb-5">
+        No posts yet based on your filters. Try a broader criteria or come back later when there are more commnunity offers/requests.
+       </div>`;
 
     if (newPosts.length > 0) {
       document.getElementById('postsContainer').innerHTML = newPosts[0];
