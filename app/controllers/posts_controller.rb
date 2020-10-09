@@ -1,18 +1,16 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :user_location
+  before_action :current_user_location
 
   def index
-    location = current_user ? [current_user.latitude, current_user.longitude] : user_location
-    @posts = Post.near(location, 50)
+    @current_user_location = current_user_location
+    @posts = Post.near(@current_user_location, 50)
     @posts = @posts.geocoded.order('created_at DESC')
     @posts = @posts.where(post_type: params[:type].split(',')) if params[:type].present?
     @posts = @posts.where(category_id: params[:categories].split(',')) if params[:categories].present?
-
     @markers = @posts.map do |post|
       { lat: post.latitude, lng: post.longitude, icon: "#{post.icon} map-icon text-#{post.color}" }
     end
-
     stringified_posts = @posts.map { |post| render_to_string partial: "posts/all", formats: [:html], locals: { posts: @posts } }
     respond_to do |format|
       format.html
@@ -40,16 +38,13 @@ class PostsController < ApplicationController
   end
 
   def show
+    @current_user_location = current_user_location
     @post = Post.find(params[:id])
-    if Connection.find_by(post_id: @post.id).present?
-      @existing = true
-    else
-      @existing = false
-    end
+    @existing = Connection.find_by(post_id: @post.id).present?
     @connection = Connection.new
     @markers = [
       { lat: @post.latitude, lng: @post.longitude, icon: "#{@post.icon} map-icon text-#{@post.color}" },
-      { lat: @user_location[0], lng: @user_location[1], icon: "fas fa-map-marker-alt map-icon text-#{@post.color == "primary" ? "info" : "primary"}" }
+      { lat: @current_user_location[0], lng: @current_user_location[1], icon: "fas fa-map-marker-alt map-icon text-#{@post.color == "primary" ? "info" : "primary"}" }
     ]
   end
 
@@ -59,13 +54,16 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :post_type, :description, :location, :priority)
   end
 
-  def user_location
+  def current_user_location
+    return [current_user.latitude, current_user.longitude] if current_user
+
+    # if user is not logged in, get browser geoloc, otherwise default to La Gare
     if request.key?('HTTP_HOST')
       if request['HTTP_HOST'].nil? || request['HTTP_HOST'].include?("localhost")
-        @user_location = [45.525990, -73.595410]
+        @current_user_location = [45.525990, -73.595410]
       end
     else
-      @user_location = [request.location.latitude, request.location.longitude]
+      @current_user_location = [request.location.latitude, request.location.longitude]
     end
   end
 end

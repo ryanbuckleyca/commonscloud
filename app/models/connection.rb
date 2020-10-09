@@ -7,7 +7,7 @@ class Connection < ApplicationRecord
     "<span class='badge badge-pill badge-secondary shadow-sm mt-n1 mx-auto'>
       #{x ? responder.name : 'You'} responded to #{x ? 'your' : post.author.name + '\'s '} #{post.post_type.downcase}
      </span>
-     <div class='ml-4 flip-reverse'>#{x ? post.header(150, responder) : post.header(150)}</div>
+     <div class='ml-4 flip-reverse'>#{x ? post.header(150, responder, current_user) : post.header(150, author, current_user)}</div>
      <div class='pl-4 pb-4 col-12'>
        <small>
          <strong>#{x ? responder.name.split(' ')[0] : 'You'} wrote:</strong> #{message}<br>
