@@ -6,12 +6,13 @@ class PostsController < ApplicationController
     @current_user_location = current_user_location
     @posts = Post.near(@current_user_location, 50)
     @posts = @posts.geocoded.order('created_at DESC')
+    @posts = @posts.where.not(author: current_user) if current_user
     @posts = @posts.where(post_type: params[:type].split(',')) if params[:type].present?
     @posts = @posts.where(category_id: params[:categories].split(',')) if params[:categories].present?
     @markers = @posts.map do |post|
       { lat: post.latitude, lng: post.longitude, icon: "#{post.icon} map-icon text-#{post.color}" }
     end
-    stringified_posts = @posts.map { |post| render_to_string partial: "posts/all", formats: [:html], locals: { posts: @posts } }
+    stringified_posts = @posts.map { |post| render_to_string partial: "posts/all", formats: [:html] }
     respond_to do |format|
       format.html
       format.json { render json: { posts: stringified_posts, markers: @markers } }
