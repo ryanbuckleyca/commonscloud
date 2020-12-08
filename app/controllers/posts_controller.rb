@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  binding.pry
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :current_user_location
 
