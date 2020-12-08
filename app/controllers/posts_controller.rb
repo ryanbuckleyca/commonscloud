@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  binding.pry
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :current_user_location
 
@@ -72,7 +73,8 @@ class PostsController < ApplicationController
 
     # if user is not logged in, get browser geoloc, otherwise default to La Gare
     puts "def current_user_location: user is not logged in"
-    puts "def current_user_location: params[:id] at this point is #{id}"
+    puts "def current_user_location: @post.id at this point is #{@post.id}"
+    puts "def current_user_location: params[:id] at this point is #{params[:id]}"
     if request.key?('HTTP_HOST')
       if request['HTTP_HOST'].nil? || request['HTTP_HOST'].include?("localhost")
         @current_user_location = [45.525990, -73.595410]
