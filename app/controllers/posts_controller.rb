@@ -41,7 +41,12 @@ class PostsController < ApplicationController
   def show
     @current_user_location = current_user_location
     @post = Post.find(params[:id])
-    p @post
+    # sometimes, the ID being returned is the "icon.png"
+    # all-posts page links to correct URL /posts/21
+    # and Post.find(id:21) does exist in DB
+    # but controller is trying to load id:logo.png
+    # only happens in Prod, not in local Dev env
+    puts @post
     @existing = Connection.find_by(post_id: @post.id).present?
     @connection = Connection.new
     @markers = [
