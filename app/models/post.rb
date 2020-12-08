@@ -27,8 +27,8 @@ class Post < ApplicationRecord
   end
 
   def header(width = 125, user = author, current_user_location)
-    puts "author of post is #{user.name}"
-    puts "current_user_location is #{current_user_location}"
+    puts "post ID in header() of Post model is #{id}"
+    puts "user ID in header() of Post model is #{user.id}"
     "<div class='lg-card-head'>
       <div class='lg-card-head graphic'>#{graphic(width, user)}</div>
       <div class='lg-card-head title'>
