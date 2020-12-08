@@ -39,22 +39,26 @@ class PostsController < ApplicationController
   end
 
   def show
+    puts "method show called from posts controller"
     @current_user_location = current_user_location
+    puts "@current_user_location is #{current_user_location}"
+    puts "params[:id] is #{params[:id]}"
     @post = Post.find(params[:id])
+    puts "Post.find(params[:id]) is #{@post}"
     # sometimes, the ID being returned is the "icon.png"
-    # all-posts page links to correct URL /posts/21
+    # the 'posts#index' page links to correct URL /posts/21
     # and Post.find(id:21) does exist in DB
     # but controller is trying to load id:logo.png
     # only happens in Prod, not in local Dev env
     # might have to do with current_user_location method
     # since that is the main difference bt Prod and Dev here 
-    puts @post
     @existing = Connection.find_by(post_id: @post.id).present?
     @connection = Connection.new
     @markers = [
       { lat: @post.latitude, lng: @post.longitude, icon: "#{@post.icon} map-icon text-#{@post.color}" },
       { lat: @current_user_location[0], lng: @current_user_location[1], icon: "fas fa-map-marker-alt map-icon text-#{@post.color == 'primary' ? 'info' : 'primary'}" }
     ]
+    puts "@markers is #{@markers}"
   end
 
   private
