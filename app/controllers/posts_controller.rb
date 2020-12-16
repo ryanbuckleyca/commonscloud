@@ -72,7 +72,7 @@ class PostsController < ApplicationController
 
     # if user is not logged in, get browser geoloc, otherwise default to La Gare
     puts "def current_user_location: user is not logged in"
-    puts "def current_user_location: @post.id at this point is #{@post.id}"
+    puts "def current_user_location: @post.id at this point is #{@post ? @post.id : 'undefined'}"
     puts "def current_user_location: params[:id] at this point is #{params[:id]}"
     if request.key?('HTTP_HOST')
       if request['HTTP_HOST'].nil? || request['HTTP_HOST'].include?("localhost")
