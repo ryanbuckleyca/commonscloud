@@ -39,27 +39,14 @@ class PostsController < ApplicationController
   end
 
   def show
-    puts "def show: method show called from posts controller"
     @current_user_location = current_user_location
-    puts "def show: @current_user_location is #{current_user_location}"
-    puts "def show: params[:id] is #{params[:id]}"
     @post = Post.find(params[:id])
-    puts "def show: Post.find(params[:id]) is #{@post}"
-    # sometimes, the ID being returned is the "icon.png"
-    # the 'posts#index' page links to correct URL /posts/21
-    # and Post.find(id:21) does exist in DB
-    # but controller is trying to load id:logo.png
-    # only happens in Prod, not in local Dev env
-    # might have to do with current_user_location method
-    # since that is the main difference bt Prod and Dev here 
     @existing = Connection.find_by(post_id: @post.id).present? if @post
-    puts "@existing in posts_controller is #{@existing}"
     @connection = Connection.new
     @markers = [
       { lat: @post.latitude, lng: @post.longitude, icon: "#{@post.icon} map-icon text-#{@post.color}" },
       { lat: @current_user_location[0], lng: @current_user_location[1], icon: "fas fa-map-marker-alt map-icon text-#{@post.color == 'primary' ? 'info' : 'primary'}" }
     ]
-    puts "def show: @markers is #{@markers}"
   end
 
   private
@@ -72,9 +59,6 @@ class PostsController < ApplicationController
     return [current_user.latitude, current_user.longitude] if current_user
 
     # if user is not logged in, get browser geoloc, otherwise default to La Gare
-    puts "def current_user_location: user is not logged in"
-    puts "def current_user_location: @post.id at this point is #{@post ? @post.id : 'undefined'}"
-    puts "def current_user_location: params[:id] at this point is #{params[:id]}"
     if request.key?('HTTP_HOST')
       if request['HTTP_HOST'].nil? || request['HTTP_HOST'].include?("localhost")
         @current_user_location = [45.525990, -73.595410]
