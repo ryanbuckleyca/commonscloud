@@ -22,13 +22,14 @@
       <% if @existing %>
         <%= link_to "view connection in dashboard", user_path(current_user, tab: "outgoing") %>
       <% else %>
+        <% raise %>
         <%= simple_form_for ([ @post, @connection ]) do |f| %>
           <% if @post.post_type == "Request" %>
             <%= f.input :message, input_html: { value: 'Help is on the way!'} %>
-            <% else %>
+          <% else %>
             <%= f.input :message, input_html: { value: 'Thanks for your generosity!'} %>
           <% end %>
-            <%= f.button :submit, 'Connect', class: 'btn btn-success rounded btn-block mb-2' %>
+          <%= f.button :submit, 'Connect', class: 'btn btn-success rounded btn-block mb-2' %>
         <% end %>
       <% end %>
       </div>
