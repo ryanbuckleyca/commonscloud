@@ -19,7 +19,7 @@
     </div>
     <div class='col-md-4 col-sm-12'>
       <div class="shadow-sm p-3 bg-white rounded">
-      <% if @existing %>
+      <% if @existing && current_user %>
         <% puts "@existins in show.html is true..." %>
         <%= link_to "view connection in dashboard", user_path(current_user, tab: "outgoing") %>
       <% else %>
