@@ -53,6 +53,7 @@ class PostsController < ApplicationController
     # might have to do with current_user_location method
     # since that is the main difference bt Prod and Dev here 
     @existing = Connection.find_by(post_id: @post.id).present? if @post
+    puts "@existing in posts_controller is #{@existing}"
     @connection = Connection.new
     @markers = [
       { lat: @post.latitude, lng: @post.longitude, icon: "#{@post.icon} map-icon text-#{@post.color}" },
