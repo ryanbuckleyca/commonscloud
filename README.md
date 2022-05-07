@@ -1,7 +1,7 @@
 # ✊ Commons Cloud:
 ### connecting neighbours in need to those who can offer support
 
-Visite the website here: http://www.commonscloud.cc/
+Visite the website here: http://commonscloud.herokuapp.com/
 
 Author: 
 * Ryan Buckley
