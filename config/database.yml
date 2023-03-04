@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: commonscloud_production
   username: commonscloud
   password: <%= ENV['COMMONSCLOUD_DATABASE_PASSWORD'] %>
